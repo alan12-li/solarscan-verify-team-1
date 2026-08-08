@@ -52,5 +52,6 @@ Thumbs.db
 data/raw/
 data/benchmark-v1/images/
 data/**/images/
+data/benchmark-v1/results/
 *.zip
 *.tar.gz
