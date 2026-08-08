@@ -62,8 +62,13 @@ def load_manifest() -> dict:
 
 
 def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
-    """Send one image to a Gemini model and return parsed JSON."""
+    """Send one image to a Gemini model and return parsed JSON.
+
+    Retries with exponential backoff on 429 (free-tier rate limit) and on
+    transient 5xx errors.
+    """
     import base64
+    import time as _time
 
     image_b64 = base64.b64encode(image_path.read_bytes()).decode()
     mime = "image/jpeg" if image_path.suffix.lower() in (".jpg", ".jpeg") else "image/png"
@@ -83,18 +88,32 @@ def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
             "responseMimeType": "application/json",
         },
     }
+    import urllib.error
     import urllib.request
 
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode(),
-        headers={
-            "Content-Type": "application/json",
-            "x-goog-api-key": api_key,
-        },
-    )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        body = json.loads(resp.read().decode())
+    max_attempts = 5
+    for attempt in range(1, max_attempts + 1):
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode(),
+            headers={
+                "Content-Type": "application/json",
+                "x-goog-api-key": api_key,
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                body = json.loads(resp.read().decode())
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code == 429 and attempt < max_attempts:
+                wait = 15 * (2 ** (attempt - 1))  # 15, 30, 60, 120
+                print(f"    429 rate limit — retrying in {wait}s (attempt {attempt}/{max_attempts})")
+                _time.sleep(wait)
+                continue
+            raise
+    else:
+        raise RuntimeError(f"Exhausted {max_attempts} attempts for {model}")
 
     text = body["candidates"][0]["content"]["parts"][0]["text"]
     parsed = extract_json(text)
@@ -149,6 +168,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=None, help="Run only first N cases")
     parser.add_argument("--sample", action="store_true", help="Sample 5 images across splits")
+    parser.add_argument("--resume", action="store_true",
+                        help="Skip cases already answered in existing result files")
+    parser.add_argument("--model", action="append", default=None,
+                        help="Run only specific model(s); repeatable")
+    parser.add_argument("--delay", type=float, default=2.0,
+                        help="Seconds between calls (default 2.0; free tier is rate-limited)")
     args = parser.parse_args()
 
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -157,6 +182,8 @@ def main() -> None:
             "GEMINI_API_KEY is not set. Export it first:  export GEMINI_API_KEY=...  "
             "(never paste it into chat or commit it)"
         )
+
+    models = MODELS if not args.model else args.model
 
     manifest = load_manifest()
     cases = manifest["cases"]
@@ -169,11 +196,22 @@ def main() -> None:
 
     RESULTS.mkdir(parents=True, exist_ok=True)
 
-    for model in MODELS:
+    for model in models:
         out_path = RESULTS / f"{model.replace('/', '_')}.json"
-        rows = []
-        print(f"\n=== {model} ===")
+        existing = {}
+        if args.resume and out_path.exists():
+            for r in json.loads(out_path.read_text()):
+                if "error" not in r:
+                    existing[r["case_id"]] = r
+            print(f"\n=== {model} (resume: {len(existing)} already done) ===")
+        else:
+            print(f"\n=== {model} ===")
+        rows = list(existing.values())
+        done_ids = set(existing.keys())
         for i, case in enumerate(cases, 1):
+            if case["id"] in done_ids:
+                print(f"  {case['id']}: skipped (done)")
+                continue
             img = IMAGES / Path(case["image"]).name
             if not img.exists():
                 print(f"  skip {case['id']}: image missing")
@@ -185,10 +223,10 @@ def main() -> None:
             except Exception as exc:
                 rows.append({"case_id": case["id"], "error": str(exc)})
                 print(f"  {case['id']}: ERROR {exc}")
-            time.sleep(0.5)  # be gentle with rate limits
+            time.sleep(args.delay)  # be gentle with rate limits
 
         out_path.write_text(json.dumps(rows, indent=2) + "\n")
-        print(f"  -> {out_path}")
+        print(f"  -> {out_path} ({len(rows)} rows)")
 
     print("\nDone. Results in", RESULTS)
 
