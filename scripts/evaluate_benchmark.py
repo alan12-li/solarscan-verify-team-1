@@ -35,8 +35,8 @@ RESULTS = BENCH / "results"
 
 MODELS = [
     "gemini-3.5-flash-lite",
-    "openrouter:openai/gpt-4o-mini",
-    "openrouter:anthropic/claude-3.5-sonnet",
+    "openrouter:openai/gpt-5.5",
+    "openrouter:moonshotai/kimi-k3",
 ]
 
 # PRD §3 output contract — every model must return exactly this JSON.
