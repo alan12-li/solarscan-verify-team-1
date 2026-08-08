@@ -174,6 +174,8 @@ def main() -> None:
                         help="Run only specific model(s); repeatable")
     parser.add_argument("--delay", type=float, default=2.0,
                         help="Seconds between calls (default 2.0; free tier is rate-limited)")
+    parser.add_argument("--subset", action="store_true",
+                        help="Run only the 30 labeling-subset cases (test+valid)")
     args = parser.parse_args()
 
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -187,7 +189,12 @@ def main() -> None:
 
     manifest = load_manifest()
     cases = manifest["cases"]
-    if args.sample:
+    if args.subset:
+        sub = json.loads((BENCH / "labeling" / "subset-30.json").read_text())
+        subset_ids = {c["id"] for c in sub["cases"]}
+        cases = [c for c in cases if c["id"] in subset_ids]
+        print(f"Subset mode: {len(cases)} labeling-subset cases")
+    elif args.sample:
         cases = [c for c in cases if c["split"] == "test"][:5]
         print(f"Sample mode: {len(cases)} test-split cases")
     elif args.limit:
