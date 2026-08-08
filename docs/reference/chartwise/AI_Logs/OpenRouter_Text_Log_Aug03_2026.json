@@ -1,0 +1,598 @@
+{
+  "version": "orpg.3.0",
+  "title": "Design a 15-minute simulation that teach",
+  "characters": {
+    "char-1785787596-eo7pIhncZQ8pO6v3U53I": {
+      "id": "char-1785787596-eo7pIhncZQ8pO6v3U53I",
+      "model": "anthropic/claude-opus-5",
+      "modelInfo": {
+        "slug": "anthropic/claude-opus-5",
+        "hf_slug": null,
+        "updated_at": "2026-07-24T20:36:14.927Z",
+        "created_at": "2026-07-24T17:02:24.129Z",
+        "hf_updated_at": null,
+        "name": "Claude Opus 5",
+        "short_name": "Claude Opus 5",
+        "author": "anthropic",
+        "author_display_name": "Anthropic",
+        "author_icon_uri": null,
+        "description": "Claude Opus 5 is Anthropic’s flagship model for demanding reasoning, coding, and long-horizon agentic work. It is particularly strong at end-to-end software tasks, code review and bug finding, visual analysis of charts and documents, complex office deliverables, and coordinating parallel subagents.\n\nThe model maintains strong instruction following and tool use across extended tasks, while remaining effective at lower effort settings for workloads that prioritize latency and token efficiency.",
+        "model_version_group_id": "b98cca06-1cff-4829-90c2-ef03ddfefb7d",
+        "context_length": 1000000,
+        "input_modalities": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "has_text_output": true,
+        "group": "Claude",
+        "instruct_type": null,
+        "default_system": null,
+        "default_stops": [],
+        "hidden": false,
+        "router": null,
+        "warning_message": null,
+        "promotion_message": null,
+        "routing_error_message": null,
+        "required_attestation_types": [],
+        "is_private": false,
+        "permaslug": "anthropic/claude-opus-5-20260723",
+        "supports_reasoning": true,
+        "reasoning_config": {
+          "start_token": null,
+          "end_token": null,
+          "is_mandatory_reasoning": false,
+          "supports_reasoning_effort": true,
+          "supports_reasoning_max_tokens": false,
+          "supported_reasoning_efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "default_reasoning_effort": "high",
+          "default_reasoning_enabled": true
+        },
+        "features": {
+          "reasoning_config": {
+            "start_token": null,
+            "end_token": null,
+            "is_mandatory_reasoning": false,
+            "supports_reasoning_effort": true,
+            "supports_reasoning_max_tokens": false,
+            "supported_reasoning_efforts": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
+            "default_reasoning_effort": "high",
+            "default_reasoning_enabled": true
+          },
+          "chat_template_config": {}
+        },
+        "default_parameters": {
+          "temperature": null,
+          "top_p": null,
+          "top_k": null,
+          "frequency_penalty": null,
+          "presence_penalty": null,
+          "repetition_penalty": null
+        },
+        "default_order": [
+          "amazon-bedrock/claude-on-aws",
+          "amazon-bedrock",
+          "google-vertex/global",
+          "anthropic",
+          "google-vertex/europe"
+        ],
+        "quick_start_example_type": "reasoning",
+        "previews_by_modality": {},
+        "preview_thumbnail_url": null,
+        "preview_audio": null,
+        "author_flagship_modalities": [],
+        "is_trainable_text": null,
+        "is_trainable_image": null,
+        "knowledge_cutoff": null,
+        "limit_rpm": 0,
+        "limit_rpd": 0,
+        "supported_tts_voices": null,
+        "endpoint": {
+          "id": "76cb4608-f48c-483d-8da8-9957fb44244e",
+          "name": "Amazon Bedrock | anthropic/claude-opus-5-20260723",
+          "context_length": 1000000,
+          "model": {
+            "slug": "anthropic/claude-opus-5",
+            "hf_slug": null,
+            "updated_at": "2026-07-24T20:36:14.927545+00:00",
+            "created_at": "2026-07-24T17:02:24.129+00:00",
+            "hf_updated_at": null,
+            "name": "Claude Opus 5",
+            "short_name": "Claude Opus 5",
+            "author": "anthropic",
+            "author_display_name": "Anthropic",
+            "author_icon_uri": null,
+            "description": "Claude Opus 5 is Anthropic’s flagship model for demanding reasoning, coding, and long-horizon agentic work. It is particularly strong at end-to-end software tasks, code review and bug finding, visual analysis of charts and documents, complex office deliverables, and coordinating parallel subagents.\n\nThe model maintains strong instruction following and tool use across extended tasks, while remaining effective at lower effort settings for workloads that prioritize latency and token efficiency.",
+            "model_version_group_id": "b98cca06-1cff-4829-90c2-ef03ddfefb7d",
+            "context_length": 1000000,
+            "input_modalities": [
+              "text",
+              "image",
+              "file"
+            ],
+            "output_modalities": [
+              "text"
+            ],
+            "has_text_output": true,
+            "group": "Claude",
+            "instruct_type": null,
+            "default_system": null,
+            "default_stops": [],
+            "hidden": false,
+            "router": null,
+            "warning_message": null,
+            "promotion_message": null,
+            "routing_error_message": null,
+            "required_attestation_types": [],
+            "is_private": false,
+            "permaslug": "anthropic/claude-opus-5-20260723",
+            "supports_reasoning": true,
+            "reasoning_config": {
+              "start_token": null,
+              "end_token": null,
+              "is_mandatory_reasoning": false,
+              "supports_reasoning_effort": true,
+              "supports_reasoning_max_tokens": false,
+              "supported_reasoning_efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
+              ],
+              "default_reasoning_effort": "high",
+              "default_reasoning_enabled": true
+            },
+            "features": {
+              "reasoning_config": {
+                "start_token": null,
+                "end_token": null,
+                "is_mandatory_reasoning": false,
+                "supports_reasoning_effort": true,
+                "supports_reasoning_max_tokens": false,
+                "supported_reasoning_efforts": [
+                  "low",
+                  "medium",
+                  "high",
+                  "xhigh",
+                  "max"
+                ],
+                "default_reasoning_effort": "high",
+                "default_reasoning_enabled": true
+              },
+              "chat_template_config": {}
+            },
+            "default_parameters": {
+              "temperature": null,
+              "top_p": null,
+              "top_k": null,
+              "frequency_penalty": null,
+              "presence_penalty": null,
+              "repetition_penalty": null
+            },
+            "default_order": [
+              "amazon-bedrock/claude-on-aws",
+              "amazon-bedrock",
+              "google-vertex/global",
+              "anthropic",
+              "google-vertex/europe"
+            ],
+            "quick_start_example_type": "reasoning",
+            "previews_by_modality": {},
+            "preview_thumbnail_url": null,
+            "preview_audio": null,
+            "author_flagship_modalities": [],
+            "is_trainable_text": null,
+            "is_trainable_image": null,
+            "knowledge_cutoff": null,
+            "limit_rpm": 0,
+            "limit_rpd": 0,
+            "supported_tts_voices": null
+          },
+          "model_variant_slug": "anthropic/claude-opus-5",
+          "model_variant_permaslug": "anthropic/claude-opus-5-20260723",
+          "adapter_name": "ClaudeOnAwsAdapter",
+          "provider_name": "Amazon Bedrock",
+          "provider_info": {
+            "name": "Amazon Bedrock",
+            "displayName": "Claude Platform on AWS",
+            "slug": "amazon-bedrock/claude-on-aws",
+            "baseUrl": "https://aws-external-anthropic.us-east-1.api.aws/v1",
+            "dataPolicy": {
+              "training": false,
+              "trainingOpenRouter": false,
+              "retainsPrompts": false,
+              "canPublish": false,
+              "termsOfServiceURL": "https://aws.amazon.com/service-terms/",
+              "privacyPolicyURL": "https://aws.amazon.com/privacy",
+              "requiresUserIDs": false
+            },
+            "headquarters": "US",
+            "hasChatCompletions": true,
+            "hasCompletions": false,
+            "isAbortable": false,
+            "moderationRequired": true,
+            "editors": [
+              "{}"
+            ],
+            "owners": [
+              "org_39b6V1QWwN007RTEQkmKy4KCs4k"
+            ],
+            "adapterName": "ClaudeOnAwsAdapter",
+            "statusPageUrl": "https://health.aws.amazon.com/health/status",
+            "byokEnabled": true,
+            "icon": {
+              "url": "/images/icons/Bedrock.svg"
+            },
+            "sendClientIp": false,
+            "pricingStrategy": "anthropic"
+          },
+          "provider_display_name": "Claude Platform on AWS",
+          "provider_slug": "amazon-bedrock/claude-on-aws",
+          "provider_model_id": "claude-opus-5",
+          "quantization": "unknown",
+          "variant": "standard",
+          "is_free": false,
+          "can_abort": false,
+          "max_prompt_tokens": null,
+          "max_completion_tokens": 128000,
+          "max_tokens_per_image": null,
+          "supported_parameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "stop",
+            "tool_choice",
+            "tools",
+            "structured_outputs",
+            "response_format",
+            "verbosity"
+          ],
+          "excluded_parameters": [
+            "temperature",
+            "top_p",
+            "top_k"
+          ],
+          "is_byok": false,
+          "moderation_required": true,
+          "data_policy": {
+            "training": false,
+            "trainingOpenRouter": false,
+            "retainsPrompts": true,
+            "retentionDays": 30,
+            "canPublish": false,
+            "termsOfServiceURL": "https://aws.amazon.com/service-terms/",
+            "privacyPolicyURL": "https://aws.amazon.com/privacy"
+          },
+          "pricing": {
+            "prompt": "0.000005",
+            "completion": "0.000025",
+            "input_cache_read": "0.0000005",
+            "input_cache_write": "0.00000625",
+            "input_cache_write_1h": "0.00001",
+            "web_search": "0.01",
+            "discount": 0,
+            "display_pricing": [
+              {
+                "kind": "token",
+                "sku_label": "Input Price",
+                "price": "5e-6",
+                "displayMultiplier": 1000000,
+                "unitLabel": "/M tokens"
+              },
+              {
+                "kind": "token",
+                "sku_label": "Output Price",
+                "price": "25e-6",
+                "displayMultiplier": 1000000,
+                "unitLabel": "/M tokens"
+              },
+              {
+                "kind": "token",
+                "sku_label": "Cache Read",
+                "price": ".5e-6",
+                "displayMultiplier": 1000000,
+                "unitLabel": "/M tokens"
+              },
+              {
+                "kind": "token",
+                "sku_label": "Cache Write",
+                "price": "6.25e-6",
+                "displayMultiplier": 1000000,
+                "unitLabel": "/M tokens"
+              },
+              {
+                "kind": "token",
+                "sku_label": "Cache Write (1h)",
+                "price": "10e-6",
+                "displayMultiplier": 1000000,
+                "unitLabel": "/M tokens"
+              }
+            ]
+          },
+          "display_pricing": [
+            {
+              "kind": "token",
+              "sku_label": "Input Price",
+              "price": "5e-6",
+              "displayMultiplier": 1000000,
+              "unitLabel": "/M tokens"
+            },
+            {
+              "kind": "token",
+              "sku_label": "Output Price",
+              "price": "25e-6",
+              "displayMultiplier": 1000000,
+              "unitLabel": "/M tokens"
+            },
+            {
+              "kind": "token",
+              "sku_label": "Cache Read",
+              "price": ".5e-6",
+              "displayMultiplier": 1000000,
+              "unitLabel": "/M tokens"
+            },
+            {
+              "kind": "token",
+              "sku_label": "Cache Write",
+              "price": "6.25e-6",
+              "displayMultiplier": 1000000,
+              "unitLabel": "/M tokens"
+            },
+            {
+              "kind": "token",
+              "sku_label": "Cache Write (1h)",
+              "price": "10e-6",
+              "displayMultiplier": 1000000,
+              "unitLabel": "/M tokens"
+            }
+          ],
+          "pricing_json": {
+            "anthropic:prompt_tokens": "5e-6",
+            "anthropic:web_search_calls": ".01",
+            "anthropic:cache_read_tokens": ".5e-6",
+            "anthropic:completion_tokens": "25e-6",
+            "anthropic:cache_write_1h_tokens": "10e-6",
+            "anthropic:cache_write_5m_tokens": "6.25e-6"
+          },
+          "pricing_version_id": "289386ff-182e-4308-bc02-e127d91cbdc6",
+          "is_hidden": false,
+          "is_private": false,
+          "is_byok_only": false,
+          "is_deranked": false,
+          "is_disabled": false,
+          "supports_tool_parameters": true,
+          "supports_reasoning": true,
+          "supports_multipart": true,
+          "limit_rpm": 250,
+          "limit_rpd": null,
+          "limit_rpm_cf": null,
+          "has_completions": false,
+          "has_chat_completions": true,
+          "features": {
+            "supports_file_urls": true,
+            "supports_native_web_search": true,
+            "supports_native_web_fetch": true,
+            "supports_tool_choice": {
+              "literal_none": true,
+              "literal_auto": true,
+              "literal_required": true,
+              "type_function": true
+            }
+          },
+          "supported_video_parameters": null,
+          "supported_image_parameters": null,
+          "provider_region": null,
+          "deprecation_date": null,
+          "allowed_passthrough_parameters": [],
+          "capacity_tpm": null,
+          "created_at": "2026-07-24T17:53:23.652Z",
+          "status": 0
+        },
+        "searchKeywords": [
+          "claude",
+          "opus",
+          "5"
+        ]
+      },
+      "description": "",
+      "includeDefaultSystemPrompt": true,
+      "isStreaming": true,
+      "samplingParameters": {},
+      "isDisabled": false,
+      "isRemoved": false,
+      "createdAt": "2026-08-03T20:06:36.006Z",
+      "updatedAt": "2026-08-03T20:06:36.006Z",
+      "plugins": []
+    }
+  },
+  "messages": {
+    "msg-1785787596-RoNpRUxDoXKfsQk5DpSC": {
+      "id": "msg-1785787596-RoNpRUxDoXKfsQk5DpSC",
+      "characterId": "USER",
+      "contentType": "text",
+      "context": "main-chat",
+      "createdAt": "2026-08-03T20:06:36.069Z",
+      "updatedAt": "2026-08-03T20:06:36.069Z",
+      "isRetrying": false,
+      "isEdited": false,
+      "isCollapsed": false,
+      "type": "user",
+      "items": [
+        {
+          "id": "item-1785787596-g7Y71cw6q2u412FODMFA",
+          "type": "message"
+        }
+      ]
+    },
+    "msg-1785787596-oArFiIdKhVdlb1cV3kWd": {
+      "id": "msg-1785787596-oArFiIdKhVdlb1cV3kWd",
+      "characterId": "char-1785787596-eo7pIhncZQ8pO6v3U53I",
+      "contentType": "text",
+      "context": "main-chat",
+      "parentMessageId": "msg-1785787596-RoNpRUxDoXKfsQk5DpSC",
+      "createdAt": "2026-08-03T20:06:36.070Z",
+      "updatedAt": "2026-08-03T20:07:35.844Z",
+      "isRetrying": false,
+      "isEdited": false,
+      "isCollapsed": false,
+      "type": "assistant",
+      "isGenerating": false,
+      "metadata": {
+        "plugins": [],
+        "variantSlug": "anthropic/claude-opus-5",
+        "serverTools": {
+          "webSearchEngine": "auto",
+          "webFetchEngine": "auto"
+        },
+        "generationId": "gen-1785787596-HPlOIMH4C8Uh4lJdPUIb",
+        "duration": 57896,
+        "tokensCount": 3864,
+        "tokensPerSecond": 66.74036202846483,
+        "cost": "0.11534",
+        "routerMetadata": {
+          "requested": "anthropic/claude-opus-5",
+          "strategy": "direct",
+          "region": "EWR",
+          "summary": "available=6, selected=Amazon Bedrock",
+          "attempt": 1,
+          "is_byok": false,
+          "endpoints": {
+            "total": 7,
+            "available": [
+              {
+                "provider": "Amazon Bedrock",
+                "model": "anthropic/claude-opus-5-20260723",
+                "selected": true
+              },
+              {
+                "provider": "Amazon Bedrock",
+                "model": "anthropic/claude-opus-5-20260723",
+                "selected": false
+              },
+              {
+                "provider": "Google",
+                "model": "anthropic/claude-opus-5-20260723",
+                "selected": false
+              },
+              {
+                "provider": "Anthropic",
+                "model": "anthropic/claude-opus-5-20260723",
+                "selected": false
+              },
+              {
+                "provider": "Azure",
+                "model": "anthropic/claude-opus-5-20260723",
+                "selected": false
+              },
+              {
+                "provider": "Claude Platform on AWS",
+                "model": "anthropic/claude-opus-5-20260723",
+                "selected": false
+              }
+            ]
+          },
+          "pipeline": [
+            {
+              "type": "server_tools",
+              "name": "server-tools",
+              "summary": "Server tools invoked (native): openrouter:web_search, openrouter:web_fetch",
+              "data": {
+                "mode": "native",
+                "tools": [
+                  "openrouter:web_search",
+                  "openrouter:web_fetch"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "items": [
+        {
+          "id": "rs_tmp_niknj128c1c",
+          "outputIndex": 0,
+          "type": "reasoning",
+          "sequenceIndex": 0
+        },
+        {
+          "id": "msg_tmp_otp2p09w6d",
+          "outputIndex": 1,
+          "type": "message",
+          "sequenceIndex": 1
+        }
+      ]
+    }
+  },
+  "items": {
+    "item-1785787596-g7Y71cw6q2u412FODMFA": {
+      "id": "item-1785787596-g7Y71cw6q2u412FODMFA",
+      "messageId": "msg-1785787596-RoNpRUxDoXKfsQk5DpSC",
+      "data": {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "Design a 15-minute simulation that teaches business students how to choose the right data visualization."
+          }
+        ]
+      }
+    },
+    "rs_tmp_niknj128c1c": {
+      "id": "rs_tmp_niknj128c1c",
+      "messageId": "msg-1785787596-oArFiIdKhVdlb1cV3kWd",
+      "data": {
+        "id": "rs_tmp_niknj128c1c",
+        "type": "reasoning",
+        "status": "completed",
+        "content": [
+          {
+            "type": "reasoning_text",
+            "text": "I'm designing a 15-minute classroom simulation called \"The 9:00 AM Board Meeting\" where students take on the role of analysts receiving rapid-fire visualization requests from stakeholders, forcing them to quickly choose the right chart type for each scenario.\n\nThe simulation runs five main rounds over about 7–8 minutes, with each team getting 60–90 seconds to select a chart from a deck, write a one-line insight, and identify the encoding they're using. I'm building in a twist round where they have to spot and fix a deliberately misleading visualization, then wrapping up with a debrief that solidifies the decision framework—mapping question types to chart families like comparison, composition, distribution, relationship, change over time, and others.\n\nFor scoring and materials, I'm including an answer key that flags common traps: pie charts with too many slices, dual-axis tricks, 3D effects, stacked bars used to compare individual series instead of totals, and truncated axes. I'll also weave in the lie factor concept—the ratio of the effect size shown in the graphic versus the actual effect size in the data—to give students a quantitative lens on why certain encodings mislead.\n\nThe five rounds are concrete: the CFO asks which regions missed Q2 targets (deviation chart, not pie), the CMO wants to know if a March price hike affected revenue trends (line chart with annotation), and so on, each with a small data snippet students can eyeball quickly.\n\nI'm adding a one-slide decision rule that ties the verb in the question to the chart type, plus a \"so-what title\" rule that forces students to write titles that reveal the insight, not just the metric."
+          }
+        ],
+        "summary": [],
+        "signature": "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",
+        "format": "anthropic-claude-v1"
+      }
+    },
+    "msg_tmp_otp2p09w6d": {
+      "id": "msg_tmp_otp2p09w6d",
+      "messageId": "msg-1785787596-oArFiIdKhVdlb1cV3kWd",
+      "data": {
+        "id": "msg_tmp_otp2p09w6d",
+        "type": "message",
+        "status": "completed",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "# Chart Triage at Northwind Beverages\n### A 15-minute decision simulation for business students\n\n**Learning objective:** Students learn that chart choice is driven by the *question being asked*, not by the data's shape or by aesthetic preference — and they practice it under realistic time pressure.\n\n**Format:** Teams of 2–3. Facilitator plays the role of executives sending urgent requests. Fast rounds, immediate reveal, running score.\n\n---\n\n## The Setup (say this verbatim, ~60 seconds)\n\n> \"You are the analytics duo at Northwind Beverages. It's 8:40 AM. The board meets at 9:00. Five executives are messaging you at once, each wanting one chart. You have 90 seconds per request. Wrong chart type and the exec draws the wrong conclusion — and you own that.\"\n\nThen give them the only framework they need, on one slide:\n\n| The verb in the question | The chart family |\n|---|---|\n| \"Which is bigger / who's behind?\" | Bar (ranked, horizontal) |\n| \"How has it changed over time?\" | Line |\n| \"Are we off target?\" | Diverging bar or bullet |\n| \"How spread out / how typical?\" | Histogram or box plot |\n| \"Does X move with Y?\" | Scatter |\n| \"How did we get from A to B?\" | Waterfall |\n| \"What share of the whole?\" | Stacked bar (pie only if 2–3 parts) |\n\n**The one rule:** Underline the verb in the request. The verb picks the chart. Then write the chart's title as the *answer*, not the topic.\n\n---\n\n## The Rounds (90 seconds each, ~8 minutes total)\n\nReveal one request at a time. Each team submits three things on an index card: **(1)** chart type, **(2)** what goes on each axis/encoding, **(3)** a \"so-what\" headline.\n\n| # | Incoming message | Data they get |\n|---|---|---|\n| **1** | **CFO:** \"Which regions missed Q2 target, and by how much?\" | 6 regions, actual vs. target |\n| **2** | **CMO:** \"Did the March price increase break our weekly revenue trend?\" | 52 weekly revenue values |\n| **3** | **COO:** \"Are delivery times consistent, or are some orders wildly late?\" | 400 order delivery times |\n| **4** | **Sales VP:** \"Are deeper discounts actually winning bigger deals?\" | 120 deals: discount %, deal size |\n| **5** | **CEO:** \"Explain to the board how revenue went from \\$12M to \\$15M.\" | Volume +2.1, price +1.4, churn −0.9, FX +0.4 |\n\n**Scoring (keep it visible):** +3 correct chart family · +2 headline states a finding, not a topic · +1 sensible encoding · **−2 for falling into the trap**\n\n<details>\n<summary><strong>Facilitator answer key & the trap in each round</strong></summary>\n\n1. **Diverging bar** (variance from target, zero-centered) or bullet chart. *Trap: a pie chart of regional revenue — it can't show \"missed by how much\" at all.* Second trap: side-by-side actual/target bars force the audience to do the subtraction mentally.\n2. **Line chart with a vertical reference line at March** and an annotation. *Trap: 52 bars (unreadable, implies discrete events), or a dual-axis chart adding price on a second scale — which invites false causal reading.*\n3. **Histogram or box plot.** *Trap: a bar chart of the average delivery time — averages destroy exactly the information asked for. This is the round most teams lose.*\n4. **Scatter plot with a fitted line.** *Trap: two line series (discount and deal size) over deal ID, which manufactures a pattern from arbitrary ordering.* Bonus point for any team that says \"correlation isn't causation — big deals may cause discounts.\"\n5. **Waterfall chart.** *Trap: stacked column of two totals, which hides the drivers.*\n</details>\n\n---\n\n## The Twist Round (~2 minutes)\n\nShow one deliberately misleading chart: a competitor's growth chart with a y-axis starting at 94, in 3D, with a pie of 9 slices in the corner.\n\nAsk: **\"You have 45 seconds. Name three things you'd fix before this goes in front of the board.\"**\n\nIntroduce Tufte's lie factor as the closing concept:\n\n$$\\text{Lie Factor} = \\frac{\\text{size of effect shown in the graphic}}{\\text{size of effect in the data}}$$\n\nA truncated axis that turns a 3% gain into a visually tripled bar has a lie factor around $3.0$; honest graphics sit near $1.0$. This gives students a defensible, non-aesthetic argument to make when a manager asks them to \"make the growth look better.\"\n\n---\n\n## The Debrief (~3 minutes)\n\nAsk three questions in this order — do not lecture:\n\n1. **\"Which round did most of you lose, and why?\"** (Almost always Round 3. The insight: we default to averages and bar charts because they're familiar, not because they answer the question.)\n2. **\"How many of you wrote a headline that was a topic — 'Q2 Regional Revenue' — instead of a finding?\"** (The insight: if you can't write the finding, you haven't picked the right chart yet.)\n3. **\"What would you have chosen differently if the audience were the warehouse team instead of the board?\"** (The insight: audience and decision context are the second input after the verb.)\n\n**Close with the takeaway they should leave with:**\n> Before you open the charting tool, finish this sentence out loud: *\"I want my audience to see that ___, so they can decide ___.\"* The chart type is then almost always obvious.\n\n---\n\n<details>\n<summary><strong>Materials checklist (5 minutes of prep)</strong></summary>\n\n- 6 slides: 1 framework, 5 requests (each showing the message + a small data table, ~10 rows max so it's eyeballable)\n- 1 misleading-chart slide for the twist\n- Index cards, 3 per team\n- A visible timer — the time pressure is the pedagogy, not a gimmick\n- Scoreboard on the whiteboard\n- Optional: printed \"chart cards\" (one chart type per card) so teams physically select one instead of writing — noticeably faster and more decisive\n</details>\n\n<details>\n<summary><strong>Adaptations</strong></summary>\n\n**Large lecture (100+):** Convert rounds to multiple-choice with clickers/Poll Everywhere. Show four candidate charts of the *same data* and ask which answers the exec's question. Cuts to 10 minutes.\n\n**Async / online:** Deliver as a timed quiz with 90-second per-question locks; require a one-line headline as a free-text field, peer-graded against the \"finding not topic\" rule.\n\n**Extend to 30 minutes:** Add a build phase — teams reproduce their Round 5 waterfall in Excel or Tableau and present for 60 seconds. Reveals the gap between *choosing* and *executing*.\n\n**Harder version for MBAs:** Add a sixth round where the correct answer is \"no chart — this is one number, put it in a sentence.\" Roughly a third of the class will still draw something.\n</details>\n\n<details>\n<summary><strong>Assessment rubric, if graded</strong></summary>\n\n| Dimension | 1 — Emerging | 3 — Proficient | 5 — Strong |\n|---|---|---|---|\n| Chart–question fit | Chart cannot answer the question | Correct family, suboptimal variant | Correct family and best variant for the audience |\n| Headline | States the topic | States a finding | States a finding plus the implied decision |\n| Encoding integrity | Truncated axis, 3D, or misleading dual axis | Honest but cluttered | Honest, minimal, annotated at the point of interest |\n| Reasoning | \"It looks good\" | Cites the question's verb | Cites verb, audience, and the decision at stake |\n</details>",
+            "annotations": [],
+            "logprobs": []
+          }
+        ]
+      }
+    }
+  },
+  "artifacts": {},
+  "artifactFiles": {},
+  "artifactVersions": {},
+  "artifactFileContents": {}
+}

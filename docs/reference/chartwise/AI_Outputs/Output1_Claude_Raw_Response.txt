@@ -1,0 +1,115 @@
+# Chart Triage at Northwind Beverages
+### A 15-minute decision simulation for business students
+
+**Learning objective:** Students learn that chart choice is driven by the *question being asked*, not by the data's shape or by aesthetic preference — and they practice it under realistic time pressure.
+
+**Format:** Teams of 2–3. Facilitator plays the role of executives sending urgent requests. Fast rounds, immediate reveal, running score.
+
+---
+
+## The Setup (say this verbatim, ~60 seconds)
+
+> "You are the analytics duo at Northwind Beverages. It's 8:40 AM. The board meets at 9:00. Five executives are messaging you at once, each wanting one chart. You have 90 seconds per request. Wrong chart type and the exec draws the wrong conclusion — and you own that."
+
+Then give them the only framework they need, on one slide:
+
+| The verb in the question | The chart family |
+|---|---|
+| "Which is bigger / who's behind?" | Bar (ranked, horizontal) |
+| "How has it changed over time?" | Line |
+| "Are we off target?" | Diverging bar or bullet |
+| "How spread out / how typical?" | Histogram or box plot |
+| "Does X move with Y?" | Scatter |
+| "How did we get from A to B?" | Waterfall |
+| "What share of the whole?" | Stacked bar (pie only if 2–3 parts) |
+
+**The one rule:** Underline the verb in the request. The verb picks the chart. Then write the chart's title as the *answer*, not the topic.
+
+---
+
+## The Rounds (90 seconds each, ~8 minutes total)
+
+Reveal one request at a time. Each team submits three things on an index card: **(1)** chart type, **(2)** what goes on each axis/encoding, **(3)** a "so-what" headline.
+
+| # | Incoming message | Data they get |
+|---|---|---|
+| **1** | **CFO:** "Which regions missed Q2 target, and by how much?" | 6 regions, actual vs. target |
+| **2** | **CMO:** "Did the March price increase break our weekly revenue trend?" | 52 weekly revenue values |
+| **3** | **COO:** "Are delivery times consistent, or are some orders wildly late?" | 400 order delivery times |
+| **4** | **Sales VP:** "Are deeper discounts actually winning bigger deals?" | 120 deals: discount %, deal size |
+| **5** | **CEO:** "Explain to the board how revenue went from \$12M to \$15M." | Volume +2.1, price +1.4, churn −0.9, FX +0.4 |
+
+**Scoring (keep it visible):** +3 correct chart family · +2 headline states a finding, not a topic · +1 sensible encoding · **−2 for falling into the trap**
+
+<details>
+<summary><strong>Facilitator answer key & the trap in each round</strong></summary>
+
+1. **Diverging bar** (variance from target, zero-centered) or bullet chart. *Trap: a pie chart of regional revenue — it can't show "missed by how much" at all.* Second trap: side-by-side actual/target bars force the audience to do the subtraction mentally.
+2. **Line chart with a vertical reference line at March** and an annotation. *Trap: 52 bars (unreadable, implies discrete events), or a dual-axis chart adding price on a second scale — which invites false causal reading.*
+3. **Histogram or box plot.** *Trap: a bar chart of the average delivery time — averages destroy exactly the information asked for. This is the round most teams lose.*
+4. **Scatter plot with a fitted line.** *Trap: two line series (discount and deal size) over deal ID, which manufactures a pattern from arbitrary ordering.* Bonus point for any team that says "correlation isn't causation — big deals may cause discounts."
+5. **Waterfall chart.** *Trap: stacked column of two totals, which hides the drivers.*
+</details>
+
+---
+
+## The Twist Round (~2 minutes)
+
+Show one deliberately misleading chart: a competitor's growth chart with a y-axis starting at 94, in 3D, with a pie of 9 slices in the corner.
+
+Ask: **"You have 45 seconds. Name three things you'd fix before this goes in front of the board."**
+
+Introduce Tufte's lie factor as the closing concept:
+
+$$\text{Lie Factor} = \frac{\text{size of effect shown in the graphic}}{\text{size of effect in the data}}$$
+
+A truncated axis that turns a 3% gain into a visually tripled bar has a lie factor around $3.0$; honest graphics sit near $1.0$. This gives students a defensible, non-aesthetic argument to make when a manager asks them to "make the growth look better."
+
+---
+
+## The Debrief (~3 minutes)
+
+Ask three questions in this order — do not lecture:
+
+1. **"Which round did most of you lose, and why?"** (Almost always Round 3. The insight: we default to averages and bar charts because they're familiar, not because they answer the question.)
+2. **"How many of you wrote a headline that was a topic — 'Q2 Regional Revenue' — instead of a finding?"** (The insight: if you can't write the finding, you haven't picked the right chart yet.)
+3. **"What would you have chosen differently if the audience were the warehouse team instead of the board?"** (The insight: audience and decision context are the second input after the verb.)
+
+**Close with the takeaway they should leave with:**
+> Before you open the charting tool, finish this sentence out loud: *"I want my audience to see that ___, so they can decide ___."* The chart type is then almost always obvious.
+
+---
+
+<details>
+<summary><strong>Materials checklist (5 minutes of prep)</strong></summary>
+
+- 6 slides: 1 framework, 5 requests (each showing the message + a small data table, ~10 rows max so it's eyeballable)
+- 1 misleading-chart slide for the twist
+- Index cards, 3 per team
+- A visible timer — the time pressure is the pedagogy, not a gimmick
+- Scoreboard on the whiteboard
+- Optional: printed "chart cards" (one chart type per card) so teams physically select one instead of writing — noticeably faster and more decisive
+</details>
+
+<details>
+<summary><strong>Adaptations</strong></summary>
+
+**Large lecture (100+):** Convert rounds to multiple-choice with clickers/Poll Everywhere. Show four candidate charts of the *same data* and ask which answers the exec's question. Cuts to 10 minutes.
+
+**Async / online:** Deliver as a timed quiz with 90-second per-question locks; require a one-line headline as a free-text field, peer-graded against the "finding not topic" rule.
+
+**Extend to 30 minutes:** Add a build phase — teams reproduce their Round 5 waterfall in Excel or Tableau and present for 60 seconds. Reveals the gap between *choosing* and *executing*.
+
+**Harder version for MBAs:** Add a sixth round where the correct answer is "no chart — this is one number, put it in a sentence." Roughly a third of the class will still draw something.
+</details>
+
+<details>
+<summary><strong>Assessment rubric, if graded</strong></summary>
+
+| Dimension | 1 — Emerging | 3 — Proficient | 5 — Strong |
+|---|---|---|---|
+| Chart–question fit | Chart cannot answer the question | Correct family, suboptimal variant | Correct family and best variant for the audience |
+| Headline | States the topic | States a finding | States a finding plus the implied decision |
+| Encoding integrity | Truncated axis, 3D, or misleading dual axis | Honest but cluttered | Honest, minimal, annotated at the point of interest |
+| Reasoning | "It looks good" | Cites the question's verb | Cites verb, audience, and the decision at stake |
+</details>
