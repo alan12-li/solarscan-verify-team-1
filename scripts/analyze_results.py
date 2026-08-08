@@ -38,10 +38,27 @@ def load_results() -> dict[str, dict[str, dict]]:
 
 
 def main() -> None:
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--subset", action="store_true",
+                        help="Only score cases in the 30-image labeling subset")
+    args = parser.parse_args()
+
     results = load_results()
     manifest = json.loads(MANIFEST.read_text())
     cases = manifest["cases"]
     by_id = {c["id"]: c for c in cases}
+
+    if args.subset:
+        sub = json.loads((BENCH / "labeling" / "subset-30.json").read_text())
+        subset_ids = {c["id"] for c in sub["cases"]}
+        cases = [c for c in cases if c["id"] in subset_ids]
+        # Trim each model's results to the subset
+        results = {
+            m: {cid: r for cid, r in rows.items() if cid in subset_ids}
+            for m, rows in results.items()
+        }
+        print(f"Subset mode: scoring {len(cases)} cases across {len(results)} models\n")
 
     if not results:
         print("No results yet — run scripts/evaluate_benchmark.py first.")
