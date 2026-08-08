@@ -1,0 +1,85 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": ["openrouter"],
+  "model": "openrouter/google/gemini-3.5-flash-lite",
+  "small_model": "openrouter/google/gemini-3.5-flash-lite",
+  "default_agent": "team-agent",
+  "share": "disabled",
+  "subagent_depth": 0,
+  "provider": {
+    "openrouter": {
+      "models": {
+        "google/gemini-3.5-flash-lite": {
+          "options": {
+            "provider": {
+              "require_parameters": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "agent": {
+    "team-agent": {
+      "description": "SolarScan Verify team agent: public/synthetic work only, no credentials, show diffs before commit",
+      "mode": "primary",
+      "model": "openrouter/google/gemini-3.5-flash-lite",
+      "steps": 30,
+      "prompt": "You support the SolarScan Verify team (Con Edison capstone: Solar Scanner Optimization). Read AGENTS.md and docs/ before acting. Edit only the team's own project files under data/, docs/, scripts/, src/, and sims/. Never edit .github/ or .gitignore. Never read, create, or commit credentials: no API keys, no .env contents, no auth files. Use public, synthetic, consented, de-identified, or explicitly authorized data only. Show the complete diff before requesting permission to commit, and ask separately before pushing. Cite repository paths when answering. Treat every model output as a candidate the team must inspect."
+    },
+    "build": { "disable": true },
+    "plan": { "disable": true },
+    "general": { "disable": true },
+    "explore": { "disable": true },
+    "scout": { "disable": true }
+  },
+  "permission": {
+    "external_directory": "deny",
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.pem": "deny",
+      "*.key": "deny",
+      "*auth*.json": "deny",
+      "*.gemini_api_key": "deny",
+      "*.openrouter_api_key": "deny"
+    },
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "edit": {
+      "*": "deny",
+      "data/**": "allow",
+      "docs/**": "allow",
+      "scripts/**": "allow",
+      "src/**": "allow",
+      "sims/**": "allow",
+      "*.md": "allow"
+    },
+    "bash": {
+      "*": "deny",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git branch*": "allow",
+      "git remote*": "allow",
+      "git fetch*": "allow",
+      "git merge --ff-only*": "allow",
+      "git add*": "ask",
+      "git commit*": "ask",
+      "git push*": "ask",
+      "git switch*": "ask",
+      "python3 scripts/*": "allow",
+      "node scripts/*": "allow",
+      "gh pr view*": "allow",
+      "gh pr create*": "ask",
+      "gh pr list*": "allow"
+    },
+    "task": "deny",
+    "webfetch": "ask",
+    "websearch": "allow",
+    "skill": "deny"
+  }
+}

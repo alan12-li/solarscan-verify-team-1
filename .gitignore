@@ -12,7 +12,9 @@ secrets*
 
 # Class key and provider config
 .opencode/
-opencode.json
+# opencode.json is intentional here: team-shared config (no keys — verified).
+# Local provider auth lives outside the repo (~/.local/share/opencode/).
+!opencode.json
 *.opencode.json
 
 # Local-only course files
