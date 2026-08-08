@@ -1,0 +1,95 @@
+{
+  "labeler": "alan12-li",
+  "labels": {
+    "sv-0001": {
+      "label": "no_solar"
+    },
+    "sv-0002": {
+      "label": "no_solar"
+    },
+    "sv-0003": {
+      "label": "solar"
+    },
+    "sv-0004": {
+      "label": "solar"
+    },
+    "sv-0005": {
+      "label": "solar"
+    },
+    "sv-0006": {
+      "label": "solar"
+    },
+    "sv-0007": {
+      "label": "solar"
+    },
+    "sv-0008": {
+      "label": "solar"
+    },
+    "sv-0009": {
+      "label": "solar"
+    },
+    "sv-0011": {
+      "label": "no_solar"
+    },
+    "sv-0010": {
+      "label": "solar"
+    },
+    "sv-0012": {
+      "label": "solar"
+    },
+    "sv-0013": {
+      "label": "no_solar"
+    },
+    "sv-0014": {
+      "label": "no_solar"
+    },
+    "sv-0015": {
+      "label": "no_solar"
+    },
+    "sv-0016": {
+      "label": "no_solar"
+    },
+    "sv-0017": {
+      "label": "solar"
+    },
+    "sv-0018": {
+      "label": "solar"
+    },
+    "sv-0019": {
+      "label": "no_solar"
+    },
+    "sv-0132": {
+      "label": "no_solar"
+    },
+    "sv-0133": {
+      "label": "no_solar"
+    },
+    "sv-0134": {
+      "label": "no_solar"
+    },
+    "sv-0135": {
+      "label": "no_solar"
+    },
+    "sv-0136": {
+      "label": "no_solar"
+    },
+    "sv-0137": {
+      "label": "no_solar"
+    },
+    "sv-0138": {
+      "label": "no_solar"
+    },
+    "sv-0139": {
+      "label": "solar"
+    },
+    "sv-0140": {
+      "label": "solar"
+    },
+    "sv-0141": {
+      "label": "solar"
+    },
+    "sv-0142": {
+      "label": "solar"
+    }
+  }
+}
