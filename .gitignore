@@ -50,5 +50,7 @@ Thumbs.db
 
 # Data — raw downloads stay out; keep manifests
 data/raw/
+data/benchmark-v1/images/
+data/**/images/
 *.zip
 *.tar.gz

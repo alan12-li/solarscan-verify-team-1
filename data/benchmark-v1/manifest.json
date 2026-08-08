@@ -1,0 +1,1472 @@
+{
+  "version": "v1",
+  "created": "2026-08-08",
+  "image_count": 161,
+  "target_distribution": {
+    "solar": 35,
+    "no_solar": 35,
+    "uncertain": 30
+  },
+  "labeling_rule": ">=2 team members agree; disagreements become 'uncertain'",
+  "sources": {
+    "hf:Francesco/solar-panels-taxvb": {
+      "license": "cc",
+      "count": 161
+    },
+    "synthetic": {
+      "license": "team-generated",
+      "count": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "sv-0001",
+      "image": "images/sv-0001.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0002",
+      "image": "images/sv-0002.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0003",
+      "image": "images/sv-0003.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0004",
+      "image": "images/sv-0004.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0005",
+      "image": "images/sv-0005.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0006",
+      "image": "images/sv-0006.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0007",
+      "image": "images/sv-0007.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0008",
+      "image": "images/sv-0008.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0009",
+      "image": "images/sv-0009.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0010",
+      "image": "images/sv-0010.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0011",
+      "image": "images/sv-0011.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0012",
+      "image": "images/sv-0012.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0013",
+      "image": "images/sv-0013.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0014",
+      "image": "images/sv-0014.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0015",
+      "image": "images/sv-0015.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0016",
+      "image": "images/sv-0016.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0017",
+      "image": "images/sv-0017.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0018",
+      "image": "images/sv-0018.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0019",
+      "image": "images/sv-0019.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "test",
+      "notes": ""
+    },
+    {
+      "id": "sv-0020",
+      "image": "images/sv-0020.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0021",
+      "image": "images/sv-0021.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0022",
+      "image": "images/sv-0022.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0023",
+      "image": "images/sv-0023.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0024",
+      "image": "images/sv-0024.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0025",
+      "image": "images/sv-0025.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0026",
+      "image": "images/sv-0026.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0027",
+      "image": "images/sv-0027.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0028",
+      "image": "images/sv-0028.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0029",
+      "image": "images/sv-0029.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0030",
+      "image": "images/sv-0030.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0031",
+      "image": "images/sv-0031.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0032",
+      "image": "images/sv-0032.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0033",
+      "image": "images/sv-0033.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0034",
+      "image": "images/sv-0034.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0035",
+      "image": "images/sv-0035.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0036",
+      "image": "images/sv-0036.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0037",
+      "image": "images/sv-0037.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0038",
+      "image": "images/sv-0038.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0039",
+      "image": "images/sv-0039.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0040",
+      "image": "images/sv-0040.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0041",
+      "image": "images/sv-0041.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0042",
+      "image": "images/sv-0042.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0043",
+      "image": "images/sv-0043.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0044",
+      "image": "images/sv-0044.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0045",
+      "image": "images/sv-0045.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0046",
+      "image": "images/sv-0046.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0047",
+      "image": "images/sv-0047.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0048",
+      "image": "images/sv-0048.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0049",
+      "image": "images/sv-0049.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0050",
+      "image": "images/sv-0050.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0051",
+      "image": "images/sv-0051.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0052",
+      "image": "images/sv-0052.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0053",
+      "image": "images/sv-0053.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0054",
+      "image": "images/sv-0054.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0055",
+      "image": "images/sv-0055.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0056",
+      "image": "images/sv-0056.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0057",
+      "image": "images/sv-0057.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0058",
+      "image": "images/sv-0058.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0059",
+      "image": "images/sv-0059.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0060",
+      "image": "images/sv-0060.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0061",
+      "image": "images/sv-0061.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0062",
+      "image": "images/sv-0062.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0063",
+      "image": "images/sv-0063.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0064",
+      "image": "images/sv-0064.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0065",
+      "image": "images/sv-0065.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0066",
+      "image": "images/sv-0066.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0067",
+      "image": "images/sv-0067.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0068",
+      "image": "images/sv-0068.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0069",
+      "image": "images/sv-0069.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0070",
+      "image": "images/sv-0070.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0071",
+      "image": "images/sv-0071.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0072",
+      "image": "images/sv-0072.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0073",
+      "image": "images/sv-0073.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0074",
+      "image": "images/sv-0074.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0075",
+      "image": "images/sv-0075.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0076",
+      "image": "images/sv-0076.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0077",
+      "image": "images/sv-0077.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0078",
+      "image": "images/sv-0078.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0079",
+      "image": "images/sv-0079.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0080",
+      "image": "images/sv-0080.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0081",
+      "image": "images/sv-0081.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0082",
+      "image": "images/sv-0082.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0083",
+      "image": "images/sv-0083.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0084",
+      "image": "images/sv-0084.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0085",
+      "image": "images/sv-0085.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0086",
+      "image": "images/sv-0086.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0087",
+      "image": "images/sv-0087.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0088",
+      "image": "images/sv-0088.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0089",
+      "image": "images/sv-0089.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0090",
+      "image": "images/sv-0090.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0091",
+      "image": "images/sv-0091.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0092",
+      "image": "images/sv-0092.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0093",
+      "image": "images/sv-0093.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0094",
+      "image": "images/sv-0094.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0095",
+      "image": "images/sv-0095.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0096",
+      "image": "images/sv-0096.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0097",
+      "image": "images/sv-0097.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0098",
+      "image": "images/sv-0098.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0099",
+      "image": "images/sv-0099.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0100",
+      "image": "images/sv-0100.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0101",
+      "image": "images/sv-0101.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0102",
+      "image": "images/sv-0102.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0103",
+      "image": "images/sv-0103.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0104",
+      "image": "images/sv-0104.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0105",
+      "image": "images/sv-0105.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0106",
+      "image": "images/sv-0106.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0107",
+      "image": "images/sv-0107.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0108",
+      "image": "images/sv-0108.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0109",
+      "image": "images/sv-0109.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0110",
+      "image": "images/sv-0110.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0111",
+      "image": "images/sv-0111.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0112",
+      "image": "images/sv-0112.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0113",
+      "image": "images/sv-0113.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0114",
+      "image": "images/sv-0114.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0115",
+      "image": "images/sv-0115.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0116",
+      "image": "images/sv-0116.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0117",
+      "image": "images/sv-0117.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0118",
+      "image": "images/sv-0118.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0119",
+      "image": "images/sv-0119.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0120",
+      "image": "images/sv-0120.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0121",
+      "image": "images/sv-0121.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0122",
+      "image": "images/sv-0122.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0123",
+      "image": "images/sv-0123.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0124",
+      "image": "images/sv-0124.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0125",
+      "image": "images/sv-0125.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0126",
+      "image": "images/sv-0126.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0127",
+      "image": "images/sv-0127.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0128",
+      "image": "images/sv-0128.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0129",
+      "image": "images/sv-0129.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0130",
+      "image": "images/sv-0130.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0131",
+      "image": "images/sv-0131.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "train",
+      "notes": ""
+    },
+    {
+      "id": "sv-0132",
+      "image": "images/sv-0132.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0133",
+      "image": "images/sv-0133.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0134",
+      "image": "images/sv-0134.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0135",
+      "image": "images/sv-0135.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0136",
+      "image": "images/sv-0136.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0137",
+      "image": "images/sv-0137.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0138",
+      "image": "images/sv-0138.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0139",
+      "image": "images/sv-0139.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0140",
+      "image": "images/sv-0140.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0141",
+      "image": "images/sv-0141.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0142",
+      "image": "images/sv-0142.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0143",
+      "image": "images/sv-0143.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0144",
+      "image": "images/sv-0144.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0145",
+      "image": "images/sv-0145.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0146",
+      "image": "images/sv-0146.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0147",
+      "image": "images/sv-0147.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0148",
+      "image": "images/sv-0148.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0149",
+      "image": "images/sv-0149.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0150",
+      "image": "images/sv-0150.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0151",
+      "image": "images/sv-0151.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0152",
+      "image": "images/sv-0152.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0153",
+      "image": "images/sv-0153.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0154",
+      "image": "images/sv-0154.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0155",
+      "image": "images/sv-0155.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0156",
+      "image": "images/sv-0156.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0157",
+      "image": "images/sv-0157.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0158",
+      "image": "images/sv-0158.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0159",
+      "image": "images/sv-0159.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0160",
+      "image": "images/sv-0160.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    },
+    {
+      "id": "sv-0161",
+      "image": "images/sv-0161.jpg",
+      "label": "unlabeled",
+      "difficulty_factors": [],
+      "source": "hf:Francesco/solar-panels-taxvb",
+      "split": "valid",
+      "notes": ""
+    }
+  ]
+}
