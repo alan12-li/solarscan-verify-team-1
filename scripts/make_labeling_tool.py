@@ -6,14 +6,19 @@ benchmark) and top up from valid to reach 30.
 
 Outputs:
   data/benchmark-v1/labeling/subset-30.json   (the 30 case ids + metadata)
-  data/benchmark-v1/labeling/label.html       (self-contained labeling tool)
+  data/benchmark-v1/labeling/label.html       (labeling tool; needs images/)
+  data/benchmark-v1/labeling/label-standalone.html  (--standalone: images
+                                                    base64-embedded, one file)
 
 Usage:
   python3 scripts/make_labeling_tool.py
+  python3 scripts/make_labeling_tool.py --standalone
 """
 
 from __future__ import annotations
 
+import argparse
+import base64
 import json
 import shutil
 from pathlib import Path
@@ -33,7 +38,19 @@ LABEL_OPTIONS = [
 ]
 
 
+def image_data_uri(path: Path) -> str:
+    mime = "image/jpeg" if path.suffix.lower() in (".jpg", ".jpeg") else "image/png"
+    b64 = base64.b64encode(path.read_bytes()).decode()
+    return f"data:{mime};base64,{b64}"
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--standalone", action="store_true",
+                        help="Also emit label-standalone.html with images "
+                             "base64-embedded (one file, shareable)")
+    args = parser.parse_args()
+
     manifest = json.loads(MANIFEST.read_text())
     cases = manifest["cases"]
 
@@ -72,28 +89,28 @@ def main() -> None:
     }
     (LABELING / "subset-30.json").write_text(json.dumps(subset_meta, indent=2) + "\n")
 
-    # Build the self-contained labeling HTML tool.
-    cards = []
-    for case in subset_meta["cases"]:
+    # Build the labeling HTML tool.
+    def render(case: dict, image_src: str) -> str:
         opts = "".join(
             f'<button type="button" class="opt" data-label="{key}" '
             f'onclick="pick(\'{case["id"]}\', \'{key}\', this)">{label}</button>'
             for key, label in LABEL_OPTIONS
         )
-        cards.append(
-            f"""
+        return f"""
             <div class="card" id="card-{case["id"]}" data-id="{case["id"]}">
               <div class="imgwrap">
-                <img src="{case["image"]}" alt="{case["id"]}" loading="lazy">
+                <img src="{image_src}" alt="{case["id"]}" loading="lazy">
                 <div class="badge">{case["id"]} · {case["split"]}</div>
               </div>
               <div class="opts">{opts}</div>
               <textarea class="notes" placeholder="Notes (optional)"></textarea>
               <div class="status">not labeled</div>
             </div>"""
-        )
 
-    html = f"""<!DOCTYPE html>
+    cards = [render(c, c["image"]) for c in subset_meta["cases"]]
+
+    def build_html(cards_html: str) -> str:
+        return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -126,7 +143,7 @@ def main() -> None:
   <p><label>Your GitHub handle: <input id="labeler" placeholder="e.g. alan12-li" style="min-width:10rem"></label></p>
 </div>
 <div class="grid">
-{''.join(cards)}
+{cards_html}
 </div>
 <button id="export" onclick="doExport()">Export my labels (JSON)</button>
 <script>
@@ -186,9 +203,23 @@ update();
 </script>
 </body>
 </html>"""
-    (LABELING / "label.html").write_text(html)
-    print(f"Wrote {LABELING / 'subset-30.json'}")
+
+    (LABELING / "label.html").write_text(build_html("".join(cards)))
     print(f"Wrote {LABELING / 'label.html'}")
+
+    if args.standalone:
+        # Re-render cards with base64 data URIs so the file needs no images/.
+        standalone_cards = []
+        for case in subset_meta["cases"]:
+            img_path = subset_images / Path(case["image"]).name
+            src = image_data_uri(img_path) if img_path.exists() else case["image"]
+            standalone_cards.append(render(case, src))
+        standalone = LABELING / "label-standalone.html"
+        standalone.write_text(build_html("".join(standalone_cards)))
+        print(f"Wrote {standalone} "
+              f"({standalone.stat().st_size / 1e6:.1f} MB, images embedded)")
+
+    print(f"Wrote {LABELING / 'subset-30.json'}")
     print(f"Images copied to {subset_images}/")
     print(f"\nSelection: {len(subset)} cases "
           f"({sum(1 for c in subset if c['split']=='test')} test, "
