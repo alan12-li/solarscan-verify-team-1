@@ -3,6 +3,20 @@
 Con Edison capstone — **Solar Scanner Optimization** brief
 Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
 
+## Quick start (for teammates)
+
+> **Read [docs/TEAM-GUIDE.md](docs/TEAM-GUIDE.md) first** — setup, your
+> labeling task, and everything in the repo, in one place.
+
+1. Accept the GitHub invite, then clone this repo.
+2. OpenCode loads `opencode.json` automatically from the repo root —
+   connect **your own** OpenRouter key (never share keys).
+3. **Your task: label 30 images** — open
+   `data/benchmark-v1/labeling/label-standalone.html` and follow
+   [docs/labeling-task.md](docs/labeling-task.md).
+4. Reproduce the model comparison: `docs/benchmark-results.md` and the
+   scripts under `scripts/`.
+
 ## Team
 
 - Yongpeng (alan12-li)
