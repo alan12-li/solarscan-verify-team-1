@@ -1,0 +1,54 @@
+# Secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+secrets*
+**/auth.json
+**/token.json
+
+# Class key and provider config
+.opencode/
+opencode.json
+*.opencode.json
+
+# Local-only course files
+.course-local/
+agent-profile.md
+
+# Raw media — keep out of Git (commit manifests instead)
+*.mp4
+*.mov
+*.avi
+*.heic
+*.raw
+media/
+recordings/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Data — raw downloads stay out; keep manifests
+data/raw/
+*.zip
+*.tar.gz
