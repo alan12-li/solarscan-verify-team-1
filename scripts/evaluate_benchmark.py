@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-"""Run the SolarScan Verify three-way classification across multiple Gemini
+"""Run the SolarScan Verify three-way classification across multiple vision
 models on the benchmark images, and produce a comparison table.
 
 PRD §7: same inputs, several models, judged results.
 
-Models (all vision-capable, via the user's own Gemini API key):
-  - gemini-2.5-flash
-  - gemini-2.5-flash-lite
-  - gemini-2.5-pro
+Model IDs route to providers by prefix:
+  - `gemini-*`           -> Google Gemini API  (needs GEMINI_API_KEY)
+  - `openrouter:<slug>`   -> OpenRouter API     (needs OPENROUTER_API_KEY)
+                            e.g. openrouter:openai/gpt-4o-mini
 
-The API key is read ONLY from the GEMINI_API_KEY environment variable.
-It must never be hardcoded, committed, or pasted into chat.
+Keys are read ONLY from the environment. They must never be hardcoded,
+committed, or pasted into chat.
 
 Usage:
-  GEMINI_API_KEY=<key> python3 scripts/evaluate_benchmark.py [--limit N] [--sample]
+  GEMINI_API_KEY=... python3 scripts/evaluate_benchmark.py --subset --resume
+  OPENROUTER_API_KEY=... python3 scripts/evaluate_benchmark.py \\
+      --subset --model openrouter:openai/gpt-4o-mini
 """
 
 from __future__ import annotations
@@ -33,8 +35,8 @@ RESULTS = BENCH / "results"
 
 MODELS = [
     "gemini-3.5-flash-lite",
-    "gemini-3.5-flash",
-    "gemini-3-flash-preview",
+    "openrouter:openai/gpt-4o-mini",
+    "openrouter:anthropic/claude-3.5-sonnet",
 ]
 
 # PRD §3 output contract — every model must return exactly this JSON.
@@ -124,6 +126,84 @@ def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
     return parsed
 
 
+def ask_openrouter(model_id: str, image_path: Path, api_key: str) -> dict:
+    """Send one image to any OpenRouter vision model (OpenAI-compatible API).
+
+    model_id is the OpenRouter slug, e.g. "openai/gpt-4o-mini" or
+    "anthropic/claude-3.5-sonnet". Same retry/backoff policy as Gemini.
+    """
+    import base64
+    import time as _time
+    import urllib.error
+    import urllib.request
+
+    image_b64 = base64.b64encode(image_path.read_bytes()).decode()
+    mime = "image/jpeg" if image_path.suffix.lower() in (".jpg", ".jpeg") else "image/png"
+    data_url = f"data:{mime};base64,{image_b64}"
+
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    payload = {
+        "model": model_id,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "Classify this rooftop image."},
+                    {"type": "image_url", "image_url": {"url": data_url}},
+                ],
+            },
+        ],
+        "temperature": 0,
+        "response_format": {"type": "json_object"},
+    }
+
+    max_attempts = 5
+    for attempt in range(1, max_attempts + 1):
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode(),
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                body = json.loads(resp.read().decode())
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code == 429 and attempt < max_attempts:
+                wait = 15 * (2 ** (attempt - 1))
+                print(f"    429 rate limit — retrying in {wait}s (attempt {attempt}/{max_attempts})")
+                _time.sleep(wait)
+                continue
+            raise
+    else:
+        raise RuntimeError(f"Exhausted {max_attempts} attempts for {model_id}")
+
+    text = body["choices"][0]["message"]["content"]
+    parsed = extract_json(text)
+    if isinstance(parsed, list):
+        parsed = parsed[0] if parsed else {}
+    parsed["label"] = str(parsed.get("label", "")).strip().lower()
+    return parsed
+
+
+def ask_model(model: str, image_path: Path, keys: dict) -> dict:
+    """Route a model ID to the right provider.
+
+    "gemini-*" -> Google Gemini API (keys["gemini"])
+    "openrouter:<slug>" -> OpenRouter API (keys["openrouter"])
+    """
+    if model.startswith("openrouter:"):
+        return ask_openrouter(model[len("openrouter:"):], image_path, keys["openrouter"])
+    if model.startswith("gemini-") or model.startswith("models/"):
+        return ask_gemini(model, image_path, keys["gemini"])
+    # Default: treat bare IDs as Gemini (backward compatible)
+    return ask_gemini(model, image_path, keys["gemini"])
+
+
 def extract_json(text: str) -> dict:
     """Robustly extract a JSON object from a model response.
 
@@ -179,13 +259,25 @@ def main() -> None:
     args = parser.parse_args()
 
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not api_key:
-        sys.exit(
-            "GEMINI_API_KEY is not set. Export it first:  export GEMINI_API_KEY=...  "
-            "(never paste it into chat or commit it)"
-        )
+    or_key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+    keys = {"gemini": api_key, "openrouter": or_key}
 
     models = MODELS if not args.model else args.model
+
+    # Validate that every requested model has its provider key present.
+    for model in models:
+        if model.startswith("openrouter:") and not keys["openrouter"]:
+            sys.exit(
+                "OPENROUTER_API_KEY is not set (needed for "
+                f"{model}). Export it first:  export OPENROUTER_API_KEY=...  "
+                "(never paste it into chat or commit it)"
+            )
+        if not model.startswith("openrouter:") and not keys["gemini"]:
+            sys.exit(
+                "GEMINI_API_KEY is not set (needed for "
+                f"{model}). Export it first:  export GEMINI_API_KEY=...  "
+                "(never paste it into chat or commit it)"
+            )
 
     manifest = load_manifest()
     cases = manifest["cases"]
@@ -204,7 +296,8 @@ def main() -> None:
     RESULTS.mkdir(parents=True, exist_ok=True)
 
     for model in models:
-        out_path = RESULTS / f"{model.replace('/', '_')}.json"
+        out_name = model.replace("/", "_").replace(":", "_")
+        out_path = RESULTS / f"{out_name}.json"
         existing = {}
         if args.resume and out_path.exists():
             for r in json.loads(out_path.read_text()):
@@ -224,7 +317,7 @@ def main() -> None:
                 print(f"  skip {case['id']}: image missing")
                 continue
             try:
-                result = ask_gemini(model, img, api_key)
+                result = ask_model(model, img, keys)
                 rows.append({"case_id": case["id"], **result})
                 print(f"  {case['id']}: {result.get('label')} conf={result.get('confidence')}")
             except Exception as exc:
