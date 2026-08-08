@@ -32,14 +32,15 @@ MANIFEST = BENCH / "manifest.json"
 RESULTS = BENCH / "results"
 
 MODELS = [
-    "gemini-2.5-flash-lite",
-    "gemini-2.5-flash",
-    "gemini-2.5-pro",
+    "gemini-3.5-flash-lite",
+    "gemini-3.5-flash",
+    "gemini-3-flash-preview",
 ]
 
 # PRD §3 output contract — every model must return exactly this JSON.
 SYSTEM_PROMPT = """You are a rooftop solar verification assistant for a utility company.
-Classify each rooftop image as one of exactly three labels:
+The image is an aerial/thermal rooftop view (may be false-color thermal imagery, not a normal photo).
+Classify each rooftop as one of exactly three labels:
 - "solar": solar panels are clearly visible
 - "no_solar": no solar panels; equipment like HVAC, skylights, or obstructions may be present
 - "uncertain": you cannot decide from the image; competing interpretations are plausible
@@ -52,7 +53,7 @@ Return ONLY a JSON object with this exact schema:
   "difficulty_factors": ["shading" | "orientation" | "obstruction" | "skylight" | "hvac" | "unusual_layout" | "image_quality" | "none"],
   "escalate": true
 }
-Set "escalate" to true when label is "uncertain" or confidence is below 0.6.
+Use ONLY these difficulty_factors values, no others. Set "escalate" to true when label is "uncertain" or confidence is below 0.6.
 No prose before or after the JSON."""
 
 
@@ -96,16 +97,52 @@ def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
         body = json.loads(resp.read().decode())
 
     text = body["candidates"][0]["content"]["parts"][0]["text"]
-    # The model may wrap JSON in ``` fences; strip them.
-    text = text.strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
-    parsed = json.loads(text)
+    parsed = extract_json(text)
     # Normalize
     if isinstance(parsed, list):
-        parsed = parsed[0]
+        parsed = parsed[0] if parsed else {}
     parsed["label"] = str(parsed.get("label", "")).strip().lower()
     return parsed
+
+
+def extract_json(text: str) -> dict:
+    """Robustly extract a JSON object from a model response.
+
+    Handles: ``` fences, multiple JSON objects (take the last, which is
+    usually the final answer), trailing prose, and stray characters.
+    """
+    import re
+
+    text = text.strip()
+    # Try direct parse first
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+    # Strip ```json ... ``` fences
+    fenced = re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
+    if fenced:
+        try:
+            return json.loads(fenced.group(1).strip())
+        except json.JSONDecodeError:
+            pass
+    # Find all JSON objects and take the last complete one
+    objects = []
+    decoder = json.JSONDecoder()
+    idx = 0
+    while idx < len(text):
+        if text[idx] in "{[":
+            try:
+                obj, end = decoder.raw_decode(text, idx)
+                objects.append(obj)
+                idx = end
+            except json.JSONDecodeError:
+                idx += 1
+        else:
+            idx += 1
+    if objects:
+        return objects[-1] if isinstance(objects[-1], dict) else objects[-1][0]
+    raise ValueError(f"Could not extract JSON from model output: {text[:200]}")
 
 
 def main() -> None:
