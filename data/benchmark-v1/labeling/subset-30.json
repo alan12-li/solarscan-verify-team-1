@@ -1,0 +1,217 @@
+{
+  "version": "v1",
+  "subset_size": 30,
+  "selection": "test split first, then valid, capped at 30",
+  "cases": [
+    {
+      "id": "sv-0001",
+      "image": "images/sv-0001.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0002",
+      "image": "images/sv-0002.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0003",
+      "image": "images/sv-0003.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0004",
+      "image": "images/sv-0004.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0005",
+      "image": "images/sv-0005.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0006",
+      "image": "images/sv-0006.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0007",
+      "image": "images/sv-0007.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0008",
+      "image": "images/sv-0008.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0009",
+      "image": "images/sv-0009.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0010",
+      "image": "images/sv-0010.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0011",
+      "image": "images/sv-0011.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0012",
+      "image": "images/sv-0012.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0013",
+      "image": "images/sv-0013.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0014",
+      "image": "images/sv-0014.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0015",
+      "image": "images/sv-0015.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0016",
+      "image": "images/sv-0016.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0017",
+      "image": "images/sv-0017.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0018",
+      "image": "images/sv-0018.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0019",
+      "image": "images/sv-0019.jpg",
+      "split": "test",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0132",
+      "image": "images/sv-0132.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0133",
+      "image": "images/sv-0133.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0134",
+      "image": "images/sv-0134.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0135",
+      "image": "images/sv-0135.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0136",
+      "image": "images/sv-0136.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0137",
+      "image": "images/sv-0137.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0138",
+      "image": "images/sv-0138.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0139",
+      "image": "images/sv-0139.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0140",
+      "image": "images/sv-0140.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0141",
+      "image": "images/sv-0141.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    },
+    {
+      "id": "sv-0142",
+      "image": "images/sv-0142.jpg",
+      "split": "valid",
+      "label": "unlabeled",
+      "labelers": []
+    }
+  ]
+}

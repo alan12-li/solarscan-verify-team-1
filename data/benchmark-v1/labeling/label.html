@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SolarScan Verify — Labeling Tool (30 images)</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+  h1 { font-size: 1.4rem; }
+  .bar { position: sticky; top: 0; background: #fff; padding: .5rem 0; border-bottom: 1px solid #ddd; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .card { border: 1px solid #ddd; border-radius: 8px; padding: .6rem; }
+  .imgwrap { position: relative; }
+  img { width: 100%; border-radius: 4px; display: block; }
+  .badge { position: absolute; top: .3rem; left: .3rem; background: rgba(0,0,0,.7); color: #fff; padding: .15rem .5rem; border-radius: 4px; font-size: .75rem; }
+  .opts { display: flex; flex-direction: column; gap: .3rem; margin: .5rem 0; }
+  .opt { padding: .45rem; border: 1px solid #ccc; border-radius: 6px; background: #fafafa; cursor: pointer; text-align: left; font-size: .85rem; }
+  .opt.sel { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .notes { width: 100%; min-height: 2.2rem; font-size: .8rem; }
+  .status { font-size: .75rem; color: #666; }
+  .status.done { color: #16a34a; font-weight: 600; }
+  #progress { font-weight: 600; }
+  #export { margin-top: 1rem; padding: .6rem 1.2rem; font-size: 1rem; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>SolarScan Verify — Label 30 rooftop images</h1>
+  <p>Rules: <b>solar</b> = panels clearly visible · <b>no_solar</b> = no panels
+  (HVAC/skylights/obstructions OK) · <b>uncertain</b> = genuinely cannot
+  decide. If unsure, choose <b>uncertain</b>. Progress: <span id="progress">0/30</span></p>
+  <p><label>Your GitHub handle: <input id="labeler" placeholder="e.g. alan12-li" style="min-width:10rem"></label></p>
+</div>
+<div class="grid">
+
+            <div class="card" id="card-sv-0001" data-id="sv-0001">
+              <div class="imgwrap">
+                <img src="images/sv-0001.jpg" alt="sv-0001" loading="lazy">
+                <div class="badge">sv-0001 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0001', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0001', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0001', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0002" data-id="sv-0002">
+              <div class="imgwrap">
+                <img src="images/sv-0002.jpg" alt="sv-0002" loading="lazy">
+                <div class="badge">sv-0002 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0002', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0002', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0002', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0003" data-id="sv-0003">
+              <div class="imgwrap">
+                <img src="images/sv-0003.jpg" alt="sv-0003" loading="lazy">
+                <div class="badge">sv-0003 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0003', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0003', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0003', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0004" data-id="sv-0004">
+              <div class="imgwrap">
+                <img src="images/sv-0004.jpg" alt="sv-0004" loading="lazy">
+                <div class="badge">sv-0004 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0004', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0004', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0004', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0005" data-id="sv-0005">
+              <div class="imgwrap">
+                <img src="images/sv-0005.jpg" alt="sv-0005" loading="lazy">
+                <div class="badge">sv-0005 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0005', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0005', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0005', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0006" data-id="sv-0006">
+              <div class="imgwrap">
+                <img src="images/sv-0006.jpg" alt="sv-0006" loading="lazy">
+                <div class="badge">sv-0006 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0006', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0006', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0006', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0007" data-id="sv-0007">
+              <div class="imgwrap">
+                <img src="images/sv-0007.jpg" alt="sv-0007" loading="lazy">
+                <div class="badge">sv-0007 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0007', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0007', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0007', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0008" data-id="sv-0008">
+              <div class="imgwrap">
+                <img src="images/sv-0008.jpg" alt="sv-0008" loading="lazy">
+                <div class="badge">sv-0008 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0008', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0008', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0008', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0009" data-id="sv-0009">
+              <div class="imgwrap">
+                <img src="images/sv-0009.jpg" alt="sv-0009" loading="lazy">
+                <div class="badge">sv-0009 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0009', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0009', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0009', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0010" data-id="sv-0010">
+              <div class="imgwrap">
+                <img src="images/sv-0010.jpg" alt="sv-0010" loading="lazy">
+                <div class="badge">sv-0010 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0010', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0010', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0010', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0011" data-id="sv-0011">
+              <div class="imgwrap">
+                <img src="images/sv-0011.jpg" alt="sv-0011" loading="lazy">
+                <div class="badge">sv-0011 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0011', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0011', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0011', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0012" data-id="sv-0012">
+              <div class="imgwrap">
+                <img src="images/sv-0012.jpg" alt="sv-0012" loading="lazy">
+                <div class="badge">sv-0012 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0012', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0012', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0012', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0013" data-id="sv-0013">
+              <div class="imgwrap">
+                <img src="images/sv-0013.jpg" alt="sv-0013" loading="lazy">
+                <div class="badge">sv-0013 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0013', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0013', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0013', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0014" data-id="sv-0014">
+              <div class="imgwrap">
+                <img src="images/sv-0014.jpg" alt="sv-0014" loading="lazy">
+                <div class="badge">sv-0014 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0014', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0014', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0014', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0015" data-id="sv-0015">
+              <div class="imgwrap">
+                <img src="images/sv-0015.jpg" alt="sv-0015" loading="lazy">
+                <div class="badge">sv-0015 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0015', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0015', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0015', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0016" data-id="sv-0016">
+              <div class="imgwrap">
+                <img src="images/sv-0016.jpg" alt="sv-0016" loading="lazy">
+                <div class="badge">sv-0016 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0016', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0016', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0016', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0017" data-id="sv-0017">
+              <div class="imgwrap">
+                <img src="images/sv-0017.jpg" alt="sv-0017" loading="lazy">
+                <div class="badge">sv-0017 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0017', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0017', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0017', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0018" data-id="sv-0018">
+              <div class="imgwrap">
+                <img src="images/sv-0018.jpg" alt="sv-0018" loading="lazy">
+                <div class="badge">sv-0018 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0018', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0018', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0018', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0019" data-id="sv-0019">
+              <div class="imgwrap">
+                <img src="images/sv-0019.jpg" alt="sv-0019" loading="lazy">
+                <div class="badge">sv-0019 · test</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0019', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0019', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0019', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0132" data-id="sv-0132">
+              <div class="imgwrap">
+                <img src="images/sv-0132.jpg" alt="sv-0132" loading="lazy">
+                <div class="badge">sv-0132 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0132', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0132', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0132', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0133" data-id="sv-0133">
+              <div class="imgwrap">
+                <img src="images/sv-0133.jpg" alt="sv-0133" loading="lazy">
+                <div class="badge">sv-0133 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0133', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0133', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0133', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0134" data-id="sv-0134">
+              <div class="imgwrap">
+                <img src="images/sv-0134.jpg" alt="sv-0134" loading="lazy">
+                <div class="badge">sv-0134 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0134', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0134', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0134', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0135" data-id="sv-0135">
+              <div class="imgwrap">
+                <img src="images/sv-0135.jpg" alt="sv-0135" loading="lazy">
+                <div class="badge">sv-0135 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0135', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0135', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0135', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0136" data-id="sv-0136">
+              <div class="imgwrap">
+                <img src="images/sv-0136.jpg" alt="sv-0136" loading="lazy">
+                <div class="badge">sv-0136 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0136', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0136', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0136', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0137" data-id="sv-0137">
+              <div class="imgwrap">
+                <img src="images/sv-0137.jpg" alt="sv-0137" loading="lazy">
+                <div class="badge">sv-0137 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0137', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0137', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0137', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0138" data-id="sv-0138">
+              <div class="imgwrap">
+                <img src="images/sv-0138.jpg" alt="sv-0138" loading="lazy">
+                <div class="badge">sv-0138 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0138', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0138', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0138', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0139" data-id="sv-0139">
+              <div class="imgwrap">
+                <img src="images/sv-0139.jpg" alt="sv-0139" loading="lazy">
+                <div class="badge">sv-0139 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0139', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0139', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0139', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0140" data-id="sv-0140">
+              <div class="imgwrap">
+                <img src="images/sv-0140.jpg" alt="sv-0140" loading="lazy">
+                <div class="badge">sv-0140 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0140', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0140', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0140', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0141" data-id="sv-0141">
+              <div class="imgwrap">
+                <img src="images/sv-0141.jpg" alt="sv-0141" loading="lazy">
+                <div class="badge">sv-0141 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0141', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0141', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0141', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+            <div class="card" id="card-sv-0142" data-id="sv-0142">
+              <div class="imgwrap">
+                <img src="images/sv-0142.jpg" alt="sv-0142" loading="lazy">
+                <div class="badge">sv-0142 · valid</div>
+              </div>
+              <div class="opts"><button type="button" class="opt" data-label="solar" onclick="pick('sv-0142', 'solar', this)">Solar — panels clearly visible</button><button type="button" class="opt" data-label="no_solar" onclick="pick('sv-0142', 'no_solar', this)">No solar — HVAC/skylights/obstructions, no panels</button><button type="button" class="opt" data-label="uncertain" onclick="pick('sv-0142', 'uncertain', this)">Uncertain — cannot decide from the image</button></div>
+              <textarea class="notes" placeholder="Notes (optional)"></textarea>
+              <div class="status">not labeled</div>
+            </div>
+</div>
+<button id="export" onclick="doExport()">Export my labels (JSON)</button>
+<script>
+const LABELS = ["solar", "no_solar", "uncertain"];
+let store = JSON.parse(localStorage.getItem('solarscan-labels') || '{}');
+function save() { localStorage.setItem('solarscan-labels', JSON.stringify(store)); update(); }
+function pick(id, label, btn) {
+  store[id] = store[id] || {};
+  store[id].label = label;
+  save();
+  const card = document.getElementById('card-' + id);
+  card.querySelectorAll('.opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+function update() {
+  let done = 0;
+  document.querySelectorAll('.card').forEach(card => {
+    const id = card.dataset.id;
+    const st = card.querySelector('.status');
+    const notes = card.querySelector('.notes');
+    if (store[id] && store[id].label) {
+      done++;
+      st.textContent = 'labeled: ' + store[id].label;
+      st.className = 'status done';
+      card.querySelectorAll('.opt').forEach(b => {
+        b.classList.toggle('sel', b.dataset.label === store[id].label);
+      });
+      if (store[id].notes) notes.value = store[id].notes;
+    }
+  });
+  document.getElementById('progress').textContent = done + '/30';
+}
+document.querySelectorAll('.notes').forEach(t => {
+  t.addEventListener('change', e => {
+    const id = e.target.closest('.card').dataset.id;
+    store[id] = store[id] || {};
+    store[id].notes = e.target.value;
+    save();
+  });
+});
+document.getElementById('labeler').addEventListener('change', e => {
+  store._labeler = e.target.value; save();
+});
+function doExport() {
+  const labeler = document.getElementById('labeler').value || 'unknown';
+  const out = {
+    labeler: labeler,
+    labels: Object.fromEntries(Object.entries(store).filter(([k]) => !k.startsWith('_'))),
+  };
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'labels-' + labeler + '.json';
+  a.click();
+}
+update();
+</script>
+</body>
+</html>
