@@ -245,11 +245,40 @@
 
 <!-- SLIDE 9 · NEXT / CLOSING -->
 <section class="slide" id="s9">
-  <h2>Where this goes</h2>
-  <div class="grid g3">
-    <div class="card"><h4>1. Escalation tuning</h4><p>Re-prompt ("when in doubt, uncertain") and re-score the same 30 images; measure recall.</p></div>
-    <div class="card"><h4>2. Context signals</h4><p>Add NYC building footprints + solar-readiness records as optional context (PRD §2).</p></div>
-    <div class="card"><h4>3. Human-review boundary</h4><p>Analyst workflow for escalated cases; measure how much manual review is avoided.</p></div>
+  <h2>Recommendation: revise, then a limited test</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h4>What the evidence supports now</h4>
+      <ul>
+        <li><strong>Not "stop", not "deploy as-is".</strong> Baseline-case
+        accuracy is 91% (the easy work is genuinely easy) but escalation
+        recall is 40% — the models cannot yet be trusted on the roofs that
+        matter most.</li>
+        <li><strong>Revise the escalation behavior first</strong> (prompt /
+        threshold), then run a limited test: 100 roofs, measure escalation
+        recall toward 1.0 and how many human reviews are avoided.</li>
+        <li><strong>Cost is not the blocker.</strong> Per correct clear-case:
+        $0.003 (Gemini), $0.013 (GPT-5.5), $0.002 (Gemma) — even the best
+        model costs cents per roof.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>The value we're after</h4>
+      <p>Today an ambiguous roof means a manual review. A verification layer
+      with a trustworthy escalation path could cut manual reviews from
+      roughly <strong>50 to ~17 per 100 roofs</strong> (scanner's
+      low-confidence cases → our escalation rate) while keeping a person on
+      every genuinely hard call.</p>
+      <h4>What could go wrong</h4>
+      <ul>
+        <li>Escalation recall stays low → the layer rubber-stamps wrong
+        answers (the failure we already measured).</li>
+        <li>Escalation rate explodes → no manual-review savings; the layer
+        adds noise.</li>
+        <li>Thermal/imagery quality differs from our public dataset → NYC
+        field imagery needs its own calibration set.</li>
+      </ul>
+    </div>
   </div>
   <h3>What we'd ask Con Edison</h3>
   <ul>
