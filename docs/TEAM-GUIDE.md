@@ -108,3 +108,21 @@ Models compared (same 30 images, same prompt, temperature 0):
 - Benchmark results: `docs/benchmark-results.md`
 - PRD (course repo): `sims/solarscan-verify/PRD.md` in
   clg236/applied-generative-ai-course-students
+
+## 7. Why GitHub links show source code, and how to view HTML
+
+GitHub deliberately does **not** render `.html` files in the browser
+(security: HTML can run scripts on the github.com domain). `github.com/.../blob/...`
+and `raw.githubusercontent.com/...` both show the source text.
+
+Our repo is **private**, so htmlpreview.github.io and GitHub Pages (free
+tier) do **not** work either. The reliable options:
+
+| Option | How | Use for |
+|---|---|---|
+| **Download & double-click** (recommended) | Open the blob link → **Download raw file** → double-click the downloaded `.html` | Everything; works offline, no network needed |
+| **Local server** (team review on same network) | In the repo root run `python3 -m http.server 8000`, then open `http://localhost:8000/presentation/index.html` | Previewing the presentation together |
+
+**Presentation day:** download `presentation/index.html` ahead of time and
+open it in a browser in fullscreen (F11) — do not depend on the venue's
+network.
