@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolarScan Verify — Capstone Presentation</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff;
+    --green: #3fb950; --red: #f85149; --amber: #d29922;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .slide {
+    max-width: 1100px; margin: 0 auto; padding: 3rem 2rem;
+    border-bottom: 1px solid var(--border); min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  h1 { font-size: 2.6rem; color: var(--accent); margin-bottom: .5rem; }
+  h2 { font-size: 1.8rem; color: var(--accent); margin-bottom: 1.2rem; }
+  h3 { font-size: 1.15rem; color: var(--text); margin: 1.4rem 0 .6rem; }
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+  .kicker {
+    color: var(--muted); text-transform: uppercase; letter-spacing: .12em;
+    font-size: .8rem; margin-bottom: .5rem;
+  }
+  .grid { display: grid; gap: 1rem; margin: 1.2rem 0; }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.2rem;
+  }
+  .card h4 { color: var(--accent); margin-bottom: .4rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: .85rem; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .pill {
+    display: inline-block; padding: .15rem .6rem; border-radius: 999px;
+    font-size: .78rem; font-weight: 600;
+  }
+  .pill.red { background: rgba(248,81,73,.15); color: var(--red); }
+  .pill.green { background: rgba(63,185,80,.15); color: var(--green); }
+  .pill.amber { background: rgba(210,153,34,.15); color: var(--amber); }
+  .fail { border-left: 3px solid var(--red); }
+  .promise { border-left: 3px solid var(--green); }
+  .bar-wrap { background: var(--panel); border-radius: 6px; overflow: hidden; margin: .3rem 0; }
+  .bar { height: 1.6rem; display: flex; align-items: center; padding: 0 .6rem; font-size: .85rem; color: #fff; }
+  .nav {
+    position: fixed; bottom: 1rem; right: 1rem; display: flex; gap: .5rem; z-index: 10;
+  }
+  .nav button {
+    background: var(--panel); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: .45rem .9rem; cursor: pointer; font-size: .9rem;
+  }
+  .nav button:hover { border-color: var(--accent); color: var(--accent); }
+  a { color: var(--accent); }
+  ul, ol { padding-left: 1.4rem; }
+  .small { font-size: .85rem; }
+  .bignum { font-size: 2.4rem; font-weight: 700; color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 2rem; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 · TITLE -->
+<section class="slide" id="s1">
+  <div class="kicker">Con Edison Capstone · Session 6 · Aug 11, 2026</div>
+  <h1>SolarScan Verify</h1>
+  <p style="font-size:1.25rem; max-width:44rem;">A generative-AI verification layer for
+  Con Edison's rooftop solar scanner — turning ambiguous roofs into
+  <strong>solar / no solar / uncertain</strong>, with humans in the loop.</p>
+  <div class="grid g3" style="margin-top:2rem;">
+    <div class="card"><h4>Brief</h4><p>Solar Scanner Optimization</p></div>
+    <div class="card"><h4>Team</h4><p>Yongpeng · Praewa · Kenji · Tanapat · Victor</p></div>
+    <div class="card"><h4>Problem slice</h4><p>The hard cases: HVAC, skylights, shadows, obstructions</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 2 · PROBLEM -->
+<section class="slide" id="s2">
+  <h2>The problem: the scanner is right until it isn't</h2>
+  <p>Con Edison's existing rooftop solar scanner handles straightforward roofs well.
+  The failures concentrate on <strong>complex New York City rooftops</strong> — HVAC
+  units, skylights, shadows, obstructions, unusual layouts — where equipment gets
+  mistaken for panels, or real panels get missed.</p>
+  <div class="grid g3">
+    <div class="card"><h4>Costly error A</h4><p>False "solar" → field team visits a roof with no panels.</p></div>
+    <div class="card"><h4>Costly error B</h4><p>False "no solar" → real generation potential is missed.</p></div>
+    <div class="card"><h4>Current state</h4><p>Ambiguous cases are reviewed by hand — imagery, records, judgment.</p></div>
+  </div>
+  <h3>Why this slice</h3>
+  <p>We deliberately chose <strong>one part of the problem</strong>: the
+  low-confidence verification step. Not a new scanner, not streaming imagery —
+  a review layer for the cases the existing system cannot settle.</p>
+</section>
+
+<!-- SLIDE 3 · APPROACH -->
+<section class="slide" id="s3">
+  <h2>The approach: a verification layer, not a replacement</h2>
+  <ol>
+    <li><strong>Same inputs, several models.</strong> Three vision models —
+      Gemini 3.5 Flash-Lite, GPT-5.5, Kimi K3 — classify each roof.</li>
+    <li><strong>Structured output.</strong> label + confidence + reason +
+      difficulty factors + escalate flag (PRD §3 contract).</li>
+    <li><strong>Fail toward a person.</strong> uncertain or low-confidence ⇒
+      escalate to an analyst. The system recommends; a person decides.</li>
+  </ol>
+  <div class="card">
+    <h4>Benchmark</h4>
+    <p>30 rooftop images (19 test + 11 valid) from a CC-licensed public drone
+    dataset. Ground truth locked from 2 labelers; 5 disagreements resolved to
+    <em>uncertain</em> per the labeling rule. Image integrity verified by SHA-256.</p>
+  </div>
+</section>
+
+<!-- SLIDE 4 · RESULTS -->
+<section class="slide" id="s4">
+  <h2>Results: no model met our targets — that is the finding</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th class="num">Clear-case accuracy<br><span class="muted">target ≥ 90%</span></th><th class="num">Escalation recall<br><span class="muted">target 1.0</span></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>GPT-5.5</strong></td><td class="num">84% (21/25) <span class="pill red">below</span></td><td class="num">20% (1/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td class="num">80% (20/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>Kimi K3</strong></td><td class="num">76% (19/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+    </tbody>
+  </table>
+  <div class="grid g3">
+    <div class="card"><div class="bignum">57%</div><p class="small">3-model label agreement — 43% of roofs genuinely divide the models</p></div>
+    <div class="card"><div class="bignum">&lt;90%</div><p class="small">best clear-case accuracy — thermal imagery is harder than expected</p></div>
+    <div class="card"><div class="bignum">40%</div><p class="small">best escalation recall — models over-trust themselves on ambiguous roofs</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 5 · FAILED APPROACH -->
+<section class="slide" id="s5">
+  <h2>One approach that failed — and why</h2>
+  <div class="card fail">
+    <h4>Failed: bare-prompt classification with the default setup</h4>
+    <ul>
+      <li><strong>What we tried:</strong> first pass with Gemini 2.5 Flash
+        models, plain "classify this roof" prompt, default parsing.</li>
+      <li><strong>What failed:</strong> 2.5 models returned 404 for new
+        accounts; one model emitted malformed/multi-object JSON; free-tier
+        rate limits (429) stalled ~40 calls.</li>
+      <li><strong>Evidence:</strong> result files with error rows; the
+        retry/resume logic in <code>evaluate_benchmark.py</code>; the robust
+        JSON extractor added after the parse failures.</li>
+      <li><strong>Lesson:</strong> treat every model output as a candidate,
+        verify the pipeline before trusting any number.</li>
+    </ul>
+  </div>
+  <h3>Second failure, worth naming: escalation recall</h3>
+  <p>The <em>scorecard itself</em> caught it — models output confident
+  <code>solar</code>/<code>no_solar</code> on roofs both human labelers called
+  <code>uncertain</code>. A confident wrong answer on an ambiguous roof is
+  exactly what a verification layer must prevent.</p>
+</section>
+
+<!-- SLIDE 6 · PROMISING -->
+<section class="slide" id="s6">
+  <h2>One approach that looks promising</h2>
+  <div class="card promise">
+    <h4>Promising: structured three-way contract + human escalation</h4>
+    <ul>
+      <li><strong>The PRD output contract works:</strong> all three models
+        produced parseable label/confidence/reason JSON across 90 calls after
+        the parser fix — the schema is enforceable.</li>
+      <li><strong>Agreement on solar is real:</strong> all three models agreed
+        on 13 solar cases and 2/3 agreed broadly — clear cases are separable.</li>
+      <li><strong>The escalation path is the differentiator:</strong> a
+        verification layer that routes uncertain/low-confidence cases to a
+        person catches the 43% of roofs where models disagree.</li>
+      <li><strong>Next test:</strong> does prompt tuning move escalation
+        recall from 40% toward 1.0 on the 5 ground-truth uncertain cases?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 7 · NEXT / CLOSING -->
+<section class="slide" id="s7">
+  <h2>Where this goes</h2>
+  <div class="grid g3">
+    <div class="card"><h4>1. Escalation tuning</h4><p>Re-prompt ("when in doubt, uncertain") and re-score the same 30 images; measure recall.</p></div>
+    <div class="card"><h4>2. Context signals</h4><p>Add NYC building footprints + solar-readiness records as optional context (PRD §2).</p></div>
+    <div class="card"><h4>3. Human-review boundary</h4><p>Analyst workflow for escalated cases; measure how much manual review is avoided.</p></div>
+  </div>
+  <h3>What we'd ask Con Edison</h3>
+  <ul>
+    <li>Which error has historically cost more — false solar or false no-solar?</li>
+    <li>What context data (footprints, permits, historical imagery) is shareable?</li>
+    <li>How should results return to your review tooling?</li>
+  </ul>
+  <p style="margin-top:1.5rem;"><strong>SolarScan Verify:</strong> the scanner stays;
+  the ambiguous roofs get a second, explainable, human-escalated look.</p>
+</section>
+
+<footer>
+  SolarScan Verify · Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
+  · Data: public CC dataset + NYC Open Data · No operational Con Edison data used
+</footer>
+
+<div class="nav">
+  <button onclick="go(-1)">← Prev</button>
+  <button onclick="go(1)">Next →</button>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let idx = 0;
+function show(i) {
+  idx = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, k) => s.style.display = k === idx ? 'flex' : 'none');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function go(d) { show(idx + d); }
+show(0);
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+</script>
+</body>
+</html>
