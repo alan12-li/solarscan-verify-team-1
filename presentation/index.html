@@ -142,8 +142,40 @@
   </div>
 </section>
 
-<!-- SLIDE 5 · SURPRISING FACT -->
+<!-- SLIDE 5 · TESTING: BASELINE VS HARDER -->
 <section class="slide" id="s5">
+  <h2>Testing: the easy case first, then the hard one</h2>
+  <p class="muted">Same 30 roofs, two slices: cases where all 4 models agree
+  ("baseline case") vs cases where models disagree ("harder case").</p>
+  <table>
+    <thead>
+      <tr><th>Model</th><th class="num">Baseline case<br><span class="muted">12 roofs, all models agree</span></th><th class="num">Harder case<br><span class="muted">18 roofs, models disagree</span></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>GPT-5.5</strong></td><td class="num">91% (10/11)</td><td class="num">79% (11/14)</td></tr>
+      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td class="num">91% (10/11)</td><td class="num">71% (10/14)</td></tr>
+      <tr><td><strong>Kimi K3</strong></td><td class="num">91% (10/11)</td><td class="num">64% (9/14)</td></tr>
+      <tr><td><strong>Gemma 4 26B</strong></td><td class="num">91% (10/11)</td><td class="num">29% (4/14) <span class="pill red">collapse</span></td></tr>
+    </tbody>
+  </table>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Baseline case: everyone passes</h4>
+      <p>When models agree, all four hit <strong>91%</strong> — the scanner's
+      easy work is genuinely easy. This is the case the existing scanner
+      already handles.</p>
+    </div>
+    <div class="card">
+      <h4>Harder case: the verification layer's territory</h4>
+      <p>On the 18 roofs where models disagree, accuracy drops for every
+      model — GPT-5.5 to 79%, Gemma collapses to 29%. These are exactly the
+      roofs a verification layer must escalate to a person.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6 · SURPRISING FACT -->
+<section class="slide" id="s6">
   <h2>Surprising fact from the data</h2>
   <div class="grid g2">
     <div class="card">
@@ -166,8 +198,8 @@
   the failure mode a verification layer must catch.</p>
 </section>
 
-<!-- SLIDE 6 · FAILED APPROACH -->
-<section class="slide" id="s6">
+<!-- SLIDE 7 · FAILED APPROACH -->
+<section class="slide" id="s7">
   <h2>One approach that failed — and why</h2>
   <div class="card fail">
     <h4>Failed: bare-prompt classification with the default setup</h4>
@@ -191,8 +223,8 @@
   exactly what a verification layer must prevent.</p>
 </section>
 
-<!-- SLIDE 7 · PROMISING -->
-<section class="slide" id="s7">
+<!-- SLIDE 8 · PROMISING -->
+<section class="slide" id="s8">
   <h2>One approach that looks promising</h2>
   <div class="card promise">
     <h4>Promising: structured three-way contract + human escalation</h4>
@@ -211,8 +243,8 @@
   </div>
 </section>
 
-<!-- SLIDE 8 · NEXT / CLOSING -->
-<section class="slide" id="s8">
+<!-- SLIDE 9 · NEXT / CLOSING -->
+<section class="slide" id="s9">
   <h2>Where this goes</h2>
   <div class="grid g3">
     <div class="card"><h4>1. Escalation tuning</h4><p>Re-prompt ("when in doubt, uncertain") and re-score the same 30 images; measure recall.</p></div>
