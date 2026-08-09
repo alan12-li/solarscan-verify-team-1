@@ -3,6 +3,10 @@
 Con Edison capstone — **Solar Scanner Optimization** brief
 Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
 
+> ⚠️ **This repository is PUBLIC.** Everything pushed here is visible to
+> anyone. Never commit keys, credentials, personal data, or operational
+> Con Edison data. See [CONTRIBUTING.md](CONTRIBUTING.md) §2.
+
 ## Quick start (for teammates)
 
 > **Read [docs/TEAM-GUIDE.md](docs/TEAM-GUIDE.md) first** — setup, your
@@ -16,6 +20,10 @@ Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
    [docs/labeling-task.md](docs/labeling-task.md).
 4. Reproduce the model comparison: `docs/benchmark-results.md` and the
    scripts under `scripts/`.
+
+**Live pages (GitHub Pages):**
+- Presentation: <https://alan12-li.github.io/solarscan-verify-team-1/presentation/>
+- Labeling tool: <https://alan12-li.github.io/solarscan-verify-team-1/data/benchmark-v1/labeling/label-standalone.html>
 
 ## Team
 

@@ -103,7 +103,11 @@ Models compared (same 30 images, same prompt, temperature 0):
 
 ## 6. Links
 
-- Repo: https://github.com/alan12-li/solarscan-verify-team-1
+- Repo: https://github.com/alan12-li/solarscan-verify-team-1 (**PUBLIC — treat
+  every push as public; no keys, no personal data, no Con Edison data**)
+- Live presentation: https://alan12-li.github.io/solarscan-verify-team-1/presentation/
+- Live labeling tool:
+  https://alan12-li.github.io/solarscan-verify-team-1/data/benchmark-v1/labeling/label-standalone.html
 - Labeling tool (in repo): `data/benchmark-v1/labeling/label-standalone.html`
 - Benchmark results: `docs/benchmark-results.md`
 - PRD (course repo): `sims/solarscan-verify/PRD.md` in
