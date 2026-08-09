@@ -131,7 +131,7 @@
     <tbody>
       <tr><td><strong>GPT-5.5</strong></td><td>closed</td><td class="num">84% (21/25) <span class="pill red">below</span></td><td class="num">20% (1/5) <span class="pill red">below</span></td></tr>
       <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td>closed · baseline</td><td class="num">80% (20/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
-      <tr><td><strong>Kimi K3</strong></td><td>closed</td><td class="num">76% (19/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>Kimi K3</strong></td><td><span class="pill green">open-weights</span></td><td class="num">76% (19/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
       <tr><td><strong>Gemma 4 26B</strong></td><td><span class="pill green">open-weights</span></td><td class="num">56% (14/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
     </tbody>
   </table>
@@ -187,10 +187,11 @@
       human consensus.</p>
     </div>
     <div class="card">
-      <h4>The open-weights model is honest about doubt</h4>
-      <p>Gemma 4 26B marked <strong>11 of 30</strong> roofs uncertain — more
-      than any closed model — yet its escalation recall ties the best. The
-      cheapest model (10× cheaper) is the least over-confident.</p>
+      <h4>Open-weights models are honest about doubt</h4>
+      <p>Gemma 4 26B marked the most roofs uncertain (11/30) and Kimi K3
+      (8/30) was above both closed models — and both open-weights models
+      tied the best escalation recall (40%). The cheapest model (Gemma,
+      10× cheaper than GPT-5.5) is the least over-confident.</p>
     </div>
   </div>
   <h3>Why this matters</h3>

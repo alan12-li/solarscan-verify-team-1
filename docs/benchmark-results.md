@@ -13,7 +13,7 @@ escalation recall 1.0) and §7 (multi-model comparison)
 |---|---|---|---|
 | Gemini 3.5 Flash-Lite | Google | Gemini API | closed (baseline) |
 | GPT-5.5 | OpenAI | OpenRouter | closed |
-| Kimi K3 (2.8T, multimodal reasoning) | Moonshot AI | OpenRouter | closed |
+| Kimi K3 (2.8T, multimodal reasoning) | Moonshot AI | OpenRouter | **open-weights** |
 | Gemma 4 26B (A4B) | Google | OpenRouter | **open-weights (Apache-2.0)** |
 
 All models are vision-capable. Every model saw the identical 30 images with
@@ -23,8 +23,9 @@ Image integrity between labeling and evaluation was verified by SHA-256
 
 **Baseline:** Gemini 3.5 Flash-Lite (cheapest closed model) is the cost
 baseline; the other models are improvement candidates against it. Per the
-capstone brief, the comparison includes at least one open-weights model
-(Gemma 4 26B).
+capstone brief, the comparison includes open-weights models: **Kimi K3**
+(2.8T, first open 3T-class model, Moonshot AI) and **Gemma 4 26B**
+(Apache-2.0).
 
 ## Results table
 
@@ -110,7 +111,7 @@ See `docs/labeling-progress.md` for the disagreement detail and
 |---|---|---|---|
 | **GPT-5.5** | closed | **84%** (21/25) | **20%** (1/5) |
 | **Gemini 3.5 Flash-Lite** | closed (baseline) | **80%** (20/25) | **40%** (2/5) |
-| **Kimi K3** | closed | **76%** (19/25) | **40%** (2/5) |
+| **Kimi K3** | **open-weights** | **76%** (19/25) | **40%** (2/5) |
 | **Gemma 4 26B** | **open-weights** | **56%** (14/25) | **40%** (2/5) |
 
 **No model meets the PRD §6 targets.** Three findings:
@@ -122,11 +123,12 @@ See `docs/labeling-progress.md` for the disagreement detail and
    `uncertain` cases, the best models catch only 2 (40%). Models are too
    confident on genuinely ambiguous rooftops, which is precisely the failure
    the verification layer exists to fix.
-3. **The open-weights model lags accuracy but not escalation behavior** —
-   Gemma 4 26B scores 56% on clear cases (28 points behind GPT-5.5) yet
-   matches the closed models on escalation recall (40%). Cost
-   (Gemma ~$0.03 vs GPT-5.5 ~$0.27 for 30 images) is an order of magnitude
-   lower, which matters for a verification layer that reviews many roofs.
+3. **Open-weights models split by size** — Kimi K3 (2.8T, open) nearly
+   matches the closed frontier (76% vs GPT-5.5's 84%) at ~25% lower cost,
+   while Gemma 4 26B (small open model) lags accuracy (56%) but matches the
+   closed models on escalation recall (40%). Open-weights is no longer a
+   quality penalty at the top end, and the small model is the least
+   over-confident for less than a tenth of the cost.
 
 These are informative failures: the benchmark is doing its job by exposing
 where each model over-trusts its own answer.
