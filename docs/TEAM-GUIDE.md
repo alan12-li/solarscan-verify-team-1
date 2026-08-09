@@ -4,7 +4,8 @@ Everything a teammate needs to get set up, contribute, and label.
 
 **Repo:** https://github.com/alan12-li/solarscan-verify-team-1 (private)
 **Capstone:** Con Edison · Solar Scanner Optimization
-**Team:** Yongpeng (alan12-li), Praewa, Kenji, Tanapat, Victor
+**Team:** Yongpeng Li (alan12-li) · Praewa Udomlertsakul (pointpraewa) ·
+Kenji Tannady (ktannady22) · Tanapat Boontuam (tanapreuk) · Victor Chan (Vchan5526)
 
 ---
 

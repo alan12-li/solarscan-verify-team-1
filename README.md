@@ -19,11 +19,11 @@ Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
 
 ## Team
 
-- Yongpeng (alan12-li)
-- Praewa
-- Kenji
-- Tanapat
-- Victor
+- Yongpeng Li (alan12-li)
+- Praewa Udomlertsakul (pointpraewa)
+- Kenji Tannady (ktannady22)
+- Tanapat Boontuam (tanapreuk)
+- Victor Chan (Vchan5526)
 
 ## Proposal
 
