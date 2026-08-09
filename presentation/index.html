@@ -126,23 +126,48 @@
   <h2>Results: no model met our targets — that is the finding</h2>
   <table>
     <thead>
-      <tr><th>Model</th><th class="num">Clear-case accuracy<br><span class="muted">target ≥ 90%</span></th><th class="num">Escalation recall<br><span class="muted">target 1.0</span></th></tr>
+      <tr><th>Model</th><th>Weights</th><th class="num">Clear-case accuracy<br><span class="muted">target ≥ 90%</span></th><th class="num">Escalation recall<br><span class="muted">target 1.0</span></th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>GPT-5.5</strong></td><td class="num">84% (21/25) <span class="pill red">below</span></td><td class="num">20% (1/5) <span class="pill red">below</span></td></tr>
-      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td class="num">80% (20/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
-      <tr><td><strong>Kimi K3</strong></td><td class="num">76% (19/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>GPT-5.5</strong></td><td>closed</td><td class="num">84% (21/25) <span class="pill red">below</span></td><td class="num">20% (1/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td>closed · baseline</td><td class="num">80% (20/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>Kimi K3</strong></td><td>closed</td><td class="num">76% (19/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>Gemma 4 26B</strong></td><td><span class="pill green">open-weights</span></td><td class="num">56% (14/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
     </tbody>
   </table>
   <div class="grid g3">
-    <div class="card"><div class="bignum">57%</div><p class="small">3-model label agreement — 43% of roofs genuinely divide the models</p></div>
+    <div class="card"><div class="bignum">40%</div><p class="small">4-model label agreement — 60% of roofs genuinely divide the models</p></div>
     <div class="card"><div class="bignum">&lt;90%</div><p class="small">best clear-case accuracy — thermal imagery is harder than expected</p></div>
     <div class="card"><div class="bignum">40%</div><p class="small">best escalation recall — models over-trust themselves on ambiguous roofs</p></div>
   </div>
 </section>
 
-<!-- SLIDE 5 · FAILED APPROACH -->
+<!-- SLIDE 5 · SURPRISING FACT -->
 <section class="slide" id="s5">
+  <h2>Surprising fact from the data</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Humans hesitated — models didn't</h4>
+      <p>On the 5 rooftops where our two human labelers <strong>disagreed</strong>,
+      the models still output confident <code>solar</code>/<code>no_solar</code>
+      calls. Example <strong>sv-0133</strong>: both humans said no solar, yet
+      Kimi K3 called it <em>solar</em> — a model confident the opposite of a
+      human consensus.</p>
+    </div>
+    <div class="card">
+      <h4>The open-weights model is honest about doubt</h4>
+      <p>Gemma 4 26B marked <strong>11 of 30</strong> roofs uncertain — more
+      than any closed model — yet its escalation recall ties the best. The
+      cheapest model (10× cheaper) is the least over-confident.</p>
+    </div>
+  </div>
+  <h3>Why this matters</h3>
+  <p>A scanner that is confident on exactly the roofs humans hesitate over is
+  the failure mode a verification layer must catch.</p>
+</section>
+
+<!-- SLIDE 6 · FAILED APPROACH -->
+<section class="slide" id="s6">
   <h2>One approach that failed — and why</h2>
   <div class="card fail">
     <h4>Failed: bare-prompt classification with the default setup</h4>
@@ -166,8 +191,8 @@
   exactly what a verification layer must prevent.</p>
 </section>
 
-<!-- SLIDE 6 · PROMISING -->
-<section class="slide" id="s6">
+<!-- SLIDE 7 · PROMISING -->
+<section class="slide" id="s7">
   <h2>One approach that looks promising</h2>
   <div class="card promise">
     <h4>Promising: structured three-way contract + human escalation</h4>
@@ -186,8 +211,8 @@
   </div>
 </section>
 
-<!-- SLIDE 7 · NEXT / CLOSING -->
-<section class="slide" id="s7">
+<!-- SLIDE 8 · NEXT / CLOSING -->
+<section class="slide" id="s8">
   <h2>Where this goes</h2>
   <div class="grid g3">
     <div class="card"><h4>1. Escalation tuning</h4><p>Re-prompt ("when in doubt, uncertain") and re-score the same 30 images; measure recall.</p></div>

@@ -33,10 +33,14 @@ IMAGES = BENCH / "images"
 MANIFEST = BENCH / "manifest.json"
 RESULTS = BENCH / "results"
 
+# Capstone requirement: at least one open-weights model and one closed model.
+# gemma-4-26b is Google's open-weights vision model (Apache-2.0).
+# gemini-3.5-flash-lite is the cheap baseline; the others are improvement candidates.
 MODELS = [
-    "gemini-3.5-flash-lite",
-    "openrouter:openai/gpt-5.5",
-    "openrouter:moonshotai/kimi-k3",
+    "gemini-3.5-flash-lite",          # baseline (cheapest, closed)
+    "openrouter:openai/gpt-5.5",      # closed, frontier
+    "openrouter:moonshotai/kimi-k3",  # closed, reasoning
+    "openrouter:google/gemma-4-26b-a4b-it",  # OPEN-WEIGHTS (Apache-2.0)
 ]
 
 # PRD §3 output contract — every model must return exactly this JSON.

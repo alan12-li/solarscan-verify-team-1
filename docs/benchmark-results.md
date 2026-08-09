@@ -9,49 +9,56 @@ escalation recall 1.0) and §7 (multi-model comparison)
 
 ## Models compared (same inputs, same judging rubric)
 
-| Model | Provider | Route |
-|---|---|---|
-| Gemini 3.5 Flash-Lite | Google | Gemini API |
-| GPT-5.5 | OpenAI | OpenRouter |
-| Kimi K3 (2.8T, multimodal reasoning) | Moonshot AI | OpenRouter |
+| Model | Provider | Route | Weights |
+|---|---|---|---|
+| Gemini 3.5 Flash-Lite | Google | Gemini API | closed (baseline) |
+| GPT-5.5 | OpenAI | OpenRouter | closed |
+| Kimi K3 (2.8T, multimodal reasoning) | Moonshot AI | OpenRouter | closed |
+| Gemma 4 26B (A4B) | Google | OpenRouter | **open-weights (Apache-2.0)** |
 
-All three are vision-capable. Every model saw the identical 30 images with
+All models are vision-capable. Every model saw the identical 30 images with
 the identical system prompt (PRD §3 output contract) and temperature 0.
 Image integrity between labeling and evaluation was verified by SHA-256
 (`scripts/verify_image_integrity.py`).
+
+**Baseline:** Gemini 3.5 Flash-Lite (cheapest closed model) is the cost
+baseline; the other models are improvement candidates against it. Per the
+capstone brief, the comparison includes at least one open-weights model
+(Gemma 4 26B).
 
 ## Results table
 
 ### Label distribution (30 cases)
 
-| Label | Gemini 3.5 Flash-Lite | Kimi K3 | GPT-5.5 |
-|---|---|---|---|
-| `solar` | 13 | 13 | 13 |
-| `no_solar` | 10 | 9 | 12 |
-| `uncertain` | 7 | **8** | 5 |
+| Label | Gemini 3.5 Flash-Lite | Gemma 4 26B | Kimi K3 | GPT-5.5 |
+|---|---|---|---|---|
+| `solar` | 13 | 10 | 13 | 13 |
+| `no_solar` | 10 | 9 | 9 | 12 |
+| `uncertain` | 7 | **11** | 8 | 5 |
 
 ### Escalation (uncertain or confidence < 0.6) — PRD §5 fail-toward-human
 
 | Model | Escalated | Rate |
 |---|---|---|
 | Gemini 3.5 Flash-Lite | 7 / 30 | 23% |
+| Gemma 4 26B | 11 / 30 | 37% |
 | Kimi K3 | **12 / 30** | **40%** |
 | GPT-5.5 | 5 / 30 | 17% |
 
 ### Mean confidence by label
 
-| Label | Gemini 3.5 Flash-Lite | Kimi K3 | GPT-5.5 |
-|---|---|---|---|
-| `solar` | **0.96** | 0.89 | 0.89 |
-| `no_solar` | **0.95** | 0.61 | 0.78 |
-| `uncertain` | 0.34 | 0.42 | 0.40 |
+| Label | Gemini 3.5 Flash-Lite | Gemma 4 26B | Kimi K3 | GPT-5.5 |
+|---|---|---|---|---|
+| `solar` | **0.96** | 0.96 | 0.89 | 0.89 |
+| `no_solar` | **0.95** | 0.88 | 0.61 | 0.78 |
+| `uncertain` | 0.34 | **0.25** | 0.42 | 0.40 |
 
 ### Cross-model agreement
 
-- Cases all 3 models answered: **30 / 30**
-- All 3 models agree on the label: **17 / 30 (57%)**
-- The 13 disagreements (43%) are exactly the cases where human ground truth
-  is needed to judge which model is right.
+- Cases all models answered: **30 / 30**
+- All 4 models agree on the label: **12 / 30 (40%)**
+- The remaining 60% of cases are exactly where human ground truth is needed
+  to judge which model is right.
 
 ### Difficulty factors reported (top 5, non-enum values flagged)
 
@@ -99,13 +106,14 @@ See `docs/labeling-progress.md` for the disagreement detail and
 
 ### PRD §6 scorecard (30 cases, ground truth locked)
 
-| Model | Clear-case accuracy (target ≥90%) | Escalation recall (target 1.0) |
-|---|---|---|
-| **GPT-5.5** | **84%** (21/25) | **20%** (1/5) |
-| **Gemini 3.5 Flash-Lite** | **80%** (20/25) | **40%** (2/5) |
-| **Kimi K3** | **76%** (19/25) | **40%** (2/5) |
+| Model | Weights | Clear-case accuracy (target ≥90%) | Escalation recall (target 1.0) |
+|---|---|---|---|
+| **GPT-5.5** | closed | **84%** (21/25) | **20%** (1/5) |
+| **Gemini 3.5 Flash-Lite** | closed (baseline) | **80%** (20/25) | **40%** (2/5) |
+| **Kimi K3** | closed | **76%** (19/25) | **40%** (2/5) |
+| **Gemma 4 26B** | **open-weights** | **56%** (14/25) | **40%** (2/5) |
 
-**No model meets the PRD §6 targets.** Two findings:
+**No model meets the PRD §6 targets.** Three findings:
 
 1. **Clear-case accuracy is below 90% for every model** — the "clear" cases
    in this thermal imagery are harder than expected, or the prompt needs
@@ -114,6 +122,11 @@ See `docs/labeling-progress.md` for the disagreement detail and
    `uncertain` cases, the best models catch only 2 (40%). Models are too
    confident on genuinely ambiguous rooftops, which is precisely the failure
    the verification layer exists to fix.
+3. **The open-weights model lags accuracy but not escalation behavior** —
+   Gemma 4 26B scores 56% on clear cases (28 points behind GPT-5.5) yet
+   matches the closed models on escalation recall (40%). Cost
+   (Gemma ~$0.03 vs GPT-5.5 ~$0.27 for 30 images) is an order of magnitude
+   lower, which matters for a verification layer that reviews many roofs.
 
 These are informative failures: the benchmark is doing its job by exposing
 where each model over-trusts its own answer.
