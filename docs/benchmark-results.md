@@ -89,19 +89,43 @@ values).
    verification layer must escalate, and human labels will decide who is
    right.
 
-## Status: ground truth pending
+## Status: ground truth locked (2 labelers)
 
-Accuracy on clear cases (PRD §6: ≥90%) and escalation recall (PRD §6: 1.0)
-**cannot be scored yet** — the 30 images are not yet human-labeled.
-Team labeling is in progress via `data/benchmark-v1/labeling/label-standalone.html`
-(see `docs/labeling-task.md`). Once ≥2 labelers agree per image, this table
-gains the accuracy / escalation-recall columns.
+Ground truth is **locked** from two labelers (Yongpeng `alan12-li`, Victor
+`vchan5526`): 25/30 cases agreed, 5 disagreements resolved as `uncertain`
+per the labeling rule (fail toward escalation, PRD §5).
+See `docs/labeling-progress.md` for the disagreement detail and
+`data/benchmark-v1/ground-truth.json` for the machine-readable labels.
+
+### PRD §6 scorecard (30 cases, ground truth locked)
+
+| Model | Clear-case accuracy (target ≥90%) | Escalation recall (target 1.0) |
+|---|---|---|
+| **GPT-5.5** | **84%** (21/25) | **20%** (1/5) |
+| **Gemini 3.5 Flash-Lite** | **80%** (20/25) | **40%** (2/5) |
+| **Kimi K3** | **76%** (19/25) | **40%** (2/5) |
+
+**No model meets the PRD §6 targets.** Two findings:
+
+1. **Clear-case accuracy is below 90% for every model** — the "clear" cases
+   in this thermal imagery are harder than expected, or the prompt needs
+   tuning. GPT-5.5 leads at 84%.
+2. **Escalation recall is the critical gap** — of the 5 ground-truth
+   `uncertain` cases, the best models catch only 2 (40%). Models are too
+   confident on genuinely ambiguous rooftops, which is precisely the failure
+   the verification layer exists to fix.
+
+These are informative failures: the benchmark is doing its job by exposing
+where each model over-trusts its own answer.
 
 ## Reproducibility
 
 - Fetch images: `python3 scripts/fetch_benchmark.py`
 - Evaluate: `python3 scripts/evaluate_benchmark.py --subset`
   (needs `GEMINI_API_KEY` and/or `OPENROUTER_API_KEY` in env)
+- Build ground truth: `python3 scripts/build_ground_truth.py`
+  (merges `data/benchmark-v1/labels/*.json`; disagreements → `uncertain`)
 - Analyze: `python3 scripts/analyze_results.py --subset`
 - Integrity: `python3 scripts/verify_image_integrity.py`
 - Raw model outputs: `data/benchmark-v1/results/*.json` (gitignored)
+- Ground truth: `data/benchmark-v1/ground-truth.json` (committed)

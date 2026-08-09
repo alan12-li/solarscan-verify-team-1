@@ -1,0 +1,294 @@
+{
+  "version": "v1",
+  "created": "2026-08-08",
+  "labelers": [
+    "alan12-li",
+    "vchan5526"
+  ],
+  "rule": ">=2 agreeing labelers; disagreements become uncertain",
+  "image_count": 30,
+  "distribution": {
+    "no_solar": 12,
+    "solar": 13,
+    "uncertain": 5
+  },
+  "disagreements_resolved_as_uncertain": [
+    {
+      "case_id": "sv-0013",
+      "votes": {
+        "alan12-li": "no_solar",
+        "vchan5526": "uncertain"
+      }
+    },
+    {
+      "case_id": "sv-0017",
+      "votes": {
+        "alan12-li": "solar",
+        "vchan5526": "uncertain"
+      }
+    },
+    {
+      "case_id": "sv-0018",
+      "votes": {
+        "alan12-li": "solar",
+        "vchan5526": "no_solar"
+      }
+    },
+    {
+      "case_id": "sv-0133",
+      "votes": {
+        "alan12-li": "no_solar",
+        "vchan5526": "uncertain"
+      }
+    },
+    {
+      "case_id": "sv-0134",
+      "votes": {
+        "alan12-li": "no_solar",
+        "vchan5526": "uncertain"
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "sv-0001",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0002",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0003",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0004",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0005",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0006",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0007",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0008",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0009",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0010",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0011",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0012",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0013",
+      "label": "uncertain",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0014",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0015",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0016",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0017",
+      "label": "uncertain",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0018",
+      "label": "uncertain",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0019",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0132",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0133",
+      "label": "uncertain",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0134",
+      "label": "uncertain",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0135",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0136",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0137",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0138",
+      "label": "no_solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0139",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0140",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0141",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    },
+    {
+      "id": "sv-0142",
+      "label": "solar",
+      "labelers": [
+        "alan12-li",
+        "vchan5526"
+      ]
+    }
+  ]
+}

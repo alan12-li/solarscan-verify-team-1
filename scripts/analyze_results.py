@@ -132,7 +132,19 @@ def main() -> None:
         if bad:
             print(f"    ⚠️ non-enum: {dict(bad)}")
 
-    # 6. Ground-truth scoring if labels exist
+    # 6. Ground-truth scoring (uses data/benchmark-v1/ground-truth.json when
+    # available; falls back to manifest labels)
+    gt_path = BENCH / "ground-truth.json"
+    if gt_path.exists():
+        gt_data = json.loads(gt_path.read_text())
+        gt_by_id = {c["id"]: c["label"] for c in gt_data["cases"]}
+        # Attach ground truth to the cases being scored
+        for c in cases:
+            if c["id"] in gt_by_id:
+                c["label"] = gt_by_id[c["id"]]
+        print(f"\n(Using ground truth from {gt_path.name}: "
+              f"{gt_data['distribution']}, labelers {gt_data['labelers']})")
+
     if any(c["label"] != "unlabeled" for c in cases):
         print("\n-- Ground-truth scoring (PRD §6) --")
         clear = [c for c in cases if c["label"] in ("solar", "no_solar")]
@@ -146,8 +158,8 @@ def main() -> None:
             print(f"{m}: clear-case accuracy {acc:.0%} ({correct}/{len(clear)}), "
                   f"escalation recall {rec:.0%} ({esc_recall}/{len(uncertain)})")
     else:
-        print("\n(No ground-truth labels yet — manifest cases are 'unlabeled'.")
-        print(" Accuracy/escalation-recall scoring unlocks after team labeling.)")
+        print("\n(No ground-truth labels yet — manifest cases are 'unlabeled'."
+              "\n Accuracy/escalation-recall scoring unlocks after team labeling.)")
 
 
 if __name__ == "__main__":
