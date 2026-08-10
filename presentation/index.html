@@ -129,16 +129,16 @@
       <tr><th>Model</th><th>Weights</th><th class="num">Clear-case accuracy<br><span class="muted">target ≥ 90%</span></th><th class="num">Escalation recall<br><span class="muted">target 1.0</span></th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>GPT-5.5</strong></td><td>closed</td><td class="num">84% (21/25) <span class="pill red">below</span></td><td class="num">20% (1/5) <span class="pill red">below</span></td></tr>
-      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td>closed · baseline</td><td class="num">80% (20/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
-      <tr><td><strong>Kimi K3</strong></td><td><span class="pill green">open-weights</span></td><td class="num">76% (19/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
-      <tr><td><strong>Gemma 4 26B</strong></td><td><span class="pill green">open-weights</span></td><td class="num">56% (14/25) <span class="pill red">below</span></td><td class="num">40% (2/5) <span class="pill red">below</span></td></tr>
+      <tr><td><strong>GPT-5.5</strong></td><td>closed</td><td class="num">83% (25/30) <span class="pill red">below</span></td><td class="num">n/a</td></tr>
+      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td>closed · baseline</td><td class="num">73% (22/30) <span class="pill red">below</span></td><td class="num">n/a</td></tr>
+      <tr><td><strong>Kimi K3</strong></td><td><span class="pill green">open-weights</span></td><td class="num">67% (20/30) <span class="pill red">below</span></td><td class="num">n/a</td></tr>
+      <tr><td><strong>Gemma 4 26B</strong></td><td><span class="pill green">open-weights</span></td><td class="num">53% (16/30) <span class="pill red">below</span></td><td class="num">n/a</td></tr>
     </tbody>
   </table>
   <div class="grid g3">
     <div class="card"><div class="bignum">40%</div><p class="small">4-model label agreement — 60% of roofs genuinely divide the models</p></div>
-    <div class="card"><div class="bignum">&lt;90%</div><p class="small">best clear-case accuracy — thermal imagery is harder than expected</p></div>
-    <div class="card"><div class="bignum">40%</div><p class="small">best escalation recall — models over-trust themselves on ambiguous roofs</p></div>
+    <div class="card"><div class="bignum">&lt;90%</div><p class="small">best clear-case accuracy (83%) — thermal imagery is harder than expected</p></div>
+    <div class="card"><div class="bignum">3</div><p class="small">labelers, majority vote — 14 solar / 16 no_solar, no ties (escalation recall n/a)</p></div>
   </div>
 </section>
 
@@ -152,24 +152,24 @@
       <tr><th>Model</th><th class="num">Baseline case<br><span class="muted">12 roofs, all models agree</span></th><th class="num">Harder case<br><span class="muted">18 roofs, models disagree</span></th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>GPT-5.5</strong></td><td class="num">91% (10/11)</td><td class="num">79% (11/14)</td></tr>
-      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td class="num">91% (10/11)</td><td class="num">71% (10/14)</td></tr>
-      <tr><td><strong>Kimi K3</strong></td><td class="num">91% (10/11)</td><td class="num">64% (9/14)</td></tr>
-      <tr><td><strong>Gemma 4 26B</strong></td><td class="num">91% (10/11)</td><td class="num">29% (4/14) <span class="pill red">collapse</span></td></tr>
+      <tr><td><strong>GPT-5.5</strong></td><td class="num">83% (10/12)</td><td class="num">83% (15/18)</td></tr>
+      <tr><td><strong>Gemini 3.5 Flash-Lite</strong></td><td class="num">83% (10/12)</td><td class="num">67% (12/18)</td></tr>
+      <tr><td><strong>Kimi K3</strong></td><td class="num">83% (10/12)</td><td class="num">56% (10/18)</td></tr>
+      <tr><td><strong>Gemma 4 26B</strong></td><td class="num">83% (10/12)</td><td class="num">33% (6/18) <span class="pill red">collapse</span></td></tr>
     </tbody>
   </table>
   <div class="grid g2">
     <div class="card">
       <h4>Baseline case: everyone passes</h4>
-      <p>When models agree, all four hit <strong>91%</strong> — the scanner's
-      easy work is genuinely easy. This is the case the existing scanner
+      <p>When models agree, all four hit <strong>83%</strong> — the scanner's
+      easy work is genuinely easier. This is the case the existing scanner
       already handles.</p>
     </div>
     <div class="card">
       <h4>Harder case: the verification layer's territory</h4>
-      <p>On the 18 roofs where models disagree, accuracy drops for every
-      model — GPT-5.5 to 79%, Gemma collapses to 29%. These are exactly the
-      roofs a verification layer must escalate to a person.</p>
+      <p>On the 18 roofs where models disagree, GPT-5.5 holds 83% but Gemini
+      drops to 67% and Gemma collapses to 33%. These are exactly the roofs a
+      verification layer must escalate to a person.</p>
     </div>
   </div>
 </section>
@@ -180,18 +180,18 @@
   <div class="grid g2">
     <div class="card">
       <h4>Humans hesitated — models didn't</h4>
-      <p>On the 5 rooftops where our two human labelers <strong>disagreed</strong>,
+      <p>On the 5 rooftops where our first two labelers <strong>disagreed</strong>,
       the models still output confident <code>solar</code>/<code>no_solar</code>
-      calls. Example <strong>sv-0133</strong>: both humans said no solar, yet
+      calls. Example <strong>sv-0133</strong>: two humans said no solar, yet
       Kimi K3 called it <em>solar</em> — a model confident the opposite of a
-      human consensus.</p>
+      human consensus. A third labeler later settled each dispute 2:1.</p>
     </div>
     <div class="card">
       <h4>Open-weights models are honest about doubt</h4>
       <p>Gemma 4 26B marked the most roofs uncertain (11/30) and Kimi K3
-      (8/30) was above both closed models — and both open-weights models
-      tied the best escalation recall (40%). The cheapest model (Gemma,
-      10× cheaper than GPT-5.5) is the least over-confident.</p>
+      (8/30) was above both closed models. The cheapest model (Gemma,
+      10× cheaper than GPT-5.5) is the least over-confident — the safer
+      failure direction for a verification layer.</p>
     </div>
   </div>
   <h3>Why this matters</h3>
@@ -230,16 +230,17 @@
   <div class="card promise">
     <h4>Promising: structured three-way contract + human escalation</h4>
     <ul>
-      <li><strong>The PRD output contract works:</strong> all three models
-        produced parseable label/confidence/reason JSON across 90 calls after
+      <li><strong>The PRD output contract works:</strong> all four models
+        produced parseable label/confidence/reason JSON across 120 calls after
         the parser fix — the schema is enforceable.</li>
-      <li><strong>Agreement on solar is real:</strong> all three models agreed
-        on 13 solar cases and 2/3 agreed broadly — clear cases are separable.</li>
+      <li><strong>Agreement on solar is real:</strong> all models broadly
+        agree on solar cases — clear cases are separable.</li>
       <li><strong>The escalation path is the differentiator:</strong> a
         verification layer that routes uncertain/low-confidence cases to a
-        person catches the 43% of roofs where models disagree.</li>
-      <li><strong>Next test:</strong> does prompt tuning move escalation
-        recall from 40% toward 1.0 on the 5 ground-truth uncertain cases?</li>
+        person catches the 60% of roofs where models disagree.</li>
+      <li><strong>Next test:</strong> build a calibration set of genuinely
+        ambiguous roofs (where labelers tie) and measure whether prompt
+        tuning moves escalation recall toward 1.0.</li>
     </ul>
   </div>
 </section>
@@ -252,9 +253,8 @@
       <h4>What the evidence supports now</h4>
       <ul>
         <li><strong>Not "stop", not "deploy as-is".</strong> Baseline-case
-        accuracy is 91% (the easy work is genuinely easy) but escalation
-        recall is 40% — the models cannot yet be trusted on the roofs that
-        matter most.</li>
+        accuracy is 83% but drops to 33% (Gemma) on the harder roofs — the
+        models cannot yet be trusted on the roofs that matter most.</li>
         <li><strong>Revise the escalation behavior first</strong> (prompt /
         threshold), then run a limited test: 100 roofs, measure escalation
         recall toward 1.0 and how many human reviews are avoided.</li>

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the final benchmark ground truth from merged labeler files.
 
-Rule (PRD §5, labels/README.md): every image needs >=2 agreeing labelers;
-disagreements become "uncertain" (fail toward escalation).
+Rule (PRD §5, labels/README.md): majority vote among labelers; a tie
+becomes "uncertain" (fail toward escalation).
 
 Usage:
   python3 scripts/build_ground_truth.py
@@ -41,18 +41,22 @@ def main() -> int:
             per_case.setdefault(cid, {})[labeler] = lbl
 
     cases = []
-    disagreements = []
+    ties = []
     for cid in ids:
         votes = per_case.get(cid, {})
-        agreed = {lbl for lbl in votes.values() if lbl in VALID}
-        if len(agreed) == 1:
-            final = agreed.pop()
-        elif len(agreed) > 1:
-            final = "uncertain"  # disagreement -> escalate
-            disagreements.append({"case_id": cid, "votes": votes})
-        else:
+        valid_votes = {lbl for lbl in votes.values() if lbl in VALID}
+        if not valid_votes:
             print(f"ERROR {cid}: no valid labels ({votes})")
             return 2
+        from collections import Counter as _C
+        tally = _C(lbl for lbl in votes.values() if lbl in VALID)
+        top_count = tally.most_common(1)[0][1]
+        winners = {lbl for lbl, n in tally.items() if n == top_count}
+        if len(winners) == 1:
+            final = winners.pop()
+        else:
+            final = "uncertain"  # tie -> escalate
+            ties.append({"case_id": cid, "votes": votes, "tally": dict(tally)})
         cases.append({"id": cid, "label": final, "labelers": sorted(votes)})
 
     from collections import Counter
@@ -61,17 +65,17 @@ def main() -> int:
         "version": "v1",
         "created": "2026-08-08",
         "labelers": labelers,
-        "rule": ">=2 agreeing labelers; disagreements become uncertain",
+        "rule": "majority vote; ties become uncertain",
         "image_count": len(cases),
         "distribution": dict(dist),
-        "disagreements_resolved_as_uncertain": disagreements,
+        "ties_resolved_as_uncertain": ties,
         "cases": cases,
     }
     OUT.write_text(json.dumps(out, indent=2) + "\n")
     print(f"Wrote {OUT}")
     print(f"  labelers: {labelers}")
     print(f"  distribution: {dict(dist)}")
-    print(f"  disagreements -> uncertain: {len(disagreements)}")
+    print(f"  ties -> uncertain: {len(ties)}")
     return 0
 
 

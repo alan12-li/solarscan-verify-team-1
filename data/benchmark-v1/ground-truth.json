@@ -3,58 +3,23 @@
   "created": "2026-08-08",
   "labelers": [
     "alan12-li",
+    "pointpraewa",
     "vchan5526"
   ],
-  "rule": ">=2 agreeing labelers; disagreements become uncertain",
+  "rule": "majority vote; ties become uncertain",
   "image_count": 30,
   "distribution": {
-    "no_solar": 12,
-    "solar": 13,
-    "uncertain": 5
+    "no_solar": 16,
+    "solar": 14
   },
-  "disagreements_resolved_as_uncertain": [
-    {
-      "case_id": "sv-0013",
-      "votes": {
-        "alan12-li": "no_solar",
-        "vchan5526": "uncertain"
-      }
-    },
-    {
-      "case_id": "sv-0017",
-      "votes": {
-        "alan12-li": "solar",
-        "vchan5526": "uncertain"
-      }
-    },
-    {
-      "case_id": "sv-0018",
-      "votes": {
-        "alan12-li": "solar",
-        "vchan5526": "no_solar"
-      }
-    },
-    {
-      "case_id": "sv-0133",
-      "votes": {
-        "alan12-li": "no_solar",
-        "vchan5526": "uncertain"
-      }
-    },
-    {
-      "case_id": "sv-0134",
-      "votes": {
-        "alan12-li": "no_solar",
-        "vchan5526": "uncertain"
-      }
-    }
-  ],
+  "ties_resolved_as_uncertain": [],
   "cases": [
     {
       "id": "sv-0001",
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -63,6 +28,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -71,6 +37,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -79,6 +46,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -87,6 +55,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -95,6 +64,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -103,6 +73,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -111,6 +82,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -119,6 +91,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -127,6 +100,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -135,6 +109,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -143,14 +118,16 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
     {
       "id": "sv-0013",
-      "label": "uncertain",
+      "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -159,6 +136,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -167,6 +145,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -175,22 +154,25 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
     {
       "id": "sv-0017",
-      "label": "uncertain",
+      "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
     {
       "id": "sv-0018",
-      "label": "uncertain",
+      "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -199,6 +181,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -207,22 +190,25 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
     {
       "id": "sv-0133",
-      "label": "uncertain",
+      "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
     {
       "id": "sv-0134",
-      "label": "uncertain",
+      "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -231,6 +217,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -239,6 +226,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -247,6 +235,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -255,6 +244,7 @@
       "label": "no_solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -263,6 +253,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -271,6 +262,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -279,6 +271,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     },
@@ -287,6 +280,7 @@
       "label": "solar",
       "labelers": [
         "alan12-li",
+        "pointpraewa",
         "vchan5526"
       ]
     }

@@ -97,38 +97,39 @@ values).
    verification layer must escalate, and human labels will decide who is
    right.
 
-## Status: ground truth locked (2 labelers)
+## Status: ground truth locked (3 labelers, majority vote)
 
-Ground truth is **locked** from two labelers (Yongpeng `alan12-li`, Victor
-`vchan5526`): 25/30 cases agreed, 5 disagreements resolved as `uncertain`
-per the labeling rule (fail toward escalation, PRD §5).
-See `docs/labeling-progress.md` for the disagreement detail and
-`data/benchmark-v1/ground-truth.json` for the machine-readable labels.
+Ground truth is **locked** from three labelers (Yongpeng `alan12-li`,
+Praewa `pointpraewa`, Victor `vchan5526`) by **majority vote** (rule:
+majority; ties become `uncertain`). All 30 cases have a majority label —
+**14 solar / 16 no_solar / 0 uncertain** — so every case is scored.
+See `docs/labeling-progress.md` and `data/benchmark-v1/ground-truth.json`.
 
 ### PRD §6 scorecard (30 cases, ground truth locked)
 
 | Model | Weights | Clear-case accuracy (target ≥90%) | Escalation recall (target 1.0) |
 |---|---|---|---|
-| **GPT-5.5** | closed | **84%** (21/25) | **20%** (1/5) |
-| **Gemini 3.5 Flash-Lite** | closed (baseline) | **80%** (20/25) | **40%** (2/5) |
-| **Kimi K3** | **open-weights** | **76%** (19/25) | **40%** (2/5) |
-| **Gemma 4 26B** | **open-weights** | **56%** (14/25) | **40%** (2/5) |
+| **GPT-5.5** | closed | **83%** (25/30) | n/a (0 ground-truth uncertain) |
+| **Gemini 3.5 Flash-Lite** | closed (baseline) | **73%** (22/30) | n/a |
+| **Kimi K3** | **open-weights** | **67%** (20/30) | n/a |
+| **Gemma 4 26B** | **open-weights** | **53%** (16/30) | n/a |
 
-**No model meets the PRD §6 targets.** Three findings:
+**No model meets the PRD §6 target.** Three findings:
 
-1. **Clear-case accuracy is below 90% for every model** — the "clear" cases
-   in this thermal imagery are harder than expected, or the prompt needs
-   tuning. GPT-5.5 leads at 84%.
-2. **Escalation recall is the critical gap** — of the 5 ground-truth
-   `uncertain` cases, the best models catch only 2 (40%). Models are too
-   confident on genuinely ambiguous rooftops, which is precisely the failure
-   the verification layer exists to fix.
-3. **Open-weights models split by size** — Kimi K3 (2.8T, open) nearly
-   matches the closed frontier (76% vs GPT-5.5's 84%) at ~25% lower cost,
-   while Gemma 4 26B (small open model) lags accuracy (56%) but matches the
-   closed models on escalation recall (40%). Open-weights is no longer a
-   quality penalty at the top end, and the small model is the least
-   over-confident for less than a tenth of the cost.
+1. **Clear-case accuracy is below 90% for every model** — with a full 30-case
+   ground truth (majority of 3 labelers), GPT-5.5 leads at 83%, Gemini 73%,
+   Kimi 67%, Gemma 53%. The "clear" cases in this thermal imagery are harder
+   than expected, or the prompt needs tuning.
+2. **Escalation recall is no longer measurable** — with 3 labelers, no case
+   ended as a tie, so there are 0 ground-truth `uncertain` cases. The 5
+   earlier disagreements were all resolved 2:1 by Praewa's labels (4 matched
+   Yongpeng, 1 matched Victor). The escalation-recall question moves to the
+   next test: a calibration set of genuinely ambiguous roofs.
+3. **Open-weights models split by size** — Kimi K3 (2.8T, open) trails the
+   closed frontier by 16 points (67% vs 83%); Gemma 4 26B (small open) is
+   the least accurate (53%) but is the cheapest and the most likely to say
+   `uncertain` (11/30), which is the safer failure direction for a
+   verification layer.
 
 These are informative failures: the benchmark is doing its job by exposing
 where each model over-trusts its own answer.
