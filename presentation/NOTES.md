@@ -7,12 +7,12 @@ browser, F11 for fullscreen)
 | Slides | Speaker | Section |
 |---|---|---|
 | 1–3 | **Yongpeng** (opens) | Title · Problem · Approach |
-| 4–6 | **Victor** | Prototype agent system · Results · Error breakdown |
-| 7–8 | **Praewa** | Human validation · Easy vs hard roofs |
-| 9–10 | **Kenji** | Surprising facts · What failed |
-| 11–12 | **Tanapat** (closes) | What looks promising · Recommendation |
+| 4–6 | **Victor** | Agent system · Multi-source NYC · Results |
+| 7–9 | **Praewa** | Error breakdown · Human validation · Easy vs hard |
+| 10–11 | **Kenji** | Surprising facts · What failed |
+| 12–13 | **Tanapat** (closes) | Promising · Recommendation |
 
-Yongpeng opens (1–3) and Tanapat closes (11–12); each of the four middle
+Yongpeng opens (1–3) and Tanapat closes (12–13); each of the four middle
 speakers owns ~2 minutes. Rehearse once as a group before class. If someone
 is absent, the person next in the table covers their slides.
 
