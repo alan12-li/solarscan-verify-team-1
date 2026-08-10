@@ -77,6 +77,48 @@ does raising the escalation behavior actually move escalation recall toward
 tuning the confidence threshold. If recall stays at 40%, the prompt/contract
 is the problem; if it rises, the fix is prompt-side, not model-side.
 
+---
+
+## Post-session additions (2026-08-10, before Session 6)
+
+Work done after the Session 5 draft, listed so the final build log reflects
+the whole arc:
+
+### Multi-source verification — beyond the image alone
+
+The 30-case benchmark's core finding was that models are confident on the
+roofs humans hesitate over. To catch those confident-wrong answers, we
+designed a **corroboration branch** using public records — this is the PRD
+§3 "optional context" made concrete:
+
+- **Validated two public NYC data sources (live API queries):**
+  - Solar PV permits (LL24, dataset `cfz5-6fvh`) — address → permit status,
+    installation date. Direct evidence a roof has solar.
+  - Building footprints (dataset `5zhs-2jue`) — roof height, feature code,
+    footprint geometry.
+- **Tested the decision branch with real models**
+  (`scripts/test_corroboration.py`): 10 synthetic {hypothesis, permit}
+  scenarios × 2 models = **20/20 rule-following** (GPT-5.5 and Gemini
+  3.5 Flash-Lite both 10/10).
+- **Finding:** rule-following requires *unambiguous* rules. Iterating the
+  prompt — separating "lookup OK, zero records" from "lookup unavailable",
+  and making the confidence threshold literal (< 0.8) — took both models
+  from ~88–94% to 100%. Same lesson as the main classification:
+  **prompt quality is the system.**
+- **Honest scope:** the branch logic is tested; the full image→records
+  pipeline is not (the 30 benchmark images have no addresses to join).
+  That end-to-end test is part of the proposed 100-roof limited test.
+- Docs: `docs/multisource-verification.md`, `docs/value-for-conedison.md`.
+
+### Other post-session updates (same day)
+
+- **5-labeler ground truth locked** — all five teammates labeled 30/30 via
+  their own agents (Kenji, Tanapat added after the draft); majority vote
+  gives 14 solar / 16 no_solar / 0 uncertain, matching the earlier 3-labeler
+  result (scorecard unchanged, robust to labeler count).
+- **Presentation expanded to 12 slides** with real roof photos, error
+  breakdown, human-validation table, and the multi-source branch.
+
 ## Evidence
 
 - PRD: `sims/solarscan-verify/PRD.md` in clg236/... (merged PR #26)
@@ -85,7 +127,9 @@ is the problem; if it rises, the fix is prompt-side, not model-side.
 - Ground truth: `data/benchmark-v1/ground-truth.json`
 - Raw model outputs: `data/benchmark-v1/results/*.json` (gitignored, local)
 - Scripts: `scripts/{fetch_benchmark,evaluate_benchmark,analyze_results,
-  build_ground_truth,verify_image_integrity}.py`
+  build_ground_truth,verify_image_integrity,test_corroboration}.py`
+- Multi-source verification + value: `docs/multisource-verification.md`,
+  `docs/value-for-conedison.md`
 - Repo: https://github.com/alan12-li/solarscan-verify-team-1
 
 ## AI use disclosure
