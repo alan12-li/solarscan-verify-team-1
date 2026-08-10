@@ -7,17 +7,15 @@ https://alan12-li.github.io/solarscan-verify-team-1/presentation/)
 **Team roles (5 speakers):**
 | Slides | Speaker | Section |
 |---|---|---|
-| Cover–1 | **Yongpeng** (opens) | Title · Problem — 6 real NYC roofs |
-| 2–3 | **Victor** | Prototype pipeline · Evaluation design |
-| 4–5 | **Praewa** | Model vs human · The two mistakes |
-| 6–7 | **Kenji** | Multi-source verification · Surprising facts |
-| 8–10 | **Tanapat** | Model economics · What failed → works · Live demo intro |
-| 11 | **Yongpeng** (hands-on) | 🖥️ Live demo |
-| 12 | **Tanapat** (closes) | Recommendation |
+| 1–3 | **Yongpeng** (opens) | Cover · Problem — 6 real NYC roofs · Prototype |
+| 4–5 | **Victor** | Evaluation design · Model vs human |
+| 6–7 | **Praewa** | The two mistakes · Multi-source verification |
+| 8–9 | **Kenji** | Surprising facts · Model economics |
+| 10–12 | **Tanapat** (closes) | What failed → works · Live demo · Recommendation |
 
-Yongpeng opens (Cover–1) and Tanapat closes (12). The demo is hands-on —
-the person at the machine runs it (usually Yongpeng, who built it). If
-someone is absent, the person next in the table covers their slides.
+Yongpeng opens (1–3) and Tanapat closes (10–12). The demo (11) is hands-on —
+the person at the machine runs it (Tanapat, who closes). If someone is
+absent, the person next in the table covers their slides.
 
 > **Agent lookup:** each teammate can ask their agent "Which slides am I
 > presenting?" — the agent reads `presentation/SPEAKER-ASSIGNMENTS.md` and
@@ -53,7 +51,7 @@ one of them confidently said 'solar' on a roof with no panels."
   where we aimed.
 - *Evidence:* `docs/nyc-human-validation.md`; images from NYC Orthos (public).
 
-## Slide 2 · The prototype we actually built (60s) — key slide — Victor
+## Slide 2 · The prototype we actually built (60s) — key slide — Yongpeng
 
 **Say something like:** "Here's what we actually built. A roof image goes
 in, four models look at it in parallel — Gemini, GPT-5.5, and two
@@ -86,7 +84,7 @@ in 2018 and 2024, so we can test whether imagery date matters."
 - Deliberate features: permit-positive case (2022); same roof 2018 vs 2024.
 - *Evidence:* `docs/nyc-human-validation.md`.
 
-## Slide 4 · Model vs human on real roofs (60s) — key slide — Praewa
+## Slide 4 · Model vs human on real roofs (60s) — key slide — Victor
 
 **Say something like:** "Here's the table that tells the whole story.
 Against the human, Kimi got 6 out of 6. Gemini and Gemma 5. GPT-5.5 got 4 —
@@ -115,7 +113,7 @@ split cases."
 - Kimi on 1086408: human uncertain, Kimi uncertain at 0.45 — doubt maps to
   human doubt → exactly the escalation behavior the layer wants.
 
-## Slide 6 · Multi-source verification works (45s) — Kenji
+## Slide 6 · Multi-source verification works (45s) — Praewa
 
 **Say something like:** "We didn't stop at the image. Building footprints
 give us the roof's geometry, the orthoimagery gives us the roof itself,
@@ -144,7 +142,7 @@ more confident, and more wrong."
 - Open-weights honest about doubt: Kimi 6/6, Gemma 5/6; closed models more
   confident and more wrong; Kimi/Gemma far cheaper.
 
-## Slide 8 · What failed → what works (45s) — Tanapat
+## Slide 8 · What failed → what works (45s) — Kenji
 
 **Say something like:** "We tried some things that failed, and we're not
 hiding them. Bare prompts gave us inconsistent output and no confidence
@@ -195,7 +193,7 @@ it yourself. The next slide is hands-on; our operator will run it for you."
 
 - Short hand-off; don't steal the demo's thunder.
 
-## Slide 11 · 🖥️ Live demo (90s) — hands-on (machine operator: Yongpeng)
+## Slide 11 · 🖥️ Live demo (90s) — hands-on (machine operator: Tanapat)
 
 **Say something like:** "Here it is. Two ways to open it: the Local demo on
 Alan's Mac — one click, keys already loaded, real calls. Or the Capstone
@@ -281,8 +279,8 @@ Likely questions and honest answers:
       capstone (https://alan12-li.github.io/solarscan-verify-team-1/presentation/demo.html)
 - [ ] If using the professor's machine: open the capstone demo link, have
       your OpenRouter key ready to paste (never leave it saved on their machine)
-- [ ] Assign speakers per the role table above (Yongpeng Cover–1 + demo,
-      Victor 2–3, Praewa 4–5, Kenji 6–7, Tanapat 8–10 + 12)
+- [ ] Assign speakers per the role table above (Yongpeng 1–3, Victor 4–5,
+      Praewa 6–7, Kenji 8–9, Tanapat 10–12)
 - [ ] Each speaker confirms their slides via agent: "Which slides am I
       presenting?" (reads `presentation/SPEAKER-ASSIGNMENTS.md`)
 - [ ] Rehearse once; time each section (demo = 90s max)
