@@ -87,10 +87,13 @@ and catches the failure mode our benchmark measured (confident wrong answers).
 
 ## Honest limitations (what we have NOT done)
 
-1. **Not benchmarked.** Our 30 benchmark images are an anonymized public drone
-   dataset with **no addresses/parcels**, so we could not join them to NYC
-   records. The multi-source path is designed and its data sources are
-   validated, but its accuracy has not been measured.
+1. **Not benchmarked end-to-end.** Our 30 benchmark images are an
+   anonymized public drone dataset with **no addresses/parcels**, so we
+   could not join them to NYC records. **The capability is implemented and
+   the mechanism verified** (context injection changes model behavior;
+   lookup APIs return real records; decision rules followed 20/20), but a
+   real-data accuracy score needs N roofs with parcel IDs — the first step
+   of the proposed limited test.
 2. **Permit coverage is not complete.** LL24 records reported installations;
    older or unpermitted systems may be missing. Absence of a permit is
    **not** proof of no solar.

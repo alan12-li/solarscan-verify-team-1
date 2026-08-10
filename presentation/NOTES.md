@@ -132,6 +132,22 @@ Likely questions and honest answers:
   ties after 5 labelers). It is the first thing the limited test measures.
 - **"What data did you use?"** Public CC drone dataset + NYC Open Data.
   No Con Edison data — we will ask what is shareable.
+- **"You claim multi-source verification — did you actually test it
+  end-to-end?"** Honest answer: **the capability works, the end-to-end
+  test is blocked by data, not by the prototype.**
+  - What works (verified): context injection into classification
+    (`--context`); the model demonstrably uses context (sv-0003 went from
+    uncertain 0.45 → no_solar 0.85); NYC permit lookup API is live and
+    returns records by address; the decision branch follows rules 20/20.
+  - Why we could not score it end-to-end: our 30 benchmark images are
+    **anonymous** — no address, no parcel ID — so we cannot join them to
+    real NYC records. No join key = no real-data score.
+  - Analogy: we built and bench-tested every part of the engine
+    (injection, lookup, rules) but the test chassis has no VIN — we cannot
+    register it against the real records until Con Edison shares N roofs
+    with parcel IDs. That is the first step of the 100-roof limited test.
+  - The synthetic context demo is clearly marked as synthetic
+    (`data/benchmark-v1/context/*.json`) — mechanism proof, not accuracy.
 
 ## Before class checklist
 
