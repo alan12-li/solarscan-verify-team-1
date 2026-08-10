@@ -2,7 +2,8 @@
 
 **Date:** 2026-08-10
 **Status:** Data-source validation ✅ · **Branch-logic tested 20/20 ✅**
-**· Full image→records pipeline: not benchmarked ⚠️**
+**· Context injection implemented & demoed ✅ · Full image→records
+pipeline: not benchmarked ⚠️**
 **Owner:** SolarScan Verify team
 
 ## The idea
@@ -99,6 +100,29 @@ and catches the failure mode our benchmark measured (confident wrong answers).
 4. **No Con Edison data used.** Everything above is public NYC Open Data /
    OSM. Exact parcel coordinates beyond the footprint and customer info stay
    off-limits (PRD §2, course red lines).
+
+## Context injection into classification (2026-08-10) — mechanism works ✅
+
+The PRD §3 context signals are now **usable at classification time**:
+`scripts/evaluate_benchmark.py --context <dir>` reads per-case
+`<case_id>.json` files (building_footprint, parcel_id, permit, roof_geometry,
+historical_imagery) and injects them into the model prompt as corroborating
+evidence ("use as corroboration, do not overrule clear visual evidence").
+Cases without a context file run image-only (PRD §5 fallback).
+
+**Demo (synthetic context, 3 cases, Gemini 3.5 Flash-Lite):**
+
+| Case | Image-only | Image + context | Effect |
+|---|---|---|---|
+| sv-0001 | no_solar (0.95) | no_solar (0.95) | consistent (no permit supports no_solar) |
+| **sv-0003** | **uncertain (0.45)** | **no_solar (0.85)** | **model used context to move off uncertain** |
+| sv-0004 | solar (0.95) | solar (0.95) | consistent (permit supports solar) |
+
+**Finding:** the model demonstrably uses injected context — on the hardest
+image (sv-0003, where models split), context converted `uncertain` → a
+confident `no_solar`. Mechanism verified end-to-end (prompt → API → parsed
+JSON). Context files: `data/benchmark-v1/context/*.json` (**synthetic,
+clearly marked — the 30 benchmark images have no real addresses**).
 
 ## Branch-logic test (2026-08-10) — rule-following measured ✅
 

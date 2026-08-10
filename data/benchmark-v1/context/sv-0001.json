@@ -1,0 +1,8 @@
+{
+  "_comment": "SYNTHETIC DEMO CONTEXT — these files demonstrate the PRD §3 context mechanism. The 30 benchmark images are an anonymized public drone dataset with no real addresses, so these values are illustrative only and MUST NOT be treated as ground truth. When Con Edison provides shareable parcel IDs, replace these with real lookups (see docs/multisource-verification.md).",
+  "parcel_id": "SYNTHETIC-001",
+  "building_footprint": "rectangle 24m x 18m, flat roof, 2 stories (feature_code: walkup)",
+  "permit": "lookup OK: zero solar PV permits for parcel",
+  "roof_geometry": "flat roof, low parapet, no visible slope",
+  "historical_imagery": "2021 aerial shows same roof without panels"
+}

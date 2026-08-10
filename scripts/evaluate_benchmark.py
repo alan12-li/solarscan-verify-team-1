@@ -67,7 +67,8 @@ def load_manifest() -> dict:
     return json.loads(MANIFEST.read_text())
 
 
-def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
+def ask_gemini(model: str, image_path: Path, api_key: str,
+               user_prompt: str = "Classify this rooftop image.") -> dict:
     """Send one image to a Gemini model and return parsed JSON.
 
     Retries with exponential backoff on 429 (free-tier rate limit) and on
@@ -86,6 +87,7 @@ def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
                 "parts": [
                     {"text": SYSTEM_PROMPT},
                     {"inline_data": {"mime_type": mime, "data": image_b64}},
+                    {"text": user_prompt},
                 ]
             }
         ],
@@ -130,7 +132,8 @@ def ask_gemini(model: str, image_path: Path, api_key: str) -> dict:
     return parsed
 
 
-def ask_openrouter(model_id: str, image_path: Path, api_key: str) -> dict:
+def ask_openrouter(model_id: str, image_path: Path, api_key: str,
+                   user_prompt: str = "Classify this rooftop image.") -> dict:
     """Send one image to any OpenRouter vision model (OpenAI-compatible API).
 
     model_id is the OpenRouter slug, e.g. "openai/gpt-4o-mini" or
@@ -153,7 +156,7 @@ def ask_openrouter(model_id: str, image_path: Path, api_key: str) -> dict:
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "Classify this rooftop image."},
+                    {"type": "text", "text": user_prompt},
                     {"type": "image_url", "image_url": {"url": data_url}},
                 ],
             },
@@ -194,18 +197,58 @@ def ask_openrouter(model_id: str, image_path: Path, api_key: str) -> dict:
     return parsed
 
 
-def ask_model(model: str, image_path: Path, keys: dict) -> dict:
+def build_user_prompt(case_id: str, context: dict | None) -> str:
+    """Build the per-image user prompt, optionally injecting PRD §3 context.
+
+    Context is a dict with any of: building_footprint (GeoJSON or text),
+    parcel_id, permit (text), roof_geometry (text), historical_imagery (text).
+    Absent keys are simply omitted — the model must not be told there is no
+    context when there merely is none supplied (PRD §5 fallback).
+    """
+    if not context:
+        return "Classify this rooftop image."
+    lines = ["Classify this rooftop image.", "",
+             "Additional public context is available (PRD §3 optional "
+             "signals). Use it as corroborating evidence, but do not "
+             "overrule clear visual evidence:"]
+    order = ["parcel_id", "building_footprint", "permit", "roof_geometry",
+             "historical_imagery"]
+    for key in order:
+        if key in context and context[key]:
+            lines.append(f"- {key.replace('_', ' ')}: {context[key]}")
+    lines.append("")
+    lines.append("If the context conflicts with the image, say so in the "
+                 "reason and lean toward escalation.")
+    return "\n".join(lines)
+
+
+def load_context(context_dir: Path | None) -> dict[str, dict]:
+    """Load per-case context files from a directory.
+
+    Files: <case_id>.json, each a dict of PRD §3 context signals.
+    """
+    if not context_dir:
+        return {}
+    out = {}
+    for p in sorted(context_dir.glob("*.json")):
+        out[p.stem] = json.loads(p.read_text())
+    return out
+
+
+def ask_model(model: str, image_path: Path, keys: dict,
+              user_prompt: str = "Classify this rooftop image.") -> dict:
     """Route a model ID to the right provider.
 
     "gemini-*" -> Google Gemini API (keys["gemini"])
     "openrouter:<slug>" -> OpenRouter API (keys["openrouter"])
     """
     if model.startswith("openrouter:"):
-        return ask_openrouter(model[len("openrouter:"):], image_path, keys["openrouter"])
+        return ask_openrouter(model[len("openrouter:"):], image_path,
+                              keys["openrouter"], user_prompt)
     if model.startswith("gemini-") or model.startswith("models/"):
-        return ask_gemini(model, image_path, keys["gemini"])
+        return ask_gemini(model, image_path, keys["gemini"], user_prompt)
     # Default: treat bare IDs as Gemini (backward compatible)
-    return ask_gemini(model, image_path, keys["gemini"])
+    return ask_gemini(model, image_path, keys["gemini"], user_prompt)
 
 
 def extract_json(text: str) -> dict:
@@ -260,6 +303,10 @@ def main() -> None:
                         help="Seconds between calls (default 2.0; free tier is rate-limited)")
     parser.add_argument("--subset", action="store_true",
                         help="Run only the 30 labeling-subset cases (test+valid)")
+    parser.add_argument("--context", type=Path, default=None,
+                        help="Dir of <case_id>.json files with PRD §3 context "
+                             "signals (footprint/permit/roof geometry/...); "
+                             "absent cases run image-only")
     args = parser.parse_args()
 
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -267,6 +314,9 @@ def main() -> None:
     keys = {"gemini": api_key, "openrouter": or_key}
 
     models = MODELS if not args.model else args.model
+    context_map = load_context(args.context)
+    if args.context:
+        print(f"Context mode: {len(context_map)} case files from {args.context}")
 
     # Validate that every requested model has its provider key present.
     for model in models:
@@ -321,7 +371,9 @@ def main() -> None:
                 print(f"  skip {case['id']}: image missing")
                 continue
             try:
-                result = ask_model(model, img, keys)
+                user_prompt = build_user_prompt(case["id"],
+                                                context_map.get(case["id"]))
+                result = ask_model(model, img, keys, user_prompt)
                 rows.append({"case_id": case["id"], **result})
                 print(f"  {case['id']}: {result.get('label')} conf={result.get('confidence')}")
             except Exception as exc:

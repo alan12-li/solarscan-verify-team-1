@@ -1,0 +1,8 @@
+{
+  "_comment": "SYNTHETIC DEMO CONTEXT — see sv-0001.json for the disclaimer. Demonstrates roof-geometry evidence: pitched roof facing south-east with slope — geometry favorable for solar, useful for the hardest-image demo.",
+  "parcel_id": "SYNTHETIC-003",
+  "building_footprint": "rectangle 22m x 16m, 2 stories (feature_code: one-two-family)",
+  "permit": "lookup OK: zero solar PV permits for parcel",
+  "roof_geometry": "pitched roof, south-east facing slope, moderate pitch",
+  "historical_imagery": "2019 aerial shows shaded north slope, open south slope"
+}

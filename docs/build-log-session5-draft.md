@@ -100,6 +100,11 @@ designed a **corroboration branch** using public records — this is the PRD
   (`scripts/test_corroboration.py`): 10 synthetic {hypothesis, permit}
   scenarios × 2 models = **20/20 rule-following** (GPT-5.5 and Gemini
   3.5 Flash-Lite both 10/10).
+- **Implemented context injection** — `evaluate_benchmark.py --context`
+  feeds PRD §3 signals (footprint/permit/roof geometry/historical imagery)
+  into classification; demo showed the model using context
+  (sv-0003: uncertain 0.45 → no_solar 0.85). Context files are synthetic
+  and clearly marked (benchmark images have no real addresses).
 - **Finding:** rule-following requires *unambiguous* rules. Iterating the
   prompt — separating "lookup OK, zero records" from "lookup unavailable",
   and making the confidence threshold literal (< 0.8) — took both models
