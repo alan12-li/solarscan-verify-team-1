@@ -297,7 +297,51 @@ li{margin:.35rem 0;}
   </div>
 </section>
 
-<div class="counter"><span id="count">1</span> / 10</div>
+
+<section class="slide" id="s11">
+  <h2>🖥️ Try it live</h2>
+  <div class="grid g2" style="align-items:center;">
+    <div>
+      <a href="http://127.0.0.1:8765" target="_blank"
+         style="display:inline-block;background:var(--accent);color:#0d1117;font-weight:800;
+                font-size:1.2rem;padding:.9rem 1.8rem;border-radius:12px;text-decoration:none;
+                margin-bottom:1rem;">▶ Open the live demo</a>
+      <p class="muted" style="margin-bottom:1rem;">Runs locally against your own key —
+        nothing is stored. Start it with:
+        <code>python3 scripts/demo_server.py</code></p>
+      <div class="card" style="margin-bottom:.6rem;">
+        <h4>📍 Address mode</h4>
+        <p>Type a NYC address → we fetch the roof from public 2024 orthoimagery,
+        4 models classify, the decision rule fires, and the permit record
+        cross-checks.</p>
+        <p class="muted" style="margin-top:.3rem;">Try: <strong>511 W 182nd St</strong>
+        (solar + permit Completed 2022)</p>
+      </div>
+      <div class="card">
+        <h4>🖼️ Photo mode</h4>
+        <p>Drop any rooftop image → 4 models call it in parallel and we show
+        label, confidence, reason, and a human-readable verdict.</p>
+        <p class="muted" style="margin-top:.3rem;">Try: a hard roof like
+        <strong>1086361</strong> (GPT-5.5 said solar, 3 said no_solar)</p>
+      </div>
+    </div>
+    <div class="flow" style="font-size:.85rem;">
+      Roof image or address<br>
+      &nbsp;&nbsp;↓<br>
+      <span class="hl">4 models in parallel</span> (temp 0)<br>
+      &nbsp;&nbsp;├─→ Gemini · GPT-5.5 · Kimi K3 · Gemma<br>
+      &nbsp;&nbsp;↓<br>
+      <span class="hl">Decision rule</span> (agree &amp; conf ≥ .6)<br>
+      &nbsp;&nbsp;│ accept / <span class="hlr">escalate</span><br>
+      &nbsp;&nbsp;↓<br>
+      <span class="hlg">Permit cross-check</span> (LL24, public)<br>
+      &nbsp;&nbsp;↓<br>
+      Verdict + recommendation
+    </div>
+  </div>
+</section>
+
+<div class="counter"><span id="count">1</span> / 11</div>
 <div class="nav">
   <button onclick="go(-1)">← Prev</button>
   <button onclick="go(1)">Next →</button>
