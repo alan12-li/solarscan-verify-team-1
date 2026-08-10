@@ -3,18 +3,22 @@
 **Deck:** `presentation/index.html` (12 slides, self-contained; open in a
 browser, F11 for fullscreen)
 **Time:** 10 minutes + Q&A. Target ~45 seconds per slide.
-**Team roles (5 speakers, ~2 min each):**
+**Team roles (5 speakers):**
 | Slides | Speaker | Section |
 |---|---|---|
-| 1–2 | **Yongpeng** (opens) | Title · Problem |
-| 3–4 | **Victor** | Approach · Prototype agent system |
-| 5–6 | **Praewa** | Results · Error breakdown |
-| 7–8 | **Kenji** | Human validation · Baseline vs harder |
-| 9–10 | **Tanapat** | Surprising fact · What failed |
-| 11–12 | **Yongpeng** (closes) | Promising · Recommendation |
+| 1–3 | **Yongpeng** (opens) | Title · Problem · Approach |
+| 4–6 | **Victor** | Prototype agent system · Results · Error breakdown |
+| 7–8 | **Praewa** | Human validation · Easy vs hard roofs |
+| 9–10 | **Kenji** | Surprising facts · What failed |
+| 11–12 | **Tanapat** (closes) | What looks promising · Recommendation |
 
-Rehearse once as a group before class; each speaker owns ~2 minutes of the
-10. If someone is absent, the person next in the table covers their slides.
+Yongpeng opens (1–3) and Tanapat closes (11–12); each of the four middle
+speakers owns ~2 minutes. Rehearse once as a group before class. If someone
+is absent, the person next in the table covers their slides.
+
+> **Agent lookup:** after cloning the repo, each teammate can ask their agent
+> "Which slides am I presenting?" — the agent reads
+> `presentation/SPEAKER-ASSIGNMENTS.md` and answers from the table.
 
 > Decision owner: **Yongpeng** (repo owner, benchmark lead). If a slide's
 > number is challenged, cite the evidence path listed under it.
@@ -128,8 +132,10 @@ Likely questions and honest answers:
 
 - [ ] Download `presentation/index.html`; open offline (venue network is not
       guaranteed)
-- [ ] Assign speakers per the 5-person role table above (Yongpeng opens+closes,
-      Victor / Praewa / Kenji / Tanapat middle sections)
+- [ ] Assign speakers per the role table above (Yongpeng 1–3, Victor 4–6,
+      Praewa 7–8, Kenji 9–10, Tanapat 11–12)
+- [ ] Each speaker confirms their slides via agent: "Which slides am I
+      presenting?" (reads `presentation/SPEAKER-ASSIGNMENTS.md`)
 - [ ] Rehearse once; time each section
 - [ ] Have `docs/team-links.md` handy for follow-up links
 - [ ] Print the 3 questions to Con Edison (`docs/con-edison-questions.md`)
