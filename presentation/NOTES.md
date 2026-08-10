@@ -1,121 +1,127 @@
 # Presentation Notes — Session 6 (Aug 11, 2026)
 
-**Deck:** `presentation/index.html` (12 slides, self-contained; open in a
-browser, F11 for fullscreen)
-**Time:** 10 minutes + Q&A. Target ~45 seconds per slide.
+**Deck:** `presentation/index.html` (9 slides — real-NYC-roofs version,
+self-contained; open in a browser, F11 for fullscreen)
+**Time:** 10 minutes + Q&A. Target ~45–60 seconds per slide.
 **Team roles (5 speakers):**
 | Slides | Speaker | Section |
 |---|---|---|
-| 1–3 | **Yongpeng** (opens) | Title · Problem · Approach |
-| 4–6 | **Victor** | Agent system · Multi-source NYC · Results |
-| 7–9 | **Praewa** | Error breakdown · Human validation · Easy vs hard |
-| 10–11 | **Kenji** | Surprising facts · What failed |
-| 12–13 | **Tanapat** (closes) | Promising · Recommendation |
+| 1 | **Yongpeng** (opens) | Problem — 6 real NYC roofs |
+| 2–3 | **Victor** | Prototype pipeline · Evaluation design |
+| 4–5 | **Praewa** | Model vs human · The two mistakes |
+| 6–7 | **Kenji** | Multi-source verification · Surprising facts |
+| 8–9 | **Tanapat** (closes) | What failed → works · Recommendation |
 
-Yongpeng opens (1–3) and Tanapat closes (12–13); each of the four middle
+Yongpeng opens (slide 1) and Tanapat closes (8–9); each of the four middle
 speakers owns ~2 minutes. Rehearse once as a group before class. If someone
 is absent, the person next in the table covers their slides.
 
-> **Agent lookup:** after cloning the repo, each teammate can ask their agent
-> "Which slides am I presenting?" — the agent reads
-> `presentation/SPEAKER-ASSIGNMENTS.md` and answers from the table.
+> **Agent lookup:** each teammate can ask their agent "Which slides am I
+> presenting?" — the agent reads `presentation/SPEAKER-ASSIGNMENTS.md` and
+> answers from the table.
 
 > Decision owner: **Yongpeng** (repo owner, benchmark lead). If a slide's
 > number is challenged, cite the evidence path listed under it.
 
 ---
 
-## Slide 1 · Title (30s)
-- One line: "SolarScan Verify — a verification layer for Con Edison's
-  rooftop solar scanner, with a multi-model prototype."
-- Say the team names + the brief (Solar Scanner Optimization).
+## Slide 1 · Problem — 6 real NYC roofs (60s) — Yongpeng
+- Six real Manhattan roofs from **public NYC orthoimagery** (~0.5 m/px),
+  shown as a grid: solar = 511 W 182nd St 2024 (permit Completed 2022);
+  no_solar = 1086291, 1086435; hard = 1086408 (human uncertain — only Kimi
+  agreed), 1086361 (GPT-5.5 said solar ✗), 511 W 182nd 2018 (pre-install vs
+  2024).
+- Two costly errors: Error A false "solar" → field visit to a bare roof
+  (truck + team wasted); Error B false "no solar" → missed generation.
+- Today every ambiguous roof = manual review by a person; our slice is the
+  verification step, not a new scanner.
+- *Evidence:* `docs/nyc-human-validation.md`; images from NYC Orthos (public).
 
-## Slide 2 · Problem (45s)
-- The scanner is right on simple roofs and wrong on complex NYC roofs
-  (HVAC, skylights, shadows, obstructions).
-- Two costly errors: false solar (field trip to a bare roof) and false
-  no-solar (missed generation).
-- We chose **one slice**: the low-confidence verification step, not a new
-  scanner.
-- **Ideation (30s):** we asked the models themselves to map the four briefs,
-  ranked by where an agent adds most value, and landed on the verification
-  bottleneck because it is measurable and bounded.
-- *Evidence:* `docs/con-edison-questions.md` (we asked Con Edison which
-  error costs more).
+## Slide 2 · Prototype we actually built (60s) — key slide — Victor
+- Walk the pipeline top to bottom: roof image + optional context (footprint,
+  permit) → 4 models in parallel (Gemini 3.5 Flash-Lite, GPT-5.5, Kimi K3
+  open-weights, Gemma 4-26B open-weights), temperature 0, same prompt → each
+  returns {label, confidence, escalate} → decision rule: agree & conf ≥ 0.6 →
+  accept; disagree / low conf / record conflict → human review →
+  corroboration (public permit + footprint checks, branch tested 20/20) →
+  analyst decides.
+- Emphasize: **real & tested** — 24 model calls on 6 real NYC roofs, all
+  parseable JSON; reproducible (`scripts/fetch_nyc_roofs.py` → evaluate →
+  compare with human labels); escalated cases are never auto-accepted.
+- *Evidence:* `scripts/evaluate_benchmark.py`, `scripts/test_corroboration.py`,
+  `opencode.json` (team-agent).
 
-## Slide 3 · Approach (45s)
-- Same inputs → several models → structured output → fail toward a person.
-- Benchmark: 30 public drone images, ground truth = 5 labelers majority.
-- *Evidence:* `data/benchmark-v1/ground-truth.json`.
+## Slide 3 · Evaluation: 6 real NYC roofs (45s) — Victor
+- Design: 1 human labeler (Praewa) labels solar/no_solar/uncertain **before
+  seeing model calls**; 4 models; public records (LL24 permits + Building
+  Footprints).
+- Two deliberate features: one address has a Completed solar permit (2022) =
+  known positive case; same roof imaged 2018 and 2024 = imagery-date
+  sensitivity. Same prompt, temperature 0, structured JSON output.
+- *Evidence:* `docs/nyc-human-validation.md`.
 
-## Slide 4 · Prototype agent system (60s) — key slide
-- Walk the pipeline top to bottom: image → agent → 4 models → decision rule
-  → corroboration (public records, branch tested 20/20) → human.
-- Emphasize: the agent **recommends, a person decides**; escalate is never
-  auto-accepted (PRD §5, §8).
-- Corroboration branch: `scripts/test_corroboration.py` — 10 scenarios × 2
-  models = 20/20 rule-following; lesson = rules must be unambiguous.
-- *Evidence:* `scripts/evaluate_benchmark.py`, `opencode.json` (team-agent).
+## Slide 4 · Model vs human on real roofs (60s) — key slide — Praewa
+- Read the table roof by roof: agreement with the human = Kimi 6/6,
+  Gemini 5/6, Gemma 5/6, GPT-5.5 4/6.
+- Kimi is honest about doubt: the only model that said "uncertain" where the
+  human did (1086408). GPT-5.5 false positive: "solar" at 0.76 on a bare roof
+  (1086361) — the costly error class.
+- *Evidence:* `docs/nyc-human-validation.md`.
 
-## Slide 5 · Results (60s) — key slide
-- Say it plainly: **no model met our 90% target.** That is the finding, not
-  a failure of effort.
-- GPT-5.5 83%, Gemini 73%, Kimi 67%, Gemma 53%. All below 90%.
-- Also: only 40% of roofs get all-4-model agreement.
-- *Evidence:* `docs/benchmark-results.md` §Scorecard.
+## Slide 5 · What the two mistakes tell us (45s) — Praewa
+- GPT-5.5 on 1086361: human no_solar, GPT-5.5 solar at 0.76, 3 other models
+  no_solar → Error A would send a truck to a bare roof; 0.76 > 0.6 accept
+  threshold → the rule as written would have passed it.
+- Kimi on 1086408: human uncertain, Kimi uncertain at 0.45; Gemini/GPT-5.5/
+  Gemma all no_solar at high confidence → Kimi's doubt maps to the human's —
+  exactly the escalation behavior the layer wants (doubt → human review).
 
-## Slide 6 · Error breakdown (45s)
-- Most errors are `no_solar → uncertain` (models hedge too much) — safe
-  direction, recoverable by escalation.
-- Dangerous: `no_solar → solar` (3×: Gemini 1, Kimi 2) — sends field teams
-  to empty roofs; this is the class the verification layer must catch.
-- Confidence signal: correct answers averaged 0.78–0.96 confidence, wrong
-  answers 0.39–0.47 — low confidence is a usable escalation trigger.
-- *Evidence:* computed from `data/benchmark-v1/results/*.json`.
+## Slide 6 · Multi-source verification works (45s) — Kenji
+- Pipeline: NYC Building Footprints (BBL + centroid) → NYC Orthos tile
+  (public, CC BY 4.0) → 4 models classify → cross-check LL24 solar permit by
+  address.
+- Branch logic: 10 scenarios × 2 models = 20/20 rule-following (conflict →
+  escalate). Time matters: 511 W 182nd = no_solar 2018 (pre-install), solar
+  2024 — imagery date must match the question. Context injection works.
+- *Evidence:* `docs/multisource-verification.md`,
+  `scripts/test_corroboration.py`.
 
-## Slide 7 · Human validation (45s)
-- Models vs our 5 labelers: GPT-5.5 matches humans 83%, Gemini 73%,
-  Kimi 67%, Gemma 53%.
-- 4 hardest images (≥3 models disagree with humans): sv-0003, sv-0013,
-  sv-0015, sv-0137 — on roofs humans found hard, models were confident
-  anyway. That is exactly why escalation is the product.
+## Slide 7 · Surprising facts (45s) — Kenji
+- Humans hesitated — only one model agreed (1086408; the other three
+  confidently wrong). On 1086361 GPT-5.5 was confidently wrong in the costly
+  direction.
+- Open-weights models are honest about doubt: Kimi 6/6 incl. the uncertain
+  case, Gemma 5/6; closed models more confident and more wrong; Kimi/Gemma
+  far cheaper than GPT-5.5.
 
-## Slide 8 · Baseline vs harder (45s)
-- Baseline case (12 roofs, all models agree): every model 83%.
-- Harder case (18 roofs, models disagree): GPT-5.5 83%, Gemini 67%,
-  Kimi 56%, Gemma 33%.
-- The gap is where the verification layer earns its keep.
-
-## Slide 9 · Surprising fact (45s)
-- Human labelers hesitated on 5 roofs; models were confident anyway.
-- Open-weights models are more honest about doubt (Gemma most uncertain,
-  11/30) and the cheapest (10× less than GPT-5.5).
-
-## Slide 10 · What failed (45s)
-- Bare-prompt + Gemini 2.5 defaults: 404 for new accounts, malformed JSON,
-  rate limits. Documented in build log.
-- Second failure: models over-trust themselves — the scorecard caught it.
+## Slide 8 · What failed → what works (45s) — Tanapat
+- Failed: bare-prompt classification (inconsistent output, no confidence
+  signal); confident wrong answers (GPT-5.5 0.76 above the threshold); the
+  costly error class is real on real data, not theory.
+- Works: structured output contract (24/24 parseable JSON); clear cases
+  separable; doubt signal works (Kimi's uncertain matched the human's);
+  multi-source branch 20/20; real NYC pipeline (footprints → ortho → model →
+  permit).
 - *Evidence:* `docs/build-log-session5-draft.md`.
 
-## Slide 11 · What looks promising (45s)
-- Structured PRD §3 contract worked: 120 calls, all parseable JSON.
-- Escalation path catches the 60% of roofs where models disagree.
-- Next test: calibration set of genuinely ambiguous roofs, tune escalation
-  recall toward 1.0.
-
-## Slide 12 · Recommendation (60s) — close strong
-- **Revise the escalation behavior, then run a limited test (100 roofs).**
-- Add multi-source corroboration (public NYC permits + footprints) to catch
-  confident wrong answers — data validated, path designed
-  (`docs/multisource-verification.md`).
-- Explicitly NOT stop, NOT deploy as-is.
-- Cost is not the blocker: $0.002–$0.013 per correct roof.
-- Risks: recall stays low (rubber stamp), escalation explodes (no savings),
-  imagery domain shift (needs NYC calibration), **and missing/bad-input
-  abstain behavior is defined in PRD §5 but untested — it is part of the
-  limited test.**
+## Slide 9 · Recommendation (60s) — close strong — Tanapat
+- **Revise the decision rule, then run a limited test (100 roofs).** Not
+  "stop" (pipeline works end-to-end on real NYC roofs); not "deploy as-is"
+  (one model produced the costly error). Add corroboration — don't trust a
+  single confident call.
+- If we do nothing: the costly error class appears in real data —
+  verification is the mitigation, not the cost.
+- The 100-roof test: Con Edison parcels → real addresses → permit join at
+  scale; more labelers, more roofs, harder cases; also test missing/bad-input
+  abstain behavior (defined in PRD §5, untested so far).
+- Risks: permit coverage incomplete (older/unpermitted systems); imagery-date
+  mismatch (2018 vs 2024 example); one labeler isn't a consensus.
+- Ask Con Edison: N roofs with parcel IDs; which context is shareable
+  (footprints, permits, historical imagery); a calibration set of genuinely
+  ambiguous roofs.
 - Close: "The scanner stays; the ambiguous roofs get a second, explainable,
   human-escalated look."
+- *Evidence:* `docs/value-for-conedison.md`, `docs/con-edison-questions.md`.
 
 ---
 
@@ -123,40 +129,35 @@ is absent, the person next in the table covers their slides.
 
 Likely questions and honest answers:
 
-- **"Why is accuracy below 90%?"** Thermal/oblique imagery is harder than
-  stock photos; our prompt is a first cut. That is why we recommend a
-  revision + limited test, not deployment.
-- **"Which model would you use?"** GPT-5.5 for accuracy now; Gemma for
-  cost-sensitive bulk with human escalation; revisit after prompt tuning.
-- **"Is escalation recall measurable?"** Not on this set (no ground-truth
-  ties after 5 labelers). It is the first thing the limited test measures.
-- **"What data did you use?"** Public CC drone dataset + NYC Open Data.
-  No Con Edison data — we will ask what is shareable.
-- **"You claim multi-source verification — did you actually test it
-  end-to-end?"** Honest answer: **the capability works, the end-to-end
-  test is blocked by data, not by the prototype.**
-  - What works (verified): context injection into classification
-    (`--context`); the model demonstrably uses context (sv-0003 went from
-    uncertain 0.45 → no_solar 0.85); NYC permit lookup API is live and
-    returns records by address; the decision branch follows rules 20/20.
-  - Why we could not score it end-to-end: our 30 benchmark images are
-    **anonymous** — no address, no parcel ID — so we cannot join them to
-    real NYC records. No join key = no real-data score.
-  - Analogy: we built and bench-tested every part of the engine
-    (injection, lookup, rules) but the test chassis has no VIN — we cannot
-    register it against the real records until Con Edison shares N roofs
-    with parcel IDs. That is the first step of the 100-roof limited test.
-  - The synthetic context demo is clearly marked as synthetic
-    (`data/benchmark-v1/context/*.json`) — mechanism proof, not accuracy.
+- **"Why only 6 roofs?"** It is a real-data validation set from public NYC
+  orthoimagery with one human labeler — deliberately small and honest. The
+  100-roof limited test with Con Edison parcels scales it.
+- **"Which model would you use?"** Kimi matched the human 6/6 including the
+  uncertain case and is far cheaper; GPT-5.5 is strong on clear cases but
+  produced the costly false positive. Revisit after revising the decision
+  rule.
+- **"Is one human labeler enough?"** No — that is a stated limitation. The
+  ground rule is ≥2 agreeing labelers; the limited test adds more humans.
+- **"What data did you use?"** Public NYC orthoimagery (CC BY 4.0), NYC
+  Building Footprints, LL24 solar permits. No Con Edison data — we will ask
+  what is shareable.
+- **"Did you test multi-source verification end-to-end?"** The capability is
+  verified piecewise: context injection works, the permit lookup API is live,
+  the decision branch follows rules 20/20. Scoring it end-to-end needs parcel
+  IDs to join roofs to real records — that is the first step of the 100-roof
+  test.
+- **"The 2018 vs 2024 roof?"** 511 W 182nd St — no_solar in 2018
+  (pre-install), solar in 2024, permit Completed 2022. Imagery date must
+  match the question being asked.
 
 ## Before class checklist
 
 - [ ] Download `presentation/index.html`; open offline (venue network is not
       guaranteed)
-- [ ] Assign speakers per the role table above (Yongpeng 1–3, Victor 4–6,
-      Praewa 7–8, Kenji 9–10, Tanapat 11–12)
+- [ ] Assign speakers per the role table above (Yongpeng 1, Victor 2–3,
+      Praewa 4–5, Kenji 6–7, Tanapat 8–9)
 - [ ] Each speaker confirms their slides via agent: "Which slides am I
       presenting?" (reads `presentation/SPEAKER-ASSIGNMENTS.md`)
-- [ ] Rehearse once; time each section
+- [ ] Rehearse once; time each section (10 minutes total)
 - [ ] Have `docs/team-links.md` handy for follow-up links
-- [ ] Print the 3 questions to Con Edison (`docs/con-edison-questions.md`)
+- [ ] Print the questions to Con Edison (`docs/con-edison-questions.md`)
