@@ -258,25 +258,25 @@
 
 <!-- SLIDE 8 · TESTING: BASELINE VS HARDER -->
 <section class="slide" id="s8">
-  <h2>Easy roofs vs hard roofs</h2>
+  <h2>Hard roofs punish models unevenly</h2>
+  <p class="muted" style="margin-bottom:1rem;">Accuracy drop from the easy slice (12 roofs) to the hard slice (18 roofs)</p>
   <div class="grid g2" style="align-items:center;">
     <div>
-      <h3 style="color:var(--green);">🟢 Baseline case · 12 roofs (models agree)</h3>
       <div class="bar-line"><div class="bar-label">GPT-5.5</div><div class="bar-track"><div class="bar-fill green" style="width:83%">83%</div></div></div>
-      <div class="bar-line"><div class="bar-label">Gemini</div><div class="bar-track"><div class="bar-fill green" style="width:83%">83%</div></div></div>
-      <div class="bar-line"><div class="bar-label">Kimi</div><div class="bar-track"><div class="bar-fill green" style="width:83%">83%</div></div></div>
-      <div class="bar-line"><div class="bar-label">Gemma</div><div class="bar-track"><div class="bar-fill green" style="width:83%">83%</div></div></div>
+      <div class="bar-line"><div class="bar-label">Gemini</div><div class="bar-track"><div class="bar-fill amber" style="width:67%">67%</div></div></div>
+      <div class="bar-line"><div class="bar-label">Kimi K3</div><div class="bar-track"><div class="bar-fill red" style="width:56%">56%</div></div></div>
+      <div class="bar-line"><div class="bar-label">Gemma</div><div class="bar-track"><div class="bar-fill red" style="width:33%">33%</div></div></div>
+      <p class="muted" style="margin-top:.5rem;">Hard-slice accuracy — everyone started at 83% on the easy slice</p>
     </div>
     <div>
-      <h3 style="color:var(--red);">🔴 Harder case · 18 roofs (models disagree)</h3>
-      <div class="bar-line"><div class="bar-label">GPT-5.5</div><div class="bar-track"><div class="bar-fill blue" style="width:83%">83%</div></div></div>
-      <div class="bar-line"><div class="bar-label">Gemini</div><div class="bar-track"><div class="bar-fill red" style="width:67%">67%</div></div></div>
-      <div class="bar-line"><div class="bar-label">Kimi</div><div class="bar-track"><div class="bar-fill red" style="width:56%">56%</div></div></div>
-      <div class="bar-line"><div class="bar-label">Gemma</div><div class="bar-track"><div class="bar-fill red" style="width:33%">33%</div></div></div>
+      <div class="card" style="margin-bottom:.8rem;"><div class="barnum" style="color:var(--green);">−0 pts</div><p class="muted">GPT-5.5 — holds up on hard roofs</p></div>
+      <div class="card" style="margin-bottom:.8rem;"><div class="barnum" style="color:var(--amber);">−17 pts</div><p class="muted">Gemini — slips on hard roofs</p></div>
+      <div class="card" style="margin-bottom:.8rem;"><div class="barnum" style="color:var(--red);">−28 pts</div><p class="muted">Kimi K3 — drops sharply</p></div>
+      <div class="card"><div class="barnum" style="color:var(--red);">−50 pts</div><p class="muted">Gemma — collapses (83% → 33%)</p></div>
     </div>
   </div>
-  <p style="margin-top:.8rem;">Same roofs, two slices — the harder the roof, the more a
-  <strong>human verification step</strong> matters</p>
+  <p style="margin-top:.8rem;"><strong>Takeaway:</strong> the harder the roof, the more a
+  <strong>human verification step</strong> matters — and model choice matters most exactly there</p>
 </section>
 
 <!-- SLIDE 9 · SURPRISING FACT -->
