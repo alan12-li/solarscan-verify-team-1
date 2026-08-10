@@ -177,12 +177,17 @@
       &nbsp;&nbsp;│ agree &amp; conf ≥ .6 → accept<br>
       &nbsp;&nbsp;│ disagree / low-conf → <span class="hlr">human review</span><br>
       &nbsp;&nbsp;↓<br>
+      <span class="hlg">Corroboration</span> (public records, next test)<br>
+      &nbsp;&nbsp;│ permit = Completed vs model no_solar → escalate<br>
+      &nbsp;&nbsp;│ no permit vs model solar → escalate<br>
+      &nbsp;&nbsp;↓<br>
       Analyst decides — <strong>final answer</strong>
       </div>
     </div>
     <div>
       <div class="card" style="margin-bottom:.8rem;"><h4>✅ Real &amp; tested</h4><p>120 calls · all parseable JSON · scorecard vs human ground truth</p></div>
       <div class="card" style="margin-bottom:.8rem;"><h4>🔁 Reproducible</h4><p>fetch → evaluate → build_ground_truth → analyze</p></div>
+      <div class="card" style="margin-bottom:.8rem;"><h4>🗺️ Multi-source next</h4><p>public NYC permits + footprints validated — see <code>docs/multisource-verification.md</code></p></div>
       <div class="card"><h4>🧑‍⚖️ Human in the loop</h4><p>escalated cases are <strong>never auto-accepted</strong></p></div>
     </div>
   </div>
@@ -353,6 +358,7 @@
       <ul>
         <li><strong>Not "stop", not "deploy as-is"</strong> — baseline 83% → 33% (Gemma) on hard roofs</li>
         <li><strong>Revise escalation behavior</strong> (prompt / threshold), then test on <strong>100 roofs</strong></li>
+        <li><strong>Add multi-source corroboration</strong> — public NYC records (solar permits, building footprints) to catch confident wrong answers</li>
         <li><strong>Cost is not the blocker</strong> — $0.002–$0.013 per correct roof</li>
       </ul>
     </div>

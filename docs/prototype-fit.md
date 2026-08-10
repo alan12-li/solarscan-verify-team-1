@@ -68,7 +68,9 @@ Source: computed from `results/*.json` + `ground-truth.json`; shown in
   the 3rd labeler resolved all ties) — needs a future calibration set of
   genuinely ambiguous roofs.
 - No NYC-specific field imagery yet (public dataset only, per data boundary).
-- No live context signals (footprints/permits) fused into classification.
+- No live context signals (footprints/permits) fused into classification —
+  multi-source corroboration designed and data sources validated
+  (`docs/multisource-verification.md`), not benchmarked.
 
 These are honest limitations, not omissions — the brief asks the prototype
 to be honest about what it shows.

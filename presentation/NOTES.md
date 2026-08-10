@@ -50,7 +50,7 @@ is absent, the person next in the table covers their slides.
 
 ## Slide 4 · Prototype agent system (60s) — key slide
 - Walk the pipeline top to bottom: image → agent → 4 models → decision rule
-  → human.
+  → corroboration (public records, next test) → human.
 - Emphasize: the agent **recommends, a person decides**; escalate is never
   auto-accepted (PRD §5, §8).
 - *Evidence:* `scripts/evaluate_benchmark.py`, `opencode.json` (team-agent).
@@ -103,6 +103,9 @@ is absent, the person next in the table covers their slides.
 
 ## Slide 12 · Recommendation (60s) — close strong
 - **Revise the escalation behavior, then run a limited test (100 roofs).**
+- Add multi-source corroboration (public NYC permits + footprints) to catch
+  confident wrong answers — data validated, path designed
+  (`docs/multisource-verification.md`).
 - Explicitly NOT stop, NOT deploy as-is.
 - Cost is not the blocker: $0.002–$0.013 per correct roof.
 - Risks: recall stays low (rubber stamp), escalation explodes (no savings),
