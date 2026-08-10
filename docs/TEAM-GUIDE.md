@@ -102,7 +102,31 @@ Models compared (same 30 images, same prompt, temperature 0):
 - PRD (course repo): `sims/solarscan-verify/PRD.md` in
   clg236/applied-generative-ai-course-students
 
-## 7. Why GitHub links show source code, and how to view HTML
+## 7. Live demo system (Session 6)
+
+A local demo of the prototype: upload a roof photo **or** enter a NYC
+address; 4 models classify in parallel, the decision rule fires, and
+public NYC records cross-check the result.
+
+```bash
+# terminal 1: start the server (reads keys from env — never commit keys)
+cd solarscan-verify-team-1
+export GEMINI_API_KEY="$(cat ~/.gemini_api_key)"
+export OPENROUTER_API_KEY="$(cat ~/.openrouter_api_key)"
+python3 scripts/demo_server.py        # -> http://127.0.0.1:8765
+
+# terminal 2 / browser: open the UI
+open http://127.0.0.1:8765
+```
+
+- **Address mode** demo case: `511 W 182nd St` → 4 models say solar, permit
+  Completed 8/15/2022 found → ACCEPT with record agreement.
+- **Photo mode** demo case: upload any rooftop image (local files only,
+  nothing leaves your machine except the API calls to the model providers).
+- Files: `scripts/demo_server.py` (stdlib only, no pip installs),
+  `presentation/demo.html` (UI). Keys are read from env only.
+
+## 8. Why GitHub links show source code, and how to view HTML
 
 GitHub deliberately does **not** render `.html` files in the browser
 (security: HTML can run scripts on the github.com domain). `github.com/.../blob/...`
