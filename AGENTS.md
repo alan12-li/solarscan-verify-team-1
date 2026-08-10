@@ -18,7 +18,7 @@ unresolved conflicts instead of guessing.
 ## Repository boundary
 
 - Edit only the team's own project files: `data/`, `docs/`, `scripts/`,
-  `src/`, `sims/` (for the team's own sim folder).
+  `src/`, `sims/`, `presentation/` (for the team's own sim folder).
 - Never edit `.github/`, `.gitignore`, or the shared `main` branch.
 - Never read or modify another person's local files outside this repo.
 - Show the complete diff before requesting permission to commit.
