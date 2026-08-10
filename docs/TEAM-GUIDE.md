@@ -64,6 +64,8 @@ Full instructions: [docs/labeling-task.md](labeling-task.md)
 | `data/benchmark-v1/labeling/subset-30.json` | The 30-case benchmark subset metadata |
 | `data/benchmark-v1/results/*.json` | Raw model outputs (gitignored, local) |
 | `docs/benchmark-results.md` | Cross-provider comparison table |
+| `docs/prototype-fit.md` | Capstone brief compliance mapping (evidence paths) |
+| `docs/labeling-progress.md` | Labeling status and disagreement resolution |
 | `docs/con-edison-questions.md` | Our 3 questions for the Con Edison clinic |
 | `docs/labeling-task.md` | Labeling instructions (English) |
 | `docs/reference/chartwise/` | Yongpeng's Project 2 PRD as a format reference |
@@ -110,6 +112,8 @@ Models compared (same 30 images, same prompt, temperature 0):
   https://alan12-li.github.io/solarscan-verify-team-1/data/benchmark-v1/labeling/label-standalone.html
 - Labeling tool (in repo): `data/benchmark-v1/labeling/label-standalone.html`
 - Benchmark results: `docs/benchmark-results.md`
+- Prototype-fit (brief compliance): `docs/prototype-fit.md`
+- Labeling progress: `docs/labeling-progress.md`
 - PRD (course repo): `sims/solarscan-verify/PRD.md` in
   clg236/applied-generative-ai-course-students
 

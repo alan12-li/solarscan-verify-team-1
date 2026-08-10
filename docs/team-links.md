@@ -14,6 +14,8 @@ keys, personal data, or Con Edison data.
 | **Presentation (live)** | https://alan12-li.github.io/solarscan-verify-team-1/presentation/ |
 | **Team guide** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/TEAM-GUIDE.md |
 | **Benchmark results** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/benchmark-results.md |
+| **Prototype fit (brief compliance)** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/prototype-fit.md |
+| **Labeling progress** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/labeling-progress.md |
 | **Labeling task instructions** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/labeling-task.md |
 | **PRD (course repo)** | https://github.com/clg236/applied-generative-ai-course-students/blob/main/sims/solarscan-verify/PRD.md |
 

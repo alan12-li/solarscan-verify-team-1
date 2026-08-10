@@ -55,7 +55,8 @@ Use public, synthetic, consented, de-identified, or explicitly authorized eviden
 
 ## Repository layout
 
-- `docs/` — proposal, decisions, build-log evidence
+- `docs/` — proposal, decisions, results, prototype-fit, build-log evidence
+  (start with `docs/team-links.md`)
 - `data/` — public/synthetic datasets and manifests (no raw private media)
 - `src/` — prototype code
 - `presentation/` — the Session 6 HTML presentation
