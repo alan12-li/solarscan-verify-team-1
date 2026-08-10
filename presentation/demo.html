@@ -127,8 +127,9 @@ async function analyzeImage(){
     if(d.error) throw new Error(d.error);
     render(d, null);
   }catch(err){
-    document.getElementById('result').innerHTML = `<div class="err">⚠️ ${err.message}</div>`;
-    document.getElementById('result').style.display = 'block';
+    // No backend (e.g. opened from GitHub Pages / another machine):
+    // fall back to the pre-recorded demo case.
+    render(DEMO_CASES.photo, null, true);
   }
   setLoading(false);
 }
@@ -146,15 +147,44 @@ async function analyzeAddress(){
     if(d.error) throw new Error(d.error);
     render(d, d.geo);
   }catch(err){
-    document.getElementById('result').innerHTML = `<div class="err">⚠️ ${err.message}</div>`;
-    document.getElementById('result').style.display = 'block';
+    // No backend: fall back to the pre-recorded demo case.
+    render(DEMO_CASES.address, DEMO_CASES.address.geo, true);
   }
   setLoading(false);
 }
 
+/* Pre-recorded results from real runs (2026-08-10). Used when no local
+   backend is reachable (e.g. GitHub Pages or the professor's machine),
+   so the demo still works. Live backend (demo_server.py) replaces these. */
+const DEMO_CASES = {
+  address: {
+    geo: {label: '511 W 182nd St, Manhattan (2024 ortho)'},
+    results: [
+      {model: 'Gemini 3.5 Flash-Lite', label: 'solar', confidence: 0.99, reason: 'distinct solar panel arrays visible', color: 'purple'},
+      {model: 'GPT-5.5', label: 'solar', confidence: 0.98, reason: 'panels clearly visible on the roof', color: 'blue'},
+      {model: 'Kimi K3 (open)', label: 'solar', confidence: 0.97, reason: 'multiple solar arrays identified', color: 'green'},
+      {model: 'Gemma 4-26B (open)', label: 'solar', confidence: 1.0, reason: 'solar panels present', color: 'amber'},
+    ],
+    decision: {action: 'ACCEPT', verdict: 'solar', reason: '4/4 models agree at avg conf 0.985'},
+    permit: [{address: '511 West 182nd St', status: 'Completed', installation_date: '8/15/2022'}],
+    recommendation: '📋 Public record: solar permit **Completed 8/15/2022** found. ✅ **Accept: this roof has solar panels.** (4/4 agree) The permit record agrees — high confidence.'
+  },
+  photo: {
+    results: [
+      {model: 'Gemini 3.5 Flash-Lite', label: 'no_solar', confidence: 0.95, reason: 'HVAC units, no panels', color: 'purple'},
+      {model: 'GPT-5.5', label: 'solar', confidence: 0.76, reason: 'possible panels near roof edge', color: 'blue'},
+      {model: 'Kimi K3 (open)', label: 'no_solar', confidence: 0.68, reason: 'no clear solar arrays', color: 'green'},
+      {model: 'Gemma 4-26B (open)', label: 'no_solar', confidence: 0.95, reason: 'roof equipment, no panels', color: 'amber'},
+    ],
+    decision: {action: 'ESCALATE', verdict: null, reason: 'models split (3/4 agree) — GPT-5.5 says solar at 0.76'},
+    permit: [],
+    recommendation: '⚠️ **Escalate to a human reviewer.** (models split) One model confidently said "solar" on a roof the others read as no_solar — a false positive here would send a truck to a bare roof.'
+  }
+};
+
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-function render(d, geo){
+function render(d, geo, demoMode){
   const cards = d.results.map(r => `
     <div class="model-card">
       <h4><span class="dot ${r.color}"></span>${esc(r.model)}</h4>
@@ -177,6 +207,7 @@ function render(d, geo){
     ? `<div class="permit">📋 Permit on file: Completed ${esc(d.permit[0].installation_date || '')}</div>` : '';
 
   document.getElementById('result').innerHTML = `
+    ${demoMode ? '<div class="permit" style="color:var(--amber);margin-bottom:.6rem;">🎬 DEMO MODE — pre-recorded results (no local backend). Start <code>scripts/demo_server.py</code> for live calls.</div>' : ''}
     <h3 style="margin-bottom:.3rem;">Verdict</h3>
     <div class="verdict">
       <div class="big">${act}</div>

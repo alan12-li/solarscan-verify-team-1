@@ -56,7 +56,7 @@ li{margin:.35rem 0;}
 </head>
 <body>
 
-<section class="slide active" id="s1">
+<section class="slide" id="s1">
   <p class="muted" style="margin-bottom:.4rem;">CON EDISON CAPSTONE · SESSION 6 · AUG 11, 2026</p>
   <h1>SolarScan Verify</h1>
   <p style="font-size:1.25rem;color:var(--muted);margin:1rem 0 2rem;">A generative-AI verification layer for Con Edison's rooftop solar scanner</p>
@@ -256,49 +256,6 @@ li{margin:.35rem 0;}
 
 
 <section class="slide" id="s10">
-  <h2>Recommendation: revise, then a limited test</h2>
-  <div class="grid g2">
-    <div>
-      <div class="card" style="margin-bottom:.8rem;">
-        <h4>What the evidence supports now</h4>
-        <ul>
-          <li>Not "stop" — the pipeline works end-to-end on real NYC roofs</li>
-          <li>Not "deploy as-is" — one model confidently produced the costly error</li>
-          <li><strong>Revise the decision rule</strong>: add corroboration, don't trust a single confident call</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom:.8rem;">
-        <h4>What if we do nothing?</h4>
-        <p>The costly error class (false "solar") appears in real data — verification is the mitigation, not the cost.</p>
-      </div>
-    </div>
-    <div>
-      <div class="card" style="margin-bottom:.8rem;">
-        <h4>🔜 The 100-roof limited test</h4>
-        <ul>
-          <li>With Con Edison parcels: real addresses → permit join at scale</li>
-          <li>More labelers, more roofs, harder cases</li>
-          <li>Also test missing/bad inputs (abstain behavior) — untested so far</li>
-        </ul>
-      </div>
-      <div class="card" style="margin-bottom:.8rem;">
-        <h4>⚠️ What could go wrong</h4>
-        <ul>
-          <li>Permit coverage incomplete (older/unpermitted systems)</li>
-          <li>Imagery-date mismatch (2018 vs 2024 example)</li>
-          <li>One labeler isn't a consensus — more humans needed</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>🎯 What we'd ask Con Edison</h4>
-        <p class="muted">N roofs with parcel IDs · which context is shareable (footprints, permits, historical imagery) · a calibration set of genuinely ambiguous roofs</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="slide" id="s11">
   <h2>🖥️ Try it live</h2>
   <div class="grid g2" style="align-items:center;">
     <div>
@@ -337,6 +294,49 @@ li{margin:.35rem 0;}
       <span class="hlg">Permit cross-check</span> (LL24, public)<br>
       &nbsp;&nbsp;↓<br>
       Verdict + recommendation
+    </div>
+  </div>
+</section>
+
+
+<section class="slide" id="s11">
+  <h2>Recommendation: revise, then a limited test</h2>
+  <div class="grid g2">
+    <div>
+      <div class="card" style="margin-bottom:.8rem;">
+        <h4>What the evidence supports now</h4>
+        <ul>
+          <li>Not "stop" — the pipeline works end-to-end on real NYC roofs</li>
+          <li>Not "deploy as-is" — one model confidently produced the costly error</li>
+          <li><strong>Revise the decision rule</strong>: add corroboration, don't trust a single confident call</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom:.8rem;">
+        <h4>What if we do nothing?</h4>
+        <p>The costly error class (false "solar") appears in real data — verification is the mitigation, not the cost.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:.8rem;">
+        <h4>🔜 The 100-roof limited test</h4>
+        <ul>
+          <li>With Con Edison parcels: real addresses → permit join at scale</li>
+          <li>More labelers, more roofs, harder cases</li>
+          <li>Also test missing/bad inputs (abstain behavior) — untested so far</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom:.8rem;">
+        <h4>⚠️ What could go wrong</h4>
+        <ul>
+          <li>Permit coverage incomplete (older/unpermitted systems)</li>
+          <li>Imagery-date mismatch (2018 vs 2024 example)</li>
+          <li>One labeler isn't a consensus — more humans needed</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🎯 What we'd ask Con Edison</h4>
+        <p class="muted">N roofs with parcel IDs · which context is shareable (footprints, permits, historical imagery) · a calibration set of genuinely ambiguous roofs</p>
+      </div>
     </div>
   </div>
 </section>
