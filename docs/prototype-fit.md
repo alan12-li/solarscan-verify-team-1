@@ -31,7 +31,7 @@ requirements, with evidence paths. Written 2026-08-10.
 | P1 element | Our version |
 |---|---|
 | Fixed set of cases | 30 images (subset-30.json) — fixed before evaluation |
-| Answer key written first | Labeling tool + ≥2-labeler rule defined before model runs; ground truth from 3 labelers |
+| Answer key written first | Labeling tool + ≥2-labeler rule defined before model runs; ground truth from 5 labelers |
 | One baseline run | Gemini 3.5 Flash-Lite = cost baseline (cheapest closed model) |
 | Two evaluations from baseline | **Quality**: clear-case accuracy (target ≥90%) · **Cost**: $/correct (Gemini $0.003, GPT-5.5 $0.013, Gemma $0.002) |
 | At least one open-weights + one closed model | ✅ Kimi K3 + Gemma (open) vs GPT-5.5 + Gemini (closed) |

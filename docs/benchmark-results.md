@@ -97,13 +97,16 @@ values).
    verification layer must escalate, and human labels will decide who is
    right.
 
-## Status: ground truth locked (3 labelers, majority vote)
+## Status: ground truth locked (5 labelers, majority vote)
 
-Ground truth is **locked** from three labelers (Yongpeng `alan12-li`,
-Praewa `pointpraewa`, Victor `vchan5526`) by **majority vote** (rule:
-majority; ties become `uncertain`). All 30 cases have a majority label —
-**14 solar / 16 no_solar / 0 uncertain** — so every case is scored.
-See `docs/labeling-progress.md` and `data/benchmark-v1/ground-truth.json`.
+Ground truth is **locked** from all five labelers (Yongpeng `alan12-li`,
+Praewa `pointpraewa`, Victor `vchan5526`, Kenji `ktannady22`, Tanapat
+`tanapreuk`) by **majority vote** (rule: majority; ties become `uncertain`).
+All 30 cases have a clear majority — **14 solar / 16 no_solar / 0 uncertain**
+— 20 unanimous (5:0) and 10 majority (4:1 or 3:2), no ties.
+The distribution matches the earlier 3-labeler majority, so the scorecard is
+robust to labeler count. See `docs/labeling-progress.md` and
+`data/benchmark-v1/ground-truth.json`.
 
 ### PRD §6 scorecard (30 cases, ground truth locked)
 
@@ -117,13 +120,13 @@ See `docs/labeling-progress.md` and `data/benchmark-v1/ground-truth.json`.
 **No model meets the PRD §6 target.** Three findings:
 
 1. **Clear-case accuracy is below 90% for every model** — with a full 30-case
-   ground truth (majority of 3 labelers), GPT-5.5 leads at 83%, Gemini 73%,
+   ground truth (majority of 5 labelers), GPT-5.5 leads at 83%, Gemini 73%,
    Kimi 67%, Gemma 53%. The "clear" cases in this thermal imagery are harder
    than expected, or the prompt needs tuning.
-2. **Escalation recall is no longer measurable** — with 3 labelers, no case
-   ended as a tie, so there are 0 ground-truth `uncertain` cases. The 5
-   earlier disagreements were all resolved 2:1 by Praewa's labels (4 matched
-   Yongpeng, 1 matched Victor). The escalation-recall question moves to the
+2. **Escalation recall is no longer measurable** — with 5 labelers, no case
+   ended as a tie, so there are 0 ground-truth `uncertain` cases. All 10
+   non-unanimous cases (4:1 or 3:2) were settled by majority vote; see
+   `docs/labeling-progress.md`. The escalation-recall question moves to the
    next test: a calibration set of genuinely ambiguous roofs.
 3. **Open-weights models split by size** — Kimi K3 (2.8T, open) trails the
    closed frontier by 16 points (67% vs 83%); Gemma 4 26B (small open) is

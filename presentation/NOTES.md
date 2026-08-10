@@ -45,7 +45,7 @@ is absent, the person next in the table covers their slides.
 
 ## Slide 3 · Approach (45s)
 - Same inputs → several models → structured output → fail toward a person.
-- Benchmark: 30 public drone images, ground truth = 3 labelers majority.
+- Benchmark: 30 public drone images, ground truth = 5 labelers majority.
 - *Evidence:* `data/benchmark-v1/ground-truth.json`.
 
 ## Slide 4 · Prototype agent system (60s) — key slide
@@ -72,7 +72,7 @@ is absent, the person next in the table covers their slides.
 - *Evidence:* computed from `data/benchmark-v1/results/*.json`.
 
 ## Slide 7 · Human validation (45s)
-- Models vs our 3 labelers: GPT-5.5 matches humans 83%, Gemini 73%,
+- Models vs our 5 labelers: GPT-5.5 matches humans 83%, Gemini 73%,
   Kimi 67%, Gemma 53%.
 - 4 hardest images (≥3 models disagree with humans): sv-0003, sv-0013,
   sv-0015, sv-0137 — on roofs humans found hard, models were confident
@@ -124,7 +124,7 @@ Likely questions and honest answers:
 - **"Which model would you use?"** GPT-5.5 for accuracy now; Gemma for
   cost-sensitive bulk with human escalation; revisit after prompt tuning.
 - **"Is escalation recall measurable?"** Not on this set (no ground-truth
-  ties after 3 labelers). It is the first thing the limited test measures.
+  ties after 5 labelers). It is the first thing the limited test measures.
 - **"What data did you use?"** Public CC drone dataset + NYC Open Data.
   No Con Edison data — we will ask what is shareable.
 
