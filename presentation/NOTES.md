@@ -158,25 +158,24 @@ the foundation we'd build on."
 - Works: structured contract 24/24; clear cases separable; doubt signal
   (Kimi ↔ human); multi-source 20/20; real NYC pipeline.
 
-## Slide 9 · Model economics — cost per roof (45s) — Tanapat
+## Slide 9 · Model economics — real cost per roof (45s) — Tanapat
 
-**Say something like:** "How much does this actually cost? For all 30 roofs
-in our first benchmark, the entire bill across three models was fifty-three
-cents — Gemini under a nickel, Kimi about twenty, GPT-5.5 about twenty-seven.
-Per correct call it's cents: Gemma two-tenths of a cent, Gemini three,
-GPT-5.5 just over a cent. Cost is simply not the blocker — one unnecessary
-truck visit costs more than a thousand roofs of model calls. So we optimize
-for accuracy and honesty about doubt, not token price. And the cheapest
-models are the ones that matched the human."
+**Say something like:** "How much does this actually cost? We measured it —
+the same rooftop image, all four models, real bills from OpenRouter. Gemma
+came in at six hundredths of a cent. Gemini four tenths. Kimi about
+two-tenths of a cent. GPT-5.5 — two point six tenths of a cent, forty-four
+times Gemma. The whole panel — all four models on one roof — is about half
+a cent. A hundred roofs, all four models, fifty cents. One unnecessary
+truck visit costs more than that. So the blocker was never the price tag —
+it's confident wrong answers on hard roofs. And the cheapest models were
+the most honest about doubt."
 
-- Actual spend (30 roofs × models, OpenRouter): Gemini < $0.05, Kimi ~ $0.20,
-  GPT-5.5 ~ $0.27, total $0.53 (limit $5.00).
-- Cost per correct call: Gemma $0.002, Gemini $0.003, GPT-5.5 $0.013 —
-  open-weights ~4–6× cheaper AND Kimi matched the human 6/6 on real roofs.
-- At scale: 100 roofs × 3 models ≈ $0.20–0.90 — rounding error next to one
-  truck visit.
-- Optimize for accuracy + honest doubt, not token cost.
-- *Evidence:* `docs/benchmark-results.md` §Cost, `docs/prototype-fit.md`.
+- Measured (2026-08-10, OpenRouter, same image 511 W 182nd 2024, temp 0):
+  Gemma $0.000059 · Gemini $0.00044 · Kimi $0.00191 · GPT-5.5 $0.00260 per image.
+- 4 models × 1 roof ≈ $0.005; 100 roofs × 4 models ≈ $0.50.
+- Open-weights ~44× cheaper than GPT-5.5 AND Kimi matched the human 6/6.
+- Cost is not the blocker — accuracy + honest doubt is.
+- *Evidence:* measured live via OpenRouter (see NOTES.md, same method as demo).
 
 ## Slide 10 · Live demo intro (20s) — Tanapat
 

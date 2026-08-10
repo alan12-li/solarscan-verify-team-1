@@ -76,10 +76,11 @@ Yongpeng) → Tanapat closes.
   confident-wrong (GPT-5.5 0.76, real data); works = structured contract
   24/24, doubt signal (Kimi ↔ human), multi-source 20/20, real NYC
   pipeline.
-- **9 Model economics:** 30 roofs × 3 models = $0.53 total (Gemini <$0.05,
-  Kimi ~$0.20, GPT-5.5 ~$0.27); per correct call Gemma $0.002 / Gemini $0.003 /
-  GPT-5.5 $0.013; 100 roofs ≈ $0.20–0.90. Cost is not the blocker — accuracy
-  + honest doubt is. Open-weights cheaper AND Kimi 6/6 on real roofs.
+- **9 Model economics:** measured per-image cost (OpenRouter, same image,
+  2026-08-10): Gemma $0.000059 · Gemini $0.00044 · Kimi $0.00191 ·
+  GPT-5.5 $0.00260 (44× Gemma). 4 models × 1 roof ≈ $0.005; 100 roofs × 4
+  models ≈ $0.50. Cost is not the blocker — accuracy + honest doubt is.
+  Open-weights cheaper AND Kimi 6/6 on real roofs.
 - **10 Intro demo:** "All of that is a live prototype — the next slide is
   hands-on; our operator will run it." Short, hand off.
 - **12 Recommendation:** revise decision rule → 100-roof limited test with

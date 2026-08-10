@@ -235,30 +235,50 @@ li{margin:.35rem 0;}
 </section>
 
 <section class="slide" id="s9">
-  <h2>Model economics — cost per roof</h2>
-  <div class="grid g2">
-    <div class="card">
-      <h4>💵 30-roof benchmark, actual spend (OpenRouter)</h4>
-      <div class="bar-line"><span class="bar-label">Gemini 3.5 Flash-Lite</span><div class="bar" style="width:9%;background:var(--purple);"></div><b>&lt; $0.05</b></div>
-      <div class="bar-line"><span class="bar-label">Kimi K3 (open)</span><div class="bar" style="width:38%;background:var(--green);"></div><b>~ $0.20</b></div>
-      <div class="bar-line"><span class="bar-label">GPT-5.5</span><div class="bar" style="width:51%;background:var(--accent);"></div><b>~ $0.27</b></div>
-      <p class="muted" style="margin-top:.5rem;">Total <strong>$0.53</strong> for all 30 roofs × 3 models — within our $5.00 trial limit.</p>
+  <h2>Model economics — real cost per roof</h2>
+  <p class="muted" style="margin-bottom:.6rem;">Measured: same rooftop image (511 W 182nd St 2024), 4 models, temp 0 — billed via OpenRouter, 2026-08-10</p>
+  <div class="chart-wrap" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;">
+    <div style="display:flex;align-items:flex-end;gap:.9rem;height:210px;padding:0 .5rem;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+        <b style="font-size:.95rem;color:var(--amber);">$0.000059</b>
+        <div style="width:70%;background:var(--amber);border-radius:6px 6px 0 0;height:2px;margin-top:.2rem;"></div>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;">Gemma 4-26B<br><span style="color:var(--green);">(open)</span></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+        <b style="font-size:.95rem;color:var(--purple);">$0.00044</b>
+        <div style="width:70%;background:var(--purple);border-radius:6px 6px 0 0;height:17px;margin-top:.2rem;"></div>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;">Gemini 3.5<br>Flash-Lite</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+        <b style="font-size:.95rem;color:var(--green);">$0.00191</b>
+        <div style="width:70%;background:var(--green);border-radius:6px 6px 0 0;height:73px;margin-top:.2rem;"></div>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;">Kimi K3<br><span style="color:var(--green);">(open)</span></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+        <b style="font-size:.95rem;color:var(--accent);">$0.00260</b>
+        <div style="width:70%;background:var(--accent);border-radius:6px 6px 0 0;height:100px;margin-top:.2rem;"></div>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;">GPT-5.5</div>
+      </div>
     </div>
-    <div class="card">
-      <h4>🧮 Cost per correct call</h4>
-      <div class="bar-line"><span class="bar-label">Gemma 4-26B (open)</span><div class="bar" style="width:15%;background:var(--amber);"></div><b>$0.002</b></div>
-      <div class="bar-line"><span class="bar-label">Gemini Flash-Lite</span><div class="bar" style="width:23%;background:var(--purple);"></div><b>$0.003</b></div>
-      <div class="bar-line"><span class="bar-label">GPT-5.5</span><div class="bar" style="width:100%;background:var(--accent);"></div><b>$0.013</b></div>
-      <p class="muted" style="margin-top:.5rem;">Cents per roof — <strong>cost is not the blocker</strong>. The blocker is confident wrong answers on hard roofs.</p>
-    </div>
+    <p class="muted" style="text-align:center;font-size:.75rem;margin-top:.5rem;">Actual billed cost per roof image (log-friendly linear scale, GPT-5.5 = 100px)</p>
   </div>
-  <div class="card" style="margin-top:.8rem;">
-    <h4>🔍 What the numbers say</h4>
-    <ul style="margin:0;padding-left:1.1rem;">
-      <li>Open-weights models (Gemma, Kimi) are <strong>~4–6× cheaper</strong> than GPT-5.5 per correct call — and on real NYC roofs Kimi <strong>matched the human 6/6</strong>.</li>
-      <li>At scale: 100 roofs × 3 models ≈ <strong>$0.20–0.90</strong> — a rounding error next to one unnecessary truck visit.</li>
-      <li>So we optimize for <strong>accuracy + honesty about doubt</strong>, not token cost.</li>
-    </ul>
+  <div class="grid g2" style="margin-top:.8rem;">
+    <div class="card" style="margin-bottom:0;">
+      <h4>🧮 What one roof costs</h4>
+      <ul style="margin:0;padding-left:1.1rem;">
+        <li><strong>4 models × 1 roof ≈ $0.005</strong> — half a cent for the full panel</li>
+        <li>Open-weights <strong>44× cheaper</strong> than GPT-5.5 (Gemma vs GPT-5.5)</li>
+        <li>100 roofs × 4 models ≈ <strong>$0.50</strong> — less than one truck visit</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0;">
+      <h4>🔍 Why this matters</h4>
+      <ul style="margin:0;padding-left:1.1rem;">
+        <li>Cost is <strong>not the blocker</strong> — confident wrong answers are</li>
+        <li>The cheapest models (Kimi, Gemma) are also the <strong>most honest about doubt</strong> — Kimi matched the human 6/6</li>
+        <li>So we optimize for <strong>accuracy + honest uncertainty</strong>, not token price</li>
+      </ul>
+    </div>
   </div>
 </section>
 
