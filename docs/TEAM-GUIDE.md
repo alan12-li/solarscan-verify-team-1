@@ -66,6 +66,7 @@ Full instructions: [docs/labeling-task.md](labeling-task.md)
 | `docs/benchmark-results.md` | Cross-provider comparison table |
 | `docs/prototype-fit.md` | Capstone brief compliance mapping (evidence paths) |
 | `docs/multisource-verification.md` | Multi-source corroboration design (public NYC records) |
+| `docs/value-for-conedison.md` | What the project improves for Con Edison (one-page) |
 | `docs/labeling-progress.md` | Labeling status and disagreement resolution |
 | `docs/con-edison-questions.md` | Our 3 questions for the Con Edison clinic |
 | `docs/labeling-task.md` | Labeling instructions (English) |
