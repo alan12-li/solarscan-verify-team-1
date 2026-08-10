@@ -53,22 +53,27 @@ one of them confidently said 'solar' on a roof with no panels."
 
 ## Slide 2 · The prototype we actually built (60s) — key slide — Yongpeng
 
-**Say something like:** "Here's what we actually built. A roof image goes
-in, four models look at it in parallel — Gemini, GPT-5.5, and two
-open-weights, Kimi K3 and Gemma. Same prompt, temperature zero, so it's a
-fair comparison. Each one returns a label, a confidence, and whether it
-wants to escalate. Then a decision rule: if they agree and confidence is
-decent, accept; otherwise a human reviews. And we cross-check public
-records — permits and building footprints — before anyone signs off.
-The agent recommends, a person decides."
+**Say something like:** "Here's what we actually built. You give us a roof
+image — or just an address; if it's an address we fetch the roof from
+public NYC orthoimagery. You can also attach optional context — the
+building footprint, the permit record — if you have it. Then four models
+look at the roof in parallel — Gemini, GPT-5.5, and two open-weights, Kimi
+K3 and Gemma. Same prompt, temperature zero, so it's a fair comparison.
+Each one returns a label, a confidence, and whether it wants to escalate.
+Then a decision rule: if they agree and confidence is decent, accept;
+otherwise a human reviews. And we cross-check public records — permits and
+building footprints — before anyone signs off. The agent recommends, a
+person decides."
 
-- Pipeline: image + optional context → 4 models in parallel (temp 0, same
-  prompt) → {label, confidence, escalate} → decision rule (agree & conf
-  ≥ .6 accept; else human review) → corroboration (branch tested 20/20) →
-  analyst decides.
+- Pipeline: input (roof image **or** NYC address → orthoimagery) +
+  optional context (footprint, permit) → 4 models in parallel (temp 0,
+  same prompt) → {label, confidence, escalate} → decision rule (agree &
+  conf ≥ .6 accept; else human review) → corroboration (branch tested
+  20/20) → analyst decides.
 - Emphasize: **real & tested** — 24 model calls on 6 real NYC roofs, all
   parseable JSON; escalated cases are never auto-accepted.
-- *Evidence:* `scripts/evaluate_benchmark.py`, `scripts/test_corroboration.py`.
+- *Evidence:* `scripts/demo_server.py` (input handling),
+  `scripts/evaluate_benchmark.py`, `scripts/test_corroboration.py`.
 
 ## Slide 3 · Evaluation: 6 real NYC roofs (45s) — Victor
 

@@ -98,7 +98,9 @@ li{margin:.35rem 0;}
   <h2>The prototype we actually built</h2>
   <div class="grid g2" style="align-items:center;">
     <div class="flow">
-      Roof image + optional <span class="hl">context</span> (footprint, permit)<br>
+      <span class="hl">Input</span>: roof image <strong>or</strong> NYC address<br>
+      &nbsp;&nbsp;│ address → fetch roof from public orthoimagery<br>
+      &nbsp;&nbsp;│ + optional <span class="hl">context</span>: footprint, permit<br>
       &nbsp;&nbsp;↓<br>
       <span class="hl">4 models in parallel</span>, temp 0, same prompt<br>
       &nbsp;&nbsp;├─→ Gemini 3.5 Flash-Lite<br>

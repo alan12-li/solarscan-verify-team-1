@@ -37,6 +37,12 @@ Hand-off order: Yongpeng (1–3) → Victor (4–5) → Praewa (6–7) → Kenji
   Kimi agreed), 1086361 (GPT-5.5 said solar ✗), 511 W 182nd 2018
   (pre-install vs 2024). Error A: false "solar" → truck at a bare roof.
   Error B: false "no solar" → missed generation. Today = manual review.
+- **2 Prototype:** input = roof image **or** NYC address (address → fetch
+  from public orthoimagery) + optional context (footprint, permit) → 4
+  models in parallel (Gemini, GPT-5.5, Kimi K3, Gemma; temp 0, same
+  prompt) → {label, confidence, escalate} → decision rule (agree & conf
+  ≥ .6 accept; else human review) → corroboration (public records, branch
+  20/20) → analyst decides. Agent recommends, a person decides.
 
 ### Victor — slides 4–5
 - **4 Evaluation:** 6 real roofs, 1 human labeler (labels before model
