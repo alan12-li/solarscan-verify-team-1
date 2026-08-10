@@ -105,6 +105,11 @@ designed a **corroboration branch** using public records — this is the PRD
   into classification; demo showed the model using context
   (sv-0003: uncertain 0.45 → no_solar 0.85). Context files are synthetic
   and clearly marked (benchmark images have no real addresses).
+- **Verified the NYC orthoimagery pipeline (PATH B)** —
+  `scripts/fetch_nyc_roofs.py` downloads real Manhattan roof tiles
+  (NYC Orthos 2018, CC BY 4.0) from Building Footprints coords, and Gemini
+  classifies them (e.g. no_solar conf 0.9). Mechanism proof: no ground
+  truth yet, permit join needs addresses (Con Edison step).
 - **Finding:** rule-following requires *unambiguous* rules. Iterating the
   prompt — separating "lookup OK, zero records" from "lookup unavailable",
   and making the confidence threshold literal (< 0.8) — took both models

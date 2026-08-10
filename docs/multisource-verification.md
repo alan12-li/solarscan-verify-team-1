@@ -2,8 +2,8 @@
 
 **Date:** 2026-08-10
 **Status:** Data-source validation ✅ · **Branch-logic tested 20/20 ✅**
-**· Context injection implemented & demoed ✅ · Full image→records
-pipeline: not benchmarked ⚠️**
+**· Context injection implemented & demoed ✅ · NYC orthoimagery pipeline
+verified (PATH B) ✅ · Full image→records benchmark: not scored ⚠️**
 **Owner:** SolarScan Verify team
 
 ## The idea
@@ -126,6 +126,30 @@ image (sv-0003, where models split), context converted `uncertain` → a
 confident `no_solar`. Mechanism verified end-to-end (prompt → API → parsed
 JSON). Context files: `data/benchmark-v1/context/*.json` (**synthetic,
 clearly marked — the 30 benchmark images have no real addresses**).
+
+## NYC orthoimagery pipeline (PATH B) — verified 2026-08-10 ✅
+
+**The end-to-end chain works.** We proved we can go from public data to a
+model classification of a real NYC roof:
+
+```
+Building Footprints (5zhs-2jue, Manhattan, BBL + centroid)
+   -> NYC Orthos 2018 MapServer tile (public, CC BY 4.0, z=19 ≈ 0.5 m/px)
+   -> Gemini classifies the roof (structured JSON)
+```
+
+- **Verified:** 4 Manhattan roofs downloaded (15–17 KB tiles); Gemini
+  classified one as `no_solar, conf 0.9` ("standard shingled textures
+  without distinct solar panel arrays").
+- **Reproducible:** `scripts/fetch_nyc_roofs.py --count N --z 19 --out DIR`
+  (writes a manifest with BBL, roof height, feature code, tile XYZ).
+- **Data sources:** `NYC Orthos 2018` MapServer (public, CC BY 4.0);
+  Building Footprints `5zhs-2jue`; LL24 solar permits `cfz5-6fvh`
+  (join needs an address — the Con Edison data step).
+- **Honest scope:** mechanism proof only. The 20 downloaded roofs have **no
+  ground truth** (needs labelers) and the **permit join needs real
+  addresses** (Con Edison step). This is the first stage of the proposed
+  100-roof limited test, not an accuracy result.
 
 ## Branch-logic test (2026-08-10) — rule-following measured ✅
 
