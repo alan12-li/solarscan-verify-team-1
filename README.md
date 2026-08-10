@@ -11,6 +11,7 @@ Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
 
 > **Read [docs/TEAM-GUIDE.md](docs/TEAM-GUIDE.md) first** — setup, your
 > labeling task, and everything in the repo, in one place.
+> **Full link pack: [docs/team-links.md](docs/team-links.md)**
 
 1. Accept the GitHub invite, then clone this repo.
 2. OpenCode loads `opencode.json` automatically from the repo root —
