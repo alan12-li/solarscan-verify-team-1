@@ -33,6 +33,9 @@ Rehearse once as a group before class; each speaker owns ~2 minutes of the
   no-solar (missed generation).
 - We chose **one slice**: the low-confidence verification step, not a new
   scanner.
+- **Ideation (30s):** we asked the models themselves to map the four briefs,
+  ranked by where an agent adds most value, and landed on the verification
+  bottleneck because it is measurable and bounded.
 - *Evidence:* `docs/con-edison-questions.md` (we asked Con Edison which
   error costs more).
 
@@ -99,7 +102,9 @@ Rehearse once as a group before class; each speaker owns ~2 minutes of the
 - Explicitly NOT stop, NOT deploy as-is.
 - Cost is not the blocker: $0.002–$0.013 per correct roof.
 - Risks: recall stays low (rubber stamp), escalation explodes (no savings),
-  imagery domain shift (needs NYC calibration).
+  imagery domain shift (needs NYC calibration), **and missing/bad-input
+  abstain behavior is defined in PRD §5 but untested — it is part of the
+  limited test.**
 - Close: "The scanner stays; the ambiguous roofs get a second, explainable,
   human-escalated look."
 

@@ -100,6 +100,13 @@
   <p>We deliberately chose <strong>one part of the problem</strong>: the
   low-confidence verification step. Not a new scanner, not streaming imagery —
   a review layer for the cases the existing system cannot settle.</p>
+  <h3>How we got here (ideation)</h3>
+  <p>Started from the brief → asked the models themselves to map the problem
+  space → ranked the four briefs by where an agent adds the most value →
+  landed on the scanner's <em>verification bottleneck</em> because it is
+  measurable (accuracy vs human ground truth) and bounded (one decision,
+  three outputs). The idea: <strong>don't replace the scanner — give the
+  ambiguous roofs a second, explainable look.</strong></p>
 </section>
 
 <!-- SLIDE 3 · APPROACH -->
@@ -378,6 +385,10 @@
         adds noise.</li>
         <li>Thermal/imagery quality differs from our public dataset → NYC
         field imagery needs its own calibration set.</li>
+        <li><strong>Missing/bad inputs untested</strong> — PRD §5 defines the
+        abstain behavior (no image → refuse, corrupt image → escalate,
+        &lt;256px → reject) but our 30-case set had no such inputs; testing
+        them is part of the limited test.</li>
       </ul>
     </div>
   </div>
