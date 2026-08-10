@@ -141,6 +141,14 @@ Building Footprints (5zhs-2jue, Manhattan, BBL + centroid)
 - **Verified:** 4 Manhattan roofs downloaded (15–17 KB tiles); Gemini
   classified one as `no_solar, conf 0.9` ("standard shingled textures
   without distinct solar panel arrays").
+- **Positive case confirmed (permit-verified):** from LL24, `511 W 182nd St`
+  has a **Completed solar permit (2022)**. On **2024 NYC orthoimagery all 4
+  models say `solar`** (Gemini 0.99, GPT-5.5 0.98, Kimi 0.97, Gemma 1.0) —
+  "multiple distinct solar panel arrays clearly visible". On **2018
+  imagery** (pre-installation) the same roof is `no_solar 0.95`. This is a
+  clean time-controlled confirmation: **imagery date must match the
+  question** (2018 vs 2024), and the permit record predicted the model
+  result.
 - **Reproducible:** `scripts/fetch_nyc_roofs.py --count N --z 19 --out DIR`
   (writes a manifest with BBL, roof height, feature code, tile XYZ).
 - **Data sources:** `NYC Orthos 2018` MapServer (public, CC BY 4.0);
