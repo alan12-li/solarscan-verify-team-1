@@ -160,22 +160,33 @@ the foundation we'd build on."
 
 ## Slide 9 · Model economics — real cost per roof (45s) — Tanapat
 
-**Say something like:** "How much does this actually cost? We measured it —
-the same rooftop image, all four models, real bills from OpenRouter. Gemma
-came in at six hundredths of a cent. Gemini four tenths. Kimi about
-two-tenths of a cent. GPT-5.5 — two point six tenths of a cent, forty-four
-times Gemma. The whole panel — all four models on one roof — is about half
-a cent. A hundred roofs, all four models, fifty cents. One unnecessary
-truck visit costs more than that. So the blocker was never the price tag —
-it's confident wrong answers on hard roofs. And the cheapest models were
-the most honest about doubt."
+**Say something like:** "You might be thinking — four models on every roof,
+isn't that expensive? Let's show you the actual bills. We ran the same
+rooftop image through all four models and looked at what OpenRouter charged
+us. Look at these bars. Gemma — the open-weight one — six hundredths of a
+cent. Gemini, under half a cent. Kimi, the other open model, about
+two-tenths of a cent. And GPT-5.5 at the end — two point six tenths of a
+cent. That bar is forty-four times the first one. But here's the thing:
+the whole panel — all four models, one roof — costs about half a cent. Run
+a hundred roofs through all four models and you're at fifty cents. One
+unnecessary truck visit costs more than that — the field team, the
+vehicle, the afternoon. So cost was never our bottleneck. The bottleneck
+is a model confidently saying 'solar' on a roof with no panels. And the
+nicest part? The cheapest models here — Kimi and Gemma — are the ones
+that were honest about doubt. Kimi matched the human on all six real
+roofs. So when we design the system, we optimize for accuracy and honest
+uncertainty — not for the price tag."
 
 - Measured (2026-08-10, OpenRouter, same image 511 W 182nd 2024, temp 0):
   Gemma $0.000059 · Gemini $0.00044 · Kimi $0.00191 · GPT-5.5 $0.00260 per image.
 - 4 models × 1 roof ≈ $0.005; 100 roofs × 4 models ≈ $0.50.
 - Open-weights ~44× cheaper than GPT-5.5 AND Kimi matched the human 6/6.
 - Cost is not the blocker — accuracy + honest doubt is.
-- *Evidence:* measured live via OpenRouter (see NOTES.md, same method as demo).
+- *Evidence:* `docs/model-cost-measurement.md` (method + full table).
+
+**Pacing:** point at each bar as you name it; pause after "forty-four
+times" — that's the visual punchline. End on "honest uncertainty, not the
+price tag" and transition: "So what actually failed, and what worked?"
 
 ## Slide 10 · Live demo intro (20s) — Tanapat
 
