@@ -1,6 +1,6 @@
 # Presentation Notes — Session 6 (Aug 11, 2026)
 
-**Deck:** `presentation/index.html` (11 slides — cover + 10 content,
+**Deck:** `presentation/index.html` (12 slides — cover + 11 content,
 real-NYC-roofs version; live at
 https://alan12-li.github.io/solarscan-verify-team-1/presentation/)
 **Time:** 10 minutes + Q&A. Target ~45–60 seconds per slide.
@@ -11,11 +11,11 @@ https://alan12-li.github.io/solarscan-verify-team-1/presentation/)
 | 2–3 | **Victor** | Prototype pipeline · Evaluation design |
 | 4–5 | **Praewa** | Model vs human · The two mistakes |
 | 6–7 | **Kenji** | Multi-source verification · Surprising facts |
-| 8–9 | **Tanapat** | What failed → works · Live demo intro |
-| 10 | **Yongpeng** (hands-on) | 🖥️ Live demo |
-| 11 | **Tanapat** (closes) | Recommendation |
+| 8–10 | **Tanapat** | Model economics · What failed → works · Live demo intro |
+| 11 | **Yongpeng** (hands-on) | 🖥️ Live demo |
+| 12 | **Tanapat** (closes) | Recommendation |
 
-Yongpeng opens (Cover–1) and Tanapat closes (11). The demo is hands-on —
+Yongpeng opens (Cover–1) and Tanapat closes (12). The demo is hands-on —
 the person at the machine runs it (usually Yongpeng, who built it). If
 someone is absent, the person next in the table covers their slides.
 
@@ -158,14 +158,34 @@ the foundation we'd build on."
 - Works: structured contract 24/24; clear cases separable; doubt signal
   (Kimi ↔ human); multi-source 20/20; real NYC pipeline.
 
-## Slide 9 · Live demo intro (20s) — Tanapat
+## Slide 9 · Model economics — cost per roof (45s) — Tanapat
+
+**Say something like:** "How much does this actually cost? For all 30 roofs
+in our first benchmark, the entire bill across three models was fifty-three
+cents — Gemini under a nickel, Kimi about twenty, GPT-5.5 about twenty-seven.
+Per correct call it's cents: Gemma two-tenths of a cent, Gemini three,
+GPT-5.5 just over a cent. Cost is simply not the blocker — one unnecessary
+truck visit costs more than a thousand roofs of model calls. So we optimize
+for accuracy and honesty about doubt, not token price. And the cheapest
+models are the ones that matched the human."
+
+- Actual spend (30 roofs × models, OpenRouter): Gemini < $0.05, Kimi ~ $0.20,
+  GPT-5.5 ~ $0.27, total $0.53 (limit $5.00).
+- Cost per correct call: Gemma $0.002, Gemini $0.003, GPT-5.5 $0.013 —
+  open-weights ~4–6× cheaper AND Kimi matched the human 6/6 on real roofs.
+- At scale: 100 roofs × 3 models ≈ $0.20–0.90 — rounding error next to one
+  truck visit.
+- Optimize for accuracy + honest doubt, not token cost.
+- *Evidence:* `docs/benchmark-results.md` §Cost, `docs/prototype-fit.md`.
+
+## Slide 10 · Live demo intro (20s) — Tanapat
 
 **Say something like:** "All of that is a live prototype — and you can try
 it yourself. The next slide is hands-on; our operator will run it for you."
 
 - Short hand-off; don't steal the demo's thunder.
 
-## Slide 10 · 🖥️ Live demo (90s) — hands-on (machine operator: Yongpeng)
+## Slide 11 · 🖥️ Live demo (90s) — hands-on (machine operator: Yongpeng)
 
 **Say something like:** "Here it is. Two ways to open it: the Local demo on
 this laptop — one click, keys already loaded, real calls. Or the Capstone
@@ -189,7 +209,7 @@ Flow (45s each):
 Fallback if the network is down: the slide itself carries the pipeline
 diagram; tell the story from the deck.
 
-## Slide 11 · Recommendation (60s) — close strong — Tanapat
+## Slide 12 · Recommendation (60s) — close strong — Tanapat
 
 **Say something like:** "So where does this leave Con Edison? Not 'stop' —
 the pipeline works end to end on real New York roofs. Not 'deploy as-is' —
@@ -252,7 +272,7 @@ Likely questions and honest answers:
 - [ ] If using the professor's machine: open the capstone demo link, have
       your OpenRouter key ready to paste (never leave it saved on their machine)
 - [ ] Assign speakers per the role table above (Yongpeng Cover–1 + demo,
-      Victor 2–3, Praewa 4–5, Kenji 6–7, Tanapat 8–9 + 11)
+      Victor 2–3, Praewa 4–5, Kenji 6–7, Tanapat 8–10 + 12)
 - [ ] Each speaker confirms their slides via agent: "Which slides am I
       presenting?" (reads `presentation/SPEAKER-ASSIGNMENTS.md`)
 - [ ] Rehearse once; time each section (demo = 90s max)

@@ -234,8 +234,36 @@ li{margin:.35rem 0;}
   </div>
 </section>
 
-
 <section class="slide" id="s9">
+  <h2>Model economics — cost per roof</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h4>💵 30-roof benchmark, actual spend (OpenRouter)</h4>
+      <div class="bar-line"><span class="bar-label">Gemini 3.5 Flash-Lite</span><div class="bar" style="width:9%;background:var(--purple);"></div><b>&lt; $0.05</b></div>
+      <div class="bar-line"><span class="bar-label">Kimi K3 (open)</span><div class="bar" style="width:38%;background:var(--green);"></div><b>~ $0.20</b></div>
+      <div class="bar-line"><span class="bar-label">GPT-5.5</span><div class="bar" style="width:51%;background:var(--accent);"></div><b>~ $0.27</b></div>
+      <p class="muted" style="margin-top:.5rem;">Total <strong>$0.53</strong> for all 30 roofs × 3 models — within our $5.00 trial limit.</p>
+    </div>
+    <div class="card">
+      <h4>🧮 Cost per correct call</h4>
+      <div class="bar-line"><span class="bar-label">Gemma 4-26B (open)</span><div class="bar" style="width:15%;background:var(--amber);"></div><b>$0.002</b></div>
+      <div class="bar-line"><span class="bar-label">Gemini Flash-Lite</span><div class="bar" style="width:23%;background:var(--purple);"></div><b>$0.003</b></div>
+      <div class="bar-line"><span class="bar-label">GPT-5.5</span><div class="bar" style="width:100%;background:var(--accent);"></div><b>$0.013</b></div>
+      <p class="muted" style="margin-top:.5rem;">Cents per roof — <strong>cost is not the blocker</strong>. The blocker is confident wrong answers on hard roofs.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:.8rem;">
+    <h4>🔍 What the numbers say</h4>
+    <ul style="margin:0;padding-left:1.1rem;">
+      <li>Open-weights models (Gemma, Kimi) are <strong>~4–6× cheaper</strong> than GPT-5.5 per correct call — and on real NYC roofs Kimi <strong>matched the human 6/6</strong>.</li>
+      <li>At scale: 100 roofs × 3 models ≈ <strong>$0.20–0.90</strong> — a rounding error next to one unnecessary truck visit.</li>
+      <li>So we optimize for <strong>accuracy + honesty about doubt</strong>, not token cost.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section class="slide" id="s10">
   <h2>What failed → what works</h2>
   <div class="grid g2">
     <div class="card" style="border-color:var(--red);">
@@ -260,7 +288,7 @@ li{margin:.35rem 0;}
 </section>
 
 
-<section class="slide" id="s10">
+<section class="slide" id="s11">
   <h2>🖥️ Try it live</h2>
   <div class="grid g2" style="align-items:center;">
     <div>
@@ -310,7 +338,7 @@ li{margin:.35rem 0;}
 </section>
 
 
-<section class="slide" id="s11">
+<section class="slide" id="s12">
   <h2>Recommendation: revise, then a limited test</h2>
   <div class="grid g2">
     <div>
