@@ -48,15 +48,27 @@
   .footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--muted);}
   .dot.purple{background:var(--purple);} .dot.blue{background:var(--accent);}
   .dot.green{background:var(--green);} .dot.amber{background:var(--amber);}
+  .livebar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:1.2rem;padding:.8rem 1rem;background:var(--panel);border:1px solid var(--border);border-radius:10px;}
+  .livebar input[type=password]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:.5rem .8rem;font-size:.9rem;}
+  .livebar .mode{font-size:.85rem;font-weight:700;padding:.35rem .7rem;border-radius:8px;border:1px solid var(--border);}
+  .mode.live{color:var(--green);border-color:var(--green);}
+  .mode.demo{color:var(--amber);border-color:var(--amber);}
+  .livebar .hint2{font-size:.75rem;color:var(--muted);}
 </style>
 </head>
 <body>
 <header>
   <h1>☀️ SolarScan Verify — live prototype</h1>
-  <span class="badge">LOCAL DEMO</span>
+  <span class="badge">CAPSTONE DEMO</span>
   <span class="hint" style="margin-left:auto;">4 models · decision rule · public NYC records</span>
 </header>
 <main>
+  <div class="livebar">
+    <span class="mode demo" id="modeBadge">🎬 DEMO MODE</span>
+    <input type="password" id="orkey" placeholder="Paste your OpenRouter key for LIVE mode (stays in this browser, never stored on GitHub)">
+    <button style="font-size:.85rem;padding:.45rem .9rem;" onclick="setLiveMode()">🔑 Go LIVE</button>
+    <span class="hint2" id="liveHint">Live = real 4-model calls. Demo = pre-recorded results.</span>
+  </div>
   <div class="tabs">
     <div class="tab active" id="tab-img" onclick="showTab('img')">🖼️ Upload a roof photo</div>
     <div class="tab" id="tab-addr" onclick="showTab('addr')">📍 Enter a NYC address</div>
@@ -127,9 +139,8 @@ async function analyzeImage(){
     if(d.error) throw new Error(d.error);
     render(d, null);
   }catch(err){
-    // No backend (e.g. opened from GitHub Pages / another machine):
-    // fall back to the pre-recorded demo case.
-    render(DEMO_CASES.photo, null, true);
+    if(getKey()) await liveAnalyzeImage();   // browser-direct live mode
+    else render(DEMO_CASES.photo, null, true); // demo mode
   }
   setLoading(false);
 }
@@ -147,11 +158,128 @@ async function analyzeAddress(){
     if(d.error) throw new Error(d.error);
     render(d, d.geo);
   }catch(err){
-    // No backend: fall back to the pre-recorded demo case.
-    render(DEMO_CASES.address, DEMO_CASES.address.geo, true);
+    if(getKey()) await liveAnalyzeAddress(addr); // browser-direct live mode
+    else render(DEMO_CASES.address, DEMO_CASES.address.geo, true); // demo mode
   }
   setLoading(false);
 }
+
+/* ---------------- LIVE MODE (browser-direct, no backend) ---------------- */
+const LIVE_MODELS = [
+  {id:'google/gemma-4-26b-a4b-it', label:'Gemma 4-26B (open)', color:'amber'},
+  {id:'moonshotai/kimi-k3', label:'Kimi K3 (open)', color:'green'},
+  {id:'openai/gpt-5.5', label:'GPT-5.5', color:'blue'},
+  {id:'google/gemini-3.5-flash-lite', label:'Gemini 3.5 Flash-Lite', color:'purple'},
+];
+const LS_KEY = 'ssv_or_key';
+
+function getKey(){ return localStorage.getItem(LS_KEY) || ''; }
+function setLiveMode(){
+  const k = document.getElementById('orkey').value.trim();
+  if(!k){ alert('Paste your OpenRouter key first (sk-or-v1-…).'); return; }
+  localStorage.setItem(LS_KEY, k);
+  const badge = document.getElementById('modeBadge');
+  badge.textContent = '🔑 LIVE MODE';
+  badge.className = 'mode live';
+  document.getElementById('liveHint').textContent = 'Real 4-model calls via your key — no backend needed. Key stays in this browser.';
+}
+(function initKey(){
+  const k = getKey();
+  if(k){
+    document.getElementById('orkey').value = k;
+    const badge = document.getElementById('modeBadge');
+    badge.textContent = '🔑 LIVE MODE';
+    badge.className = 'mode live';
+  }
+})();
+
+async function callOpenRouter(modelId, b64, key){
+  const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method:'POST',
+    headers:{'Content-Type':'application/json', 'Authorization':'Bearer '+key},
+    body: JSON.stringify({
+      model: modelId,
+      messages:[
+        {role:'system', content:'You are a rooftop solar verification agent. Classify whether the roof has solar panels. Reply with JSON ONLY: {"label": "solar"|"no_solar"|"uncertain", "confidence": 0.0, "reason": "one short sentence"}. If not a usable rooftop: {"label":"uncertain","confidence":0.1,"reason":"image not usable"}.',},
+        {role:'user', content:[
+          {type:'text', text:'Classify this rooftop image.'},
+          {type:'image_url', image_url:{url:'data:image/jpeg;base64,'+b64}},
+        ]},
+      ],
+      temperature:0,
+    }),
+  });
+  const d = await r.json();
+  const text = d.choices?.[0]?.message?.content || '';
+  const m = text.match(/\{.*\}/s);
+  const out = m ? JSON.parse(m[0]) : {};
+  return {label: out.label || 'uncertain', confidence: Number(out.confidence) || 0, reason: String(out.reason || '').slice(0,140)};
+}
+
+async function liveAnalyzeImage(){
+  const key = getKey();
+  const b64 = await fileToBase64(chosenFile);
+  const results = await Promise.all(LIVE_MODELS.map(async m => {
+    const r = await callOpenRouter(m.id, b64, key);
+    r.model = m.label; r.color = m.color;
+    return r;
+  }));
+  const decision = decideLocal(results);
+  render({results, decision, permit:[], recommendation: recommendLocal(decision)}, null);
+}
+
+async function liveAnalyzeAddress(address){
+  const key = getKey();
+  // 1. geocode
+  const geo = await (await fetch('https://geosearch.planninglabs.nyc/v2/search?'+new URLSearchParams({text:address, size:'1'}))).json();
+  const f = geo.features?.[0];
+  if(!f) throw new Error('Address not found');
+  const [lon, lat] = f.geometry.coordinates;
+  const label = f.properties.label;
+  // 2. fetch ortho tile (z=19, NYC Orthos 2024)
+  const z = 19, n = 2**z;
+  const x = Math.floor((lon+180)/360*n);
+  const y = Math.floor((1 - Math.asinh(Math.tan(lat*Math.PI/180))/Math.PI)/2*n);
+  const tileUrl = `https://tiles.arcgis.com/tiles/yG5s3afENB5iO9fj/arcgis/rest/services/NYC_Orthos_2024/MapServer/tile/${z}/${y}/${x}`;
+  const tileBlob = await (await fetch(tileUrl)).blob();
+  const b64 = await blobToBase64(tileBlob);
+  // 3. 4 models
+  const results = await Promise.all(LIVE_MODELS.map(async m => {
+    const r = await callOpenRouter(m.id, b64, key);
+    r.model = m.label; r.color = m.color;
+    return r;
+  }));
+  // 4. permit cross-check
+  const permit = await (await fetch('https://data.cityofnewyork.us/resource/cfz5-6fvh.json?'+new URLSearchParams({$where:`address like '${address.split(' ')[0]}%' and status = 'Completed'`, $limit:'10', $select:'address,status,installation_date'}))).json();
+  const decision = decideLocal(results);
+  if(permit.length && decision.action==='ACCEPT' && decision.verdict==='no_solar'){
+    decision.action='ESCALATE'; decision.reason='permit conflict: Completed permit vs model no_solar';
+  }
+  render({results, decision, permit, recommendation: recommendLocal(decision, permit)}, {label});
+}
+
+function decideLocal(results){
+  const labels = results.map(r => r.label);
+  const top = labels.sort((a,b)=>labels.filter(v=>v===b).length-labels.filter(v=>v===a).length)[0];
+  const agree = labels.filter(v=>v===top).length;
+  const avg = results.reduce((s,r)=>s+r.confidence,0)/results.length;
+  if(agree>=3 && avg>=0.6) return {action:'ACCEPT', verdict:top, reason:`${agree}/4 models agree at avg conf ${avg.toFixed(2)}`};
+  return {action:'ESCALATE', verdict:null, reason:`models split (${agree}/4 agree) or low confidence (${avg.toFixed(2)})`};
+}
+function recommendLocal(decision, permit){
+  const rec = [];
+  if(permit && permit.length) rec.push(`📋 Public record: solar permit **Completed ${permit[0].installation_date || ''}** found.`);
+  if(decision.action==='ACCEPT'){
+    if(decision.verdict==='solar') rec.push('✅ **Accept: this roof has solar panels.** '+decision.reason+ (permit?.length ? ' The permit record agrees.' : ''));
+    else rec.push('✅ **Accept: no solar panels on this roof.** '+decision.reason+ (permit?.length ? ' ⚠️ But a permit exists — conflict!' : ''));
+  } else {
+    rec.push('⚠️ **Escalate to a human reviewer.** '+decision.reason);
+  }
+  return rec.join(' ');
+}
+function fileToBase64(f){ return new Promise((res,rej)=>{const rd=new FileReader();rd.onload=()=>res(String(rd.result).split(',')[1]);rd.onerror=rej;rd.readAsDataURL(f);}); }
+function blobToBase64(b){ return new Promise((res,rej)=>{const rd=new FileReader();rd.onload=()=>res(String(rd.result).split(',')[1]);rd.onerror=rej;rd.readAsDataURL(b);}); }
+
 
 /* Pre-recorded results from real runs (2026-08-10). Used when no local
    backend is reachable (e.g. GitHub Pages or the professor's machine),
