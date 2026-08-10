@@ -10,10 +10,10 @@ keys, personal data, or Con Edison data.
 | What | Link |
 |---|---|
 | **Team repo** | https://github.com/alan12-li/solarscan-verify-team-1 |
-| **Labeling tool (live)** | https://alan12-li.github.io/solarscan-verify-team-1/data/benchmark-v1/labeling/label-standalone.html |
 | **Presentation (live)** | https://alan12-li.github.io/solarscan-verify-team-1/presentation/ |
 | **Team guide** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/TEAM-GUIDE.md |
 | **Benchmark results** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/benchmark-results.md |
+| **NYC human validation** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/nyc-human-validation.md |
 | **Prototype fit (brief compliance)** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/prototype-fit.md |
 | **Multi-source verification** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/multisource-verification.md |
 | **Value for Con Edison** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/value-for-conedison.md |
@@ -30,21 +30,16 @@ keys, personal data, or Con Edison data.
 Check your GitHub notifications (bell icon) or open the invitation link from
 the chat. Without accepting, you cannot push.
 
-### 2. Label 30 rooftop images (~15 min) — current bottleneck
+### 2. Review the results (labeling is complete)
 
-1. Open the **labeling tool** link above (works in any browser, no install).
-2. Type your **GitHub handle** in the box.
-3. For each image: **Solar** / **No solar** / **Uncertain**
-   (if unsure, choose Uncertain — that is the honest answer).
-4. When progress shows **30/30**, click **Export my labels (JSON)**.
-5. Send the downloaded `labels-<your-handle>.json` to Yongpeng, or commit it:
-   ```bash
-   mkdir -p data/benchmark-v1/labels
-   # put labels-<your-handle>.json in that folder
-   git add data/benchmark-v1/labels/
-   git commit -m "Add my benchmark labels"
-   git push
-   ```
+All 5 teammates labeled the 30-image set. Ground truth is locked (majority
+vote) and the final deck is based on 6 real NYC roofs:
+
+1. Open the **Presentation (live)** link above — 10 slides, self-contained.
+2. Read `docs/nyc-human-validation.md` (model vs human on real roofs).
+3. Read `docs/benchmark-results.md` and `docs/value-for-conedison.md`.
+4. Scripts under `scripts/` reproduce every number (no keys needed for
+   review; model calls need your own API key).
 
 ### 3. Connect your own OpenRouter key in OpenCode
 

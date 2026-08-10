@@ -65,4 +65,3 @@ ground truth is robust to adding more labelers, and the model scorecard
 - `data/benchmark-v1/labels/alan12-li.json` · `vchan5526.json` ·
   `pointpraewa.json` · `ktannady22.json` · `tanapreuk.json`
 - `data/benchmark-v1/ground-truth.json` — merged 5-labeler majority ground truth
-- Labeling tool: `data/benchmark-v1/labeling/label-standalone.html`

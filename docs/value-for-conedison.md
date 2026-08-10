@@ -22,34 +22,38 @@ quantified risk map, and an executable next step — not a promise.
 | Today (per our clinic questions) | With the verification layer (measured) |
 |---|---|
 | Ambiguous roofs → manual review of imagery + records | 4 models screen each roof → structured output (label / confidence / reason / escalate) |
-| Every ambiguous case costs human time | Agreement cases auto-pass (12/30 roofs all 4 models agree; 83% correct there) |
+| Every ambiguous case costs human time | Clear cases auto-pass; only disagreements / low confidence / record conflicts go to a person |
 | Human reviews without a second opinion | Every decision carries confidence + a reason — explainable, auditable |
 
 **Measured evidence** (all reproducible in this repo):
-- 30-image benchmark, 5-labeler majority ground truth
-  (`data/benchmark-v1/ground-truth.json`, `docs/labeling-progress.md`)
-- 4-model scorecard: GPT-5.5 83%, Gemini 73%, Kimi K3 67%, Gemma 53%
-  (`docs/benchmark-results.md`)
-- Cost per correct clear-case: $0.003 (Gemini) / $0.013 (GPT-5.5) / $0.002
-  (Gemma) — cents per roof, not a blocker
-- Pipeline: `scripts/evaluate_benchmark.py` → `build_ground_truth.py` →
-  `analyze_results.py`
+- 6 real NYC roofs, 1 human labeler, 4 models
+  (`docs/nyc-human-validation.md`)
+- Model vs human agreement: Kimi K3 6/6, Gemini 5/6, Gemma 5/6, GPT-5.5 4/6
+  (GPT-5.5's one miss was a false "solar" — the costly error class)
+- Multi-source branch: 20/20 rule-following with public records
+  (`docs/multisource-verification.md`)
+- Cost per correct call: $0.002–0.013 (Gemini) — cents per roof, not a blocker
+- Pipeline: `scripts/fetch_nyc_roofs.py` → `evaluate_benchmark.py` →
+  compare with human labels
 
 ## 2. What we found they should know (the strategic value)
 
 **The risk is not cost — it is confident wrong answers on hard roofs.**
 
-1. **No model meets the PRD §6 target (best 83% vs 90%).** The "clear" cases
-   in thermal imagery are harder than expected, or the prompt needs tuning.
-2. **Hard roofs punish models unevenly:** on the 12 roofs where all models
-   agree, everyone hits 83%; on the 18 roofs where models disagree, GPT-5.5
-   holds 83% but Gemma collapses to 33% (`presentation/index.html` slide 8).
-3. **Models are confident where humans hesitate:** e.g. sv-0133 — two
-   labelers said no_solar, Kimi K3 confidently said solar. On the 5 roofs
-   that first split our labelers, models output confident calls anyway
-   (slide 9).
-4. **Escalation recall is not yet measurable** — no ground-truth ties after
-   5 labelers; a calibration set of genuinely ambiguous roofs is needed.
+1. **A single confident call can be dangerously wrong.** On a real Manhattan
+   roof (1086361), GPT-5.5 called "solar" at conf 0.76 on a roof a human
+   labeled no_solar — a false "solar" would send a field team to a bare
+   roof. The other three models all said no_solar (`presentation/index.html`
+   slide 6).
+2. **Open-weights are honest about doubt:** on the one roof the human was
+   genuinely uncertain about (1086408), Kimi K3 was the only model that
+   also said uncertain — the doubt signal maps to human doubt (slide 5/8).
+3. **Imagery date matters:** 511 W 182nd St has a Completed solar permit
+   (2022); the same roof reads no_solar on 2018 imagery and solar on 2024 —
+   a verification layer must check imagery date against the question
+   (slide 7).
+4. **Escalation recall is not yet measurable** — one labeler, 6 roofs; a
+   calibration set of genuinely ambiguous roofs is needed.
 
 **Bottom line for Con Edison:** adding today's models to the scanner
 without a verification layer would reproduce these confident-wrong answers

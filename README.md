@@ -16,15 +16,14 @@ Applied Generative AI in Business · SHBI-GB 7151 · Summer 2026
 1. Accept the GitHub invite, then clone this repo.
 2. OpenCode loads `opencode.json` automatically from the repo root —
    connect **your own** OpenRouter key (never share keys).
-3. **Your task: label 30 images** — open
-   `data/benchmark-v1/labeling/label-standalone.html` and follow
-   [docs/labeling-task.md](docs/labeling-task.md).
+3. Review the results: `docs/benchmark-results.md`,
+   `docs/nyc-human-validation.md`, and the final deck
+   `presentation/index.html`.
 4. Reproduce the model comparison: `docs/benchmark-results.md` and the
    scripts under `scripts/`.
 
 **Live pages (GitHub Pages):**
 - Presentation: <https://alan12-li.github.io/solarscan-verify-team-1/presentation/>
-- Labeling tool: <https://alan12-li.github.io/solarscan-verify-team-1/data/benchmark-v1/labeling/label-standalone.html>
 
 ## Team
 

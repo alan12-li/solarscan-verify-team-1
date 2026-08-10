@@ -27,32 +27,16 @@ Kenji Tannady (ktannady22) · Tanapat Boontuam (tanapreuk) · Victor Chan (Vchan
 4. **Never** paste a key into chat, a file, or a commit. Each teammate uses
    their own key. If you think a key leaked, say so immediately.
 
-## 2. Your task right now: label 30 images (~15 min)
+## 2. Where we are now (Session 6 ready)
 
-This is the team's current bottleneck — the ground truth that lets us score
-the three AI models.
+Labeling is **complete** — all 5 teammates labeled the 30-image set; ground
+truth is locked (majority vote) and the final deck is NYC-data based.
 
-1. Open **`data/benchmark-v1/labeling/label-standalone.html`**
-   (double-click; it works in any browser, no install. All 30 images are
-   embedded in the file, so nothing else is needed).
-2. Type your **GitHub handle** in the box at the top.
-3. For each image choose one of:
-   - **Solar** — panels clearly visible
-   - **No solar** — no panels; HVAC/skylights/obstructions are fine
-   - **Uncertain** — genuinely cannot decide (this is the honest answer)
-4. When progress shows **30/30**, click **Export my labels (JSON)**.
-   It downloads `labels-<your-handle>.json`.
-5. **Send that file back** to Yongpeng, or commit it to the repo under
-   `data/benchmark-v1/labels/<your-handle>.json`:
-   ```bash
-   mkdir -p data/benchmark-v1/labels
-   # put labels-<handle>.json there
-   git add data/benchmark-v1/labels/
-   git commit -m "Add my benchmark labels"
-   git push
-   ```
-
-Full instructions: [docs/labeling-task.md](labeling-task.md)
+1. **Final deck:** `presentation/index.html` (10 slides, self-contained;
+   open in any browser, works offline once downloaded).
+2. **Results to review:** `docs/benchmark-results.md`,
+   `docs/nyc-human-validation.md` (6 real NYC roofs, model vs human).
+3. **Live:** https://alan12-li.github.io/solarscan-verify-team-1/presentation/
 
 ## 3. What's already in the repo
 
@@ -60,16 +44,17 @@ Full instructions: [docs/labeling-task.md](labeling-task.md)
 |---|---|
 | `opencode.json` | Team agent config (no keys; model, permissions, prompts) |
 | `data/benchmark-v1/manifest.json` | All 161 candidate images, registered |
-| `data/benchmark-v1/labeling/label-standalone.html` | **The labeling tool — use this** |
 | `data/benchmark-v1/labeling/subset-30.json` | The 30-case benchmark subset metadata |
+| `data/benchmark-v1/labels/*.json` | 5 teammates' labels (all complete) |
 | `data/benchmark-v1/results/*.json` | Raw model outputs (gitignored, local) |
 | `docs/benchmark-results.md` | Cross-provider comparison table |
+| `docs/nyc-human-validation.md` | Model vs human on 6 real NYC roofs |
 | `docs/prototype-fit.md` | Capstone brief compliance mapping (evidence paths) |
 | `docs/multisource-verification.md` | Multi-source corroboration design (public NYC records) |
 | `docs/value-for-conedison.md` | What the project improves for Con Edison (one-page) |
 | `docs/labeling-progress.md` | Labeling status and disagreement resolution |
 | `docs/con-edison-questions.md` | Our 3 questions for the Con Edison clinic |
-| `docs/labeling-task.md` | Labeling instructions (English) |
+| `docs/labeling-task.md` | Labeling instructions (historical — task complete) |
 | `docs/reference/chartwise/` | Yongpeng's Project 2 PRD as a format reference |
 | `scripts/` | Fetch, evaluate, analyze, verify, labeling-tool scripts |
 
@@ -110,9 +95,7 @@ Models compared (same 30 images, same prompt, temperature 0):
 - Repo: https://github.com/alan12-li/solarscan-verify-team-1 (**PUBLIC — treat
   every push as public; no keys, no personal data, no Con Edison data**)
 - Live presentation: https://alan12-li.github.io/solarscan-verify-team-1/presentation/
-- Live labeling tool:
-  https://alan12-li.github.io/solarscan-verify-team-1/data/benchmark-v1/labeling/label-standalone.html
-- Labeling tool (in repo): `data/benchmark-v1/labeling/label-standalone.html`
+- NYC human validation: `docs/nyc-human-validation.md`
 - Benchmark results: `docs/benchmark-results.md`
 - Prototype-fit (brief compliance): `docs/prototype-fit.md`
 - Labeling progress: `docs/labeling-progress.md`
@@ -125,8 +108,9 @@ GitHub deliberately does **not** render `.html` files in the browser
 (security: HTML can run scripts on the github.com domain). `github.com/.../blob/...`
 and `raw.githubusercontent.com/...` both show the source text.
 
-Our repo is **private**, so htmlpreview.github.io and GitHub Pages (free
-tier) do **not** work either. The reliable options:
+Our repo is **public** with GitHub Pages enabled, so the presentation is
+live at <https://alan12-li.github.io/solarscan-verify-team-1/presentation/>.
+For a local copy, the reliable options:
 
 | Option | How | Use for |
 |---|---|---|
