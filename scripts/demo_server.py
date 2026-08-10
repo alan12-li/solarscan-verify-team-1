@@ -283,7 +283,10 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if self.path in ("/", "/index.html"):
+        if self.path == "/api/ping":
+            self._send(200, json.dumps({"backend": True,
+                                        "models": len(MODELS)}).encode())
+        elif self.path in ("/", "/index.html"):
             f = REPO / "presentation/demo.html"
             if f.exists():
                 self._send(200, f.read_bytes(), "text/html; charset=utf-8")
