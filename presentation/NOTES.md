@@ -198,13 +198,13 @@ it yourself. The next slide is hands-on; our operator will run it for you."
 ## Slide 11 · 🖥️ Live demo (90s) — hands-on (machine operator: Yongpeng)
 
 **Say something like:** "Here it is. Two ways to open it: the Local demo on
-this laptop — one click, keys already loaded, real calls. Or the Capstone
+Alan's Mac — one click, keys already loaded, real calls. Or the Capstone
 demo — that's the same page on GitHub Pages, so it works on any machine,
 even the professor's; paste an OpenRouter key for live calls, or it runs
 pre-recorded results with no key at all. Let's do an address first."
 
 Two links on the slide:
-- **💻 Local demo (this laptop):** http://127.0.0.1:8765
+- **💻 Local demo (Alan's Mac):** http://127.0.0.1:8765
 - **🌐 Capstone demo (any machine):**
   https://alan12-li.github.io/solarscan-verify-team-1/presentation/demo.html
 

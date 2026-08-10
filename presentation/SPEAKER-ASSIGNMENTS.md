@@ -21,7 +21,7 @@ slide has a "Say something like" script). This file is the lookup table.
 | 4–5 | **Praewa** (pointpraewa) | Model vs human · The two mistakes | Kimi 6/6, Gemini/Gemma 5/6, GPT-5.5 4/6 · GPT-5.5 false "solar" 0.76 (above 0.6) · Kimi uncertain 0.45 ↔ human uncertain — escalation is the product |
 | 6–7 | **Kenji** (ktannady22) | Multi-source verification · Surprising facts | Footprints → orthos → models → permit cross-check · 20/20 branch · 2018 vs 2024 date sensitivity · humans hesitated, only Kimi agreed · open-weights honest about doubt, cheaper |
 | 8–10 | **Tanapat** (tanapreuk) | Model economics · What failed → works · Live demo intro | Bare-prompt + confident-wrong failures · structured contract 24/24 · doubt signal works · short hand-off: "next slide is hands-on" |
-| 11 | **Yongpeng** (alan12-li) | **Live demo (hands-on)** | Two links (Local this laptop / Capstone any machine) · address 511 W 182nd St → ACCEPT + permit 8/15/2022 · photo hard roof → ESCALATE · 45s each, 90s total · fallback: tell story from deck |
+| 11 | **Yongpeng** (alan12-li) | **Live demo (hands-on)** | Two links (Local = Alan's Mac / Capstone = any machine) · address 511 W 182nd St → ACCEPT + permit 8/15/2022 · photo hard roof → ESCALATE · 45s each, 90s total · fallback: tell story from deck |
 | 12 | **Tanapat** (tanapreuk) | Recommendation (closes) | Revise rule → 100-roof test with Con Edison parcels · not stop / not deploy as-is · risks (permit coverage, imagery date, 1 labeler) · abstain untested · close: "scanner stays, ambiguous roofs get a second look — try the demo" |
 
 Hand-off order: Yongpeng → Victor → Praewa → Kenji → Tanapat → (demo:
