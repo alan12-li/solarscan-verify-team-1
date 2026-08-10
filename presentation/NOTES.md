@@ -3,8 +3,18 @@
 **Deck:** `presentation/index.html` (12 slides, self-contained; open in a
 browser, F11 for fullscreen)
 **Time:** 10 minutes + Q&A. Target ~45 seconds per slide.
-**Team roles (suggested):** Yongpeng leads (slides 1–5), Victor (6–8),
-Praewa (9–10), Kenji (11–12). Rehearse once as a group before class.
+**Team roles (5 speakers, ~2 min each):**
+| Slides | Speaker | Section |
+|---|---|---|
+| 1–2 | **Yongpeng** (opens) | Title · Problem |
+| 3–4 | **Victor** | Approach · Prototype agent system |
+| 5–6 | **Praewa** | Results · Error breakdown |
+| 7–8 | **Kenji** | Human validation · Baseline vs harder |
+| 9–10 | **Tanapat** | Surprising fact · What failed |
+| 11–12 | **Yongpeng** (closes) | Promising · Recommendation |
+
+Rehearse once as a group before class; each speaker owns ~2 minutes of the
+10. If someone is absent, the person next in the table covers their slides.
 
 > Decision owner: **Yongpeng** (repo owner, benchmark lead). If a slide's
 > number is challenged, cite the evidence path listed under it.
@@ -113,7 +123,8 @@ Likely questions and honest answers:
 
 - [ ] Download `presentation/index.html`; open offline (venue network is not
       guaranteed)
-- [ ] Assign speakers per the role split above
+- [ ] Assign speakers per the 5-person role table above (Yongpeng opens+closes,
+      Victor / Praewa / Kenji / Tanapat middle sections)
 - [ ] Rehearse once; time each section
 - [ ] Have `docs/team-links.md` handy for follow-up links
 - [ ] Print the 3 questions to Con Edison (`docs/con-edison-questions.md`)
