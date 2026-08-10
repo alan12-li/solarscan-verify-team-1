@@ -4,61 +4,77 @@ This file lets each teammate's agent answer: **"Which slides am I
 presenting?"** — the agent reads this table and replies with the speaker's
 slides, section, and key points.
 
-Deck: `presentation/index.html` (12 slides). Total time: 10 minutes + Q&A.
+Deck: `presentation/index.html` (11 slides — cover + 10 content,
+real-NYC-roofs version; live at
+https://alan12-li.github.io/solarscan-verify-team-1/presentation/).
+Total time: 10 minutes + Q&A.
 
 ## Assignment table
 
 | Slides | Speaker (GitHub) | Section | Key points to cover |
 |---|---|---|---|
-| 1–3 | **Yongpeng** (alan12-li) | Title · Problem · Approach | What we built · the ambiguous-roof problem · verify-don't-replace, benchmark setup |
-| 4–6 | **Victor** (Vchan5526) | Agent system · Multi-source NYC · Results | Pipeline & decision rule · NYC roof pipeline verified (PATH B) · nobody hit 90% (83/73/67/53) |
-| 7–9 | **Praewa** (pointpraewa) | Error breakdown · Human validation · Easy vs hard | Error classes, confidence signal · models vs 5-labeler consensus · baseline 83% vs harder 83/67/56/33 |
-| 10–11 | **Kenji** (ktannady22) | Surprising facts · What failed | Humans hesitated, models didn't · open-weights honesty · Gemini 2.5 404/JSON/429 failures |
-| 12–13 | **Tanapat** (tanapreuk) | Promising · Recommendation | Contract works · escalation path · revise → limited test · risks, close |
+| Cover–1 | **Yongpeng** (alan12-li) | Title · Problem — 6 real NYC roofs | Team names + brief · Errors A/B · every ambiguous roof is manual review today · the 6-roof grid (511 W 182nd 2024 solar, 1086291/1086435 no_solar, 1086408/1086361/511-2018 hard) |
+| 2–3 | **Victor** (Vchan5526) | Prototype · Evaluation | Pipeline: image+context → 4 models → decision rule → corroboration → human · 24 real calls, parseable JSON · eval design: 1 human labeler, permit-positive case, 2018 vs 2024 |
+| 4–5 | **Praewa** (pointpraewa) | Model vs human · The two mistakes | Human-labeler story · Kimi 6/6, Gemini/Gemma 5/6, GPT-5.5 4/6 · GPT-5.5 false "solar" at 0.76 (above 0.6 threshold) · Kimi's uncertain maps to the human's |
+| 6–7 | **Kenji** (ktannady22) | Multi-source verification · Surprising facts | Footprints → orthos → models → permit cross-check · 20/20 branch · 2018 vs 2024 date sensitivity · humans hesitated, only Kimi agreed · open-weights honest about doubt |
+| 8–9 | **Tanapat** (tanapreuk) | What failed → works · Live demo intro | Bare-prompt + confident-wrong failures · structured contract 24/24 · doubt signal works · hand off to the machine operator for the live demo |
+| 10 | **Yongpeng** (alan12-li) | **Live demo (hands-on)** | Open capstone demo link (any machine) or local server (this laptop) · address mode 511 W 182nd St → ACCEPT + permit · photo mode hard roof → ESCALATE · see NOTES.md Slide 9–10 for links & flow |
+| 11 | **Tanapat** (tanapreuk) | Recommendation (closes) | Revise decision rule → 100-roof limited test · not stop / not deploy as-is · risks (permit coverage, imagery date, 1 labeler) · missing/bad-input abstain untested · close line |
+
+Hand-off order: Yongpeng → Victor → Praewa → Kenji → Tanapat → (demo: Yongpeng) → Tanapat closes.
 
 ## Per-speaker detail (agent lookup answers)
 
-### Yongpeng — slides 1–3
-- **1 Title:** SolarScan Verify = verification layer; team; brief.
-- **2 Problem:** 2 clear photos vs 2 hard photos; errors A/B; why this
-  slice + ideation.
-- **3 Approach:** same inputs, 4 models, structured output, fail toward a
-  person; benchmark = 30 roofs, 5-labeler ground truth.
+### Yongpeng — Cover–1 (opens) + slide 10 (live demo)
+- **Cover:** "SolarScan Verify — a verification layer for Con Edison's
+  rooftop solar scanner, with a live multi-model prototype." Name team + brief.
+- **1 Problem:** 6 real Manhattan roofs from public NYC orthoimagery
+  (~0.5 m/px): solar = 511 W 182nd St 2024 (permit Completed 2022);
+  no_solar = 1086291, 1086435; hard = 1086408 (human uncertain — only
+  Kimi agreed), 1086361 (GPT-5.5 said solar ✗), 511 W 182nd 2018
+  (pre-install vs 2024). Error A: false "solar" → field visit to a bare
+  roof (truck + team wasted). Error B: false "no solar" → missed
+  generation. Today every ambiguous roof = manual review.
+- **10 Live demo:** two links on the slide:
+  - Capstone (any machine): https://alan12-li.github.io/solarscan-verify-team-1/presentation/demo.html
+    — paste OpenRouter key → LIVE mode (real calls); no key → DEMO MODE
+    (pre-recorded real results).
+  - Local (this laptop): http://127.0.0.1:8765 — `python3 scripts/demo_server.py`.
+  - Flow: address `511 W 182nd St` → ACCEPT solar + permit 8/15/2022;
+    photo hard roof → ESCALATE. 45s each, 90s total.
 
-### Victor — slides 4–6
-- **4 Agent system:** image → agent → 4 models → decision rule → corroboration
-  (public records, branch tested 20/20) → human. Real/tested, human in loop.
-- **5 Multi-source NYC:** real Manhattan roofs downloaded (public NYC Orthos
-  2018, CC BY 4.0) via `fetch_nyc_roofs.py`; model classifies them (no_solar
-  conf 0.9). Pipeline verified; accuracy needs labels + addresses (Con Edison
-  step).
-- **6 Results:** bar chart — GPT-5.5 83%, Gemini 73%, Kimi 67%, Gemma 53%;
-  target 90%; nobody made it = finding.
+### Victor — slides 2–3
+- **2 Prototype:** image + context → 4 models in parallel (temp 0, same
+  prompt) → {label, confidence, escalate} → decision rule (agree & conf
+  ≥ .6 accept; else human review) → corroboration (public records, branch
+  20/20) → analyst decides. Agent recommends, a person decides.
+- **3 Evaluation:** 6 real roofs, 1 human labeler (labeled before seeing
+  model calls), 4 models, permit-positive case, 2018 vs 2024 imagery-date
+  test, 24 calls parseable JSON.
 
-### Praewa — slides 7–9
-- **7 Error breakdown:** mostly no_solar→uncertain (24/37, recoverable);
-  no_solar→solar ×3 (costly); confidence 0.78–0.96 vs 0.39–0.47.
-- **8 Human validation:** hardest roofs sv-0018/sv-0003, per-model judgment
-  table — escalation is the product.
-- **9 Easy vs hard:** 12 agree-roofs all 83%; 18 disagree-roofs drop to
-  83/67/56/33 — harder roof = more human needed.
+### Praewa — slides 4–5
+- **4 Model vs human:** table 6 roofs × 4 models; Kimi 6/6, Gemini 5/6,
+  Gemma 5/6, GPT-5.5 4/6; Kimi only model to say uncertain where human did
+  (1086408).
+- **5 Two mistakes:** GPT-5.5 false "solar" 0.76 on 1086361 (above 0.6
+  threshold → rule would pass a false positive); Kimi uncertain 0.45 on
+  1086408 maps to human doubt → escalation is the product.
 
-### Kenji — slides 10–11
-- **10 Surprising facts:** 5 disputed roofs → models confident anyway
-  (sv-0133: Kimi said solar vs 2 humans no_solar); open-weights honest
-  about doubt (Gemma 11/30, Kimi 8/30; Gemma 10× cheaper).
-- **11 What failed:** Gemini 2.5 404 for new accounts; malformed JSON;
-  429 rate limits; second failure = models over-trust themselves.
+### Kenji — slides 6–7
+- **6 Multi-source:** footprints → ortho tile (CC BY 4.0) → 4 models →
+  LL24 permit by address; branch 20/20; time matters (511 W 182nd 2018
+  no_solar vs 2024 solar).
+- **7 Surprising:** humans hesitated, only Kimi agreed; open-weights honest
+  about doubt; Kimi/Gemma cheaper than GPT-5.5.
 
-### Tanapat — slides 12–13
-- **12 What looks promising:** output contract works (120 calls parseable);
-  clear cases separable; multi-source branch 20/20; next test = 100 roofs.
-- **13 Recommendation:** not stop / not deploy-as-is; revise escalation,
-  limited test 100 roofs; cost not blocker ($0.002–0.013); risks incl.
-  missing/bad inputs untested; close line.
-
-## Speaker check
-
-- [ ] Clone the repo and open `presentation/index.html`
-- [ ] Ask your agent: "Which slides am I presenting? What should I cover?"
-- [ ] Rehearse your slides; target ~2 minutes each
+### Tanapat — slides 8–9 + 11 (closes)
+- **8 What failed → works:** failed = bare-prompt + confident-wrong
+  (GPT-5.5 false solar, real data); works = structured contract 24/24,
+  doubt signal, multi-source 20/20, real NYC pipeline.
+- **9 Intro demo:** "we built a live prototype you can try — the next slide
+  is hands-on; our operator will run it." Hand off to Yongpeng.
+- **11 Recommendation:** revise decision rule → 100-roof limited test with
+  Con Edison parcels; not stop / not deploy as-is; risks (permit coverage,
+  imagery date, 1 labeler not consensus); missing/bad-input abstain
+  untested; close: "The scanner stays; the ambiguous roofs get a second,
+  explainable, human-escalated look. Try it yourself on the demo."
