@@ -50,9 +50,11 @@ is absent, the person next in the table covers their slides.
 
 ## Slide 4 · Prototype agent system (60s) — key slide
 - Walk the pipeline top to bottom: image → agent → 4 models → decision rule
-  → corroboration (public records, next test) → human.
+  → corroboration (public records, branch tested 20/20) → human.
 - Emphasize: the agent **recommends, a person decides**; escalate is never
   auto-accepted (PRD §5, §8).
+- Corroboration branch: `scripts/test_corroboration.py` — 10 scenarios × 2
+  models = 20/20 rule-following; lesson = rules must be unambiguous.
 - *Evidence:* `scripts/evaluate_benchmark.py`, `opencode.json` (team-agent).
 
 ## Slide 5 · Results (60s) — key slide

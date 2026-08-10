@@ -1,7 +1,8 @@
 # Multi-Source Verification — Beyond the Image Alone
 
 **Date:** 2026-08-10
-**Status:** Design + data-source validation ✅ · **Not yet benchmarked** ⚠️
+**Status:** Data-source validation ✅ · **Branch-logic tested 20/20 ✅**
+**· Full image→records pipeline: not benchmarked ⚠️**
 **Owner:** SolarScan Verify team
 
 ## The idea
@@ -98,6 +99,30 @@ and catches the failure mode our benchmark measured (confident wrong answers).
 4. **No Con Edison data used.** Everything above is public NYC Open Data /
    OSM. Exact parcel coordinates beyond the footprint and customer info stay
    off-limits (PRD §2, course red lines).
+
+## Branch-logic test (2026-08-10) — rule-following measured ✅
+
+We tested whether models actually **follow the corroboration rules**, using
+10 synthetic {hypothesis, permit} scenarios × 2 models
+(`scripts/test_corroboration.py`):
+
+| Model | Rule-following |
+|---|---|
+| GPT-5.5 | **10/10 (100%)** |
+| Gemini 3.5 Flash-Lite | **10/10 (100%)** |
+| **Combined** | **20/20 (100%)** |
+
+**Honest scope:** this tests the *decision branch* (given a hypothesis and a
+permit record, does the model apply the rule correctly), NOT image
+classification and NOT end-to-end. The 30 benchmark images have no addresses,
+so the full image→records pipeline remains part of the limited test.
+
+**Finding (reproduced by prompt iteration):** rule-following depends on
+**unambiguous rules**. With vague wording ("no permit found" vs "low
+confidence") models disagreed; after separating "lookup OK, zero records"
+from "lookup unavailable" and making the confidence threshold literal
+(< 0.8), both models hit 100%. Same lesson as the main classification:
+**prompt quality is the system.**
 
 ## Next test (proposed, part of the "limited test")
 
