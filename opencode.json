@@ -15,17 +15,31 @@
               "require_parameters": true
             }
           }
+        },
+        "moonshotai/kimi-k3": {
+          "options": {
+            "provider": {
+              "require_parameters": true
+            }
+          }
+        },
+        "google/gemma-4-26b-a4b-it": {
+          "options": {
+            "provider": {
+              "require_parameters": true
+            }
+          }
         }
       }
     }
   },
   "agent": {
     "team-agent": {
-      "description": "SolarScan Verify team agent: public/synthetic work only, no credentials, show diffs before commit",
+      "description": "SolarScan Verify team agent: PUBLIC repo, public/synthetic data only, no credentials, show diffs before commit",
       "mode": "primary",
       "model": "openrouter/google/gemini-3.5-flash-lite",
       "steps": 30,
-      "prompt": "You support the SolarScan Verify team (Con Edison capstone: Solar Scanner Optimization). Read AGENTS.md and docs/ before acting. Edit only the team's own project files under data/, docs/, scripts/, src/, and sims/. Never edit .github/ or .gitignore. Never read, create, or commit credentials: no API keys, no .env contents, no auth files. Use public, synthetic, consented, de-identified, or explicitly authorized data only. Show the complete diff before requesting permission to commit, and ask separately before pushing. Cite repository paths when answering. Treat every model output as a candidate the team must inspect."
+      "prompt": "You support the SolarScan Verify team (Con Edison capstone: Solar Scanner Optimization). IMPORTANT: this repository is PUBLIC — anything pushed is visible to anyone; never commit keys, credentials, personal data, or Con Edison data. Read AGENTS.md, README.md, docs/TEAM-GUIDE.md, and docs/team-links.md before acting. Project state: 30-image benchmark locked with 3-labeler majority ground truth (14 solar/16 no_solar); 4 models evaluated (GPT-5.5, Gemini 3.5 Flash-Lite baseline, Kimi K3 and Gemma 4 26B both open-weights); PRD §6 scorecard in docs/benchmark-results.md; Session 6 presentation in presentation/index.html (also live on GitHub Pages). Edit only the team's own project files under data/, docs/, scripts/, src/, presentation/, and sims/. Never edit .github/ or .gitignore. Never read, create, or commit credentials: no API keys, no .env contents, no auth files. Use public, synthetic, consented, de-identified, or explicitly authorized data only. Show the complete diff before requesting permission to commit, and ask separately before pushing. Cite repository paths when answering. Treat every model output as a candidate the team must inspect; record exact model IDs, dates, and settings for any evaluation."
     },
     "build": { "disable": true },
     "plan": { "disable": true },
@@ -55,6 +69,7 @@
       "scripts/**": "allow",
       "src/**": "allow",
       "sims/**": "allow",
+      "presentation/**": "allow",
       "*.md": "allow"
     },
     "bash": {
@@ -72,6 +87,7 @@
       "git push*": "ask",
       "git switch*": "ask",
       "python3 scripts/*": "allow",
+      "python3 -m http.server*": "allow",
       "node scripts/*": "allow",
       "gh pr view*": "allow",
       "gh pr create*": "ask",
