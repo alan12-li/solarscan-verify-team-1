@@ -29,10 +29,18 @@ Kenji Tannady (ktannady22) · Tanapat Boontuam (tanapreuk) · Victor Chan (Vchan
 
 ## 2. Where we are now (Session 6 ready)
 
-Labeling is **complete** — all 5 teammates labeled the 30-image set; ground
-truth is locked (majority vote) and the final deck is NYC-data based.
+Labeling of the 30-image benchmark is **complete** (5 labelers, majority
+vote). We are now **upgrading the NYC human validation to 3 labelers** —
+one teammate needs to label 6 real NYC roofs (~2 min):
 
-1. **Final deck:** `presentation/index.html` (10 slides, self-contained;
+1. Open the **NYC labeling tool**:
+   https://alan12-li.github.io/solarscan-verify-team-1/data/nyc-validation/label-nyc.html
+2. Enter your handle → label 6 roofs (Solar / No solar / Uncertain) → Export
+   JSON → push to `data/nyc-validation/labels/<handle>.json` or send to Yongpeng.
+
+Otherwise:
+
+1. **Final deck:** `presentation/index.html` (12 slides, self-contained;
    open in any browser, works offline once downloaded).
 2. **Results to review:** `docs/benchmark-results.md`,
    `docs/nyc-human-validation.md` (6 real NYC roofs, model vs human).

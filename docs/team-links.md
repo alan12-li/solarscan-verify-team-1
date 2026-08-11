@@ -11,6 +11,7 @@ keys, personal data, or Con Edison data.
 |---|---|
 | **Team repo** | https://github.com/alan12-li/solarscan-verify-team-1 |
 | **Presentation (live)** | https://alan12-li.github.io/solarscan-verify-team-1/presentation/ |
+| **🎯 NYC 6-roof labeling tool** | https://alan12-li.github.io/solarscan-verify-team-1/data/nyc-validation/label-nyc.html |
 | **Team guide** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/TEAM-GUIDE.md |
 | **Benchmark results** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/benchmark-results.md |
 | **NYC human validation** | https://github.com/alan12-li/solarscan-verify-team-1/blob/main/docs/nyc-human-validation.md |
@@ -25,42 +26,58 @@ keys, personal data, or Con Edison data.
 
 ## ✅ Your action items
 
-### 1. Accept the GitHub invite (if you haven't)
+### 1. 🎯 NEW: Label 6 real NYC roofs (~2 min) — one teammate needed
+
+We upgraded the human validation to **3 labelers** (majority vote). One
+teammate (Victor or Praewa — whoever is available) please do this:
+
+1. Open the **NYC 6-roof labeling tool** link at the top of this page.
+2. Type your GitHub handle → look at each of the 6 roof images (public NYC
+   orthoimagery) → click **Solar / No solar / Uncertain**.
+3. Click **⬇ Export my labels (JSON)** → save the file.
+4. Push it to `data/nyc-validation/labels/<your-handle>.json` (via your
+   agent: "save this file as data/nyc-validation/labels/<handle>.json and
+   commit"), or just send the JSON to Yongpeng.
+
+Your labels are stored only in your browser until you export — nothing is
+uploaded automatically. This upgrades the deck from "1 labeler" to
+"3 labelers, majority vote" for the demo tomorrow.
+
+### 2. Accept the GitHub invite (if you haven't)
 
 Check your GitHub notifications (bell icon) or open the invitation link from
 the chat. Without accepting, you cannot push.
 
-### 2. Review the results (labeling is complete)
+### 3. Review the results
 
-All 5 teammates labeled the 30-image set. Ground truth is locked (majority
-vote) and the final deck is based on 6 real NYC roofs:
+The final deck is based on **6 real NYC roofs** (12 slides, self-contained):
 
-1. Open the **Presentation (live)** link above — 10 slides, self-contained.
+1. Open the **Presentation (live)** link above — 12 slides, self-contained.
 2. Read `docs/nyc-human-validation.md` (model vs human on real roofs).
 3. Read `docs/benchmark-results.md` and `docs/value-for-conedison.md`.
 4. Scripts under `scripts/` reproduce every number (no keys needed for
    review; model calls need your own API key).
 
-### 3. Connect your own OpenRouter key in OpenCode
+### 4. Connect your own OpenRouter key in OpenCode
 
 `/connect` → OpenRouter → your own key ($5 credit + $5 limit, name it
 `stern-course-agent`). **Never share keys.**
 
-### 4. Prove your agent can operate the repo
+### 5. Prove your agent can operate the repo
 
 The capstone requires each member to make **one commit through their own
-agent**. Your label commit (step 2) counts.
+agent**. Your label commit (step 1) counts.
 
 ---
 
 ## 📊 Where we stand
 
 - Benchmark: 30 images (public CC drone dataset), ground truth locked from
-  2 labelers; 5 disagreements → `uncertain`
+  5 labelers, majority vote (14 solar / 16 no_solar / 0 uncertain)
 - Models compared: GPT-5.5, Gemini 3.5 Flash-Lite (baseline), Kimi K3
   (open-weights), Gemma 4 26B (open-weights)
-- Result: no model meets PRD §6 targets yet (best clear-case accuracy 84%,
-  best escalation recall 40%) — that is the finding we present
+- NYC validation: 6 real Manhattan roofs, human labels vs 4 models — Kimi
+  6/6, Gemini 5/6, Gemma 5/6, GPT-5.5 4/6; **upgrading to 3 labelers now**
 
 ## ⚠️ Public-repo rules (short version)
 
