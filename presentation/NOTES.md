@@ -240,7 +240,7 @@ revise the decision rule, then run a 100-roof limited test with real parcel
 IDs, so we can join permits at scale. And if we do nothing, the costly
 error class is already in the scanner — verification is the mitigation, not
 the cost. The scanner stays; the ambiguous roofs get a second, explainable,
-human-escalated look. And you can try it — the demo is one click away."
+human-escalated look. And we're honest: missing/bad-input abstain is untested — part of the limited test. And you can try it — the demo is one click away."
 
 - Revise decision rule → 100-roof limited test (Con Edison parcels → permit
   join at scale).
