@@ -73,7 +73,7 @@ person decides."
   same prompt) → {label, confidence, escalate} → decision rule (agree &
   conf ≥ .6 accept; else human review) → corroboration (branch tested
   20/20) → analyst decides.
-- Emphasize: **real & tested** — 24 model calls on 6 real NYC roofs, all
+- Emphasize: **real & tested** — 6 roofs × 4 models = 24 calls, all
   parseable JSON; escalated cases are never auto-accepted.
 - *Evidence:* `scripts/demo_server.py` (input handling),
   `scripts/evaluate_benchmark.py`, `scripts/test_corroboration.py`.
