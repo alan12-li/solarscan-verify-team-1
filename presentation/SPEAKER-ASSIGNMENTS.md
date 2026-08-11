@@ -17,7 +17,7 @@ slide has a "Say something like" script). This file is the lookup table.
 | Slides | Speaker (GitHub) | Section | Key points to cover |
 |---|---|---|---|
 | 1–3 | **Yongpeng** (alan12-li) | Cover · Problem — 6 real NYC roofs · Prototype | Team + brief · 6 real Manhattan roofs (solar: 511 W 182nd 2024; no_solar: 1086291/1086435; hard: 1086408/1086361/511-2018) · Error A truck to bare roof · Error B missed generation · today = manual review · pipeline: image → 4 models → rule → corroboration 20/20 → analyst decides |
-| 4–5 | **Victor** (Vchan5526) | Evaluation design · Model vs human | 24 real calls parseable · 1 human labeler, permit-positive case, 2018 vs 2024 · Kimi 6/6, Gemini/Gemma 5/6, GPT-5.5 4/6 · GPT-5.5 false "solar" 0.76 (above 0.6) · Kimi uncertain 0.45 ↔ human uncertain — escalation is the product |
+| 4–5 | **Victor** (Vchan5526) | Evaluation design · Model vs human | 24 real calls parseable · 2 human labelers (unanimous 6/6), permit-positive case, 2018 vs 2024 · Kimi 6/6, Gemini/Gemma 5/6, GPT-5.5 4/6 · GPT-5.5 false "solar" 0.76 (above 0.6) · Kimi uncertain 0.45 ↔ human uncertain — escalation is the product |
 | 6–7 | **Praewa** (pointpraewa) | The two mistakes · Multi-source verification | GPT-5.5 0.76 > 0.6 threshold → rule would pass a false positive · Kimi doubt ↔ human doubt · footprints → orthos → models → permit cross-check · 20/20 branch · 2018 vs 2024 date sensitivity |
 | 8–9 | **Kenji** (ktannady22) | Surprising facts · Model economics | humans hesitated, only Kimi agreed · open-weights honest about doubt, cheaper · measured per-image cost (Gemma $0.000059 / Gemini $0.00044 / Kimi $0.00191 / GPT-5.5 $0.00260) · 100 roofs ≈ $0.50 |
 | 10–12 | **Tanapat** (tanapreuk) | What failed → works · Live demo · Recommendation (closes) | bare-prompt + confident-wrong failures · structured contract 24/24 · demo: two links (Local = Alan's Mac / Capstone = any machine) · address 511 W 182nd St → ACCEPT + permit · photo hard roof → ESCALATE · revise rule → 100-roof test · not stop / not deploy as-is · close: "scanner stays, ambiguous roofs get a second look — try the demo" |
@@ -45,7 +45,8 @@ Hand-off order: Yongpeng (1–3) → Victor (4–5) → Praewa (6–7) → Kenji
   20/20) → analyst decides. Agent recommends, a person decides.
 
 ### Victor — slides 4–5
-- **4 Evaluation:** 6 real roofs, 1 human labeler (labels before model
+- **4 Evaluation:** 6 real roofs, 2 human labelers, unanimous 6/6 (labels
+  before model
   calls), 4 models, permit-positive case, 2018 vs 2024 imagery-date test;
   24 real calls, all parseable JSON.
 - **5 Model vs human:** table 6 roofs × 4 models; Kimi 6/6, Gemini 5/6,
@@ -83,6 +84,6 @@ Hand-off order: Yongpeng (1–3) → Victor (4–5) → Praewa (6–7) → Kenji
   the story from the deck.
 - **12 Recommendation:** revise decision rule → 100-roof limited test with
   Con Edison parcels; not stop / not deploy as-is; risks (permit coverage,
-  imagery date, 1 labeler not consensus); missing/bad-input abstain
+  imagery date, 2 labelers is a small panel); missing/bad-input abstain
   untested; close: "The scanner stays; the ambiguous roofs get a second,
   explainable, human-escalated look. And the demo is one click away."

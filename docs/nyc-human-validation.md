@@ -2,8 +2,22 @@
 
 ## Setup
 - **6 real Manhattan roofs** from public NYC orthoimagery (~0.5 m/px), labeled by Yongpeng (alan12-li) on 2026-08-10.
+- **Second labeler added 2026-08-11:** Praewa (pointpraewa) — **6/6 unanimous** with Yongpeng (majority decision reached, no third labeler needed).
 - Roofs: 1086291, 1086361, 1086408, 1086435, 511 W 182nd St (2024), 511 W 182nd St (2018).
 - 511 W 182nd St has a **Completed LL24 solar permit (2022)** — the 2024 vs 2018 pair tests imagery-date sensitivity.
+
+## Labels (2 labelers, unanimous)
+
+| Roof | Yongpeng | Praewa | Consensus |
+|---|---|---|---|
+| 1086291 | no_solar | no_solar | no_solar |
+| 1086361 | no_solar | no_solar | no_solar |
+| 1086408 | uncertain | uncertain | uncertain |
+| 1086435 | no_solar | no_solar | no_solar |
+| 511 W 182nd (2024) | solar | solar | solar |
+| 511 W 182nd (2018) | no_solar | no_solar | no_solar |
+
+Source: `data/nyc-validation/labels/pointpraewa.json` (exported from `data/nyc-validation/label-nyc.html`).
 
 ## Results
 
@@ -30,7 +44,7 @@
 1. **Kimi K3 was the only model that said `uncertain` where the human said uncertain (r3)** — the open-weights honesty pattern from the 30-roof benchmark reproduced on real NYC data.
 2. **GPT-5.5 false-positived `solar` on r2** (a no-solar roof) at conf 0.76 — the costly error class.
 3. **Imagery date matters**: 511 W 182nd St is no_solar in 2018 (pre-install) and solar in 2024 (post-install), matching the permit. All 4 models got both right, and the permit predicted the 2024 result.
-4. Honest scope: 1 labeler (not 5), 6 roofs (not 30), real NYC data but no ground truth beyond this labeling session.
+4. Honest scope: 2 labelers (unanimous 6/6 — majority rule satisfied), 6 roofs (not 30), real NYC data but no ground truth beyond this labeling session.
 
 ```json
 {

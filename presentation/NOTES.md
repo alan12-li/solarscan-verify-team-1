@@ -77,15 +77,15 @@ person decides."
 
 ## Slide 3 · Evaluation: 6 real NYC roofs (45s) — Victor
 
-**Say something like:** "Six real roofs, one human labeler — labels written
+**Say something like:** "Six real roofs, two human labelers — labels written
 before the models ever saw the images, so there's no peeking. And we
 deliberately built in two tricky features: one address has a completed
 solar permit, so we know it's a real positive; and we imaged the same roof
 in 2018 and 2024, so we can test whether imagery date matters."
 
-- Design: 1 human labeler labels solar/no_solar/uncertain **before seeing
-  model calls**; 4 models; public records (LL24 permits + Building
-  Footprints).
+- Design: 2 human labelers label solar/no_solar/uncertain **before seeing
+  model calls** — 6/6 unanimous (majority rule satisfied); 4 models;
+  public records (LL24 permits + Building Footprints).
 - Deliberate features: permit-positive case (2022); same roof 2018 vs 2024.
 - *Evidence:* `docs/nyc-human-validation.md`.
 
@@ -237,8 +237,8 @@ human-escalated look. And you can try it — the demo is one click away."
   join at scale).
 - Not "stop"; not "deploy as-is". If we do nothing: costly error class
   already in the scanner.
-- Risks: permit coverage incomplete; imagery-date mismatch; one labeler
-  isn't a consensus.
+- Risks: permit coverage incomplete; imagery-date mismatch; 2 labelers is
+  better than 1 but still a small panel.
 - Missing/bad-input abstain behavior (PRD §5) untested — part of the test.
 - Ask Con Edison: N roofs with parcel IDs; which context is shareable
   (footprints, permits, historical imagery); calibration set of genuinely
@@ -252,14 +252,16 @@ human-escalated look. And you can try it — the demo is one click away."
 Likely questions and honest answers:
 
 - **"Why only 6 roofs?"** It's a real-data validation set from public NYC
-  orthoimagery with one human labeler — deliberately small and honest. The
-  100-roof limited test with Con Edison parcels scales it.
+  orthoimagery with two human labelers (unanimous 6/6) — deliberately
+  small and honest. The 100-roof limited test with Con Edison parcels
+  scales it.
 - **"Which model would you use?"** Kimi matched the human 6/6 including the
   uncertain case and is far cheaper; GPT-5.5 is strong on clear cases but
   produced the costly false positive. Revisit after revising the decision
   rule.
-- **"Is one human labeler enough?"** No — that's a stated limitation. The
-  ground rule is ≥2 agreeing labelers; the limited test adds more humans.
+- **"Is two human labelers enough?"** It satisfies our majority rule (2
+  agreed 6/6 — no tie). For production we want ≥3; the 100-roof limited
+  test adds more labelers.
 - **"What data did you use?"** Public NYC orthoimagery (CC BY 4.0), NYC
   Building Footprints, LL24 solar permits. No Con Edison data — we will ask
   what is shareable.
