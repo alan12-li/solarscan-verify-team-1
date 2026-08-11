@@ -1,0 +1,23 @@
+{
+  "labeler": "pointpraewa",
+  "labels": {
+    "r1": {
+      "label": "no_solar"
+    },
+    "r2": {
+      "label": "no_solar"
+    },
+    "r3": {
+      "label": "uncertain"
+    },
+    "r4": {
+      "label": "no_solar"
+    },
+    "r5": {
+      "label": "solar"
+    },
+    "r6": {
+      "label": "no_solar"
+    }
+  }
+}
