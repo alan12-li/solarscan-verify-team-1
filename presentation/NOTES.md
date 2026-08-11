@@ -49,6 +49,9 @@ one of them confidently said 'solar' on a roof with no panels."
   up at a bare roof. Error B false "no solar" → generation we never see.
 - Today every ambiguous roof means a person reviews it by hand — that's
   where we aimed.
+- **Ideation (one line):** we asked the models to map the four briefs,
+  ranked where an agent adds most value, and landed on the verification
+  bottleneck — measurable, bounded, human-in-the-loop.
 - *Evidence:* `docs/nyc-human-validation.md`; images from NYC Orthos (public).
 
 ## Slide 2 · The prototype we actually built (60s) — key slide — Yongpeng
@@ -92,12 +95,18 @@ in 2018 and 2024, so we can test whether imagery date matters."
 ## Slide 4 · Model vs human on real roofs (60s) — key slide — Victor
 
 **Say something like:** "Here's the table that tells the whole story.
-Against the human, Kimi got 6 out of 6. Gemini and Gemma 5. GPT-5.5 got 4 —
-and its one miss was the expensive kind: it called 'solar' at 0.76 on a
-roof with no panels. Meanwhile on the roof where the human was genuinely
-unsure, Kimi was the only model that also said 'I'm not sure.' That's
-exactly the honesty an escalation layer needs."
+Start with the baseline case — the clear roofs, top and bottom rows:
+every model agrees with the human. Now the harder case — the ambiguous
+roofs in the middle: that's where models split. Against the human overall,
+Kimi got 6 out of 6. Gemini and Gemma 5. GPT-5.5 got 4 — and its one miss
+was the expensive kind: it called 'solar' at 0.76 on a roof with no
+panels. Meanwhile on the roof where the human was genuinely unsure, Kimi
+was the only model that also said 'I'm not sure.' That's exactly the
+honesty an escalation layer needs."
 
+- Baseline case (clear roofs): 1086291, 1086435, 511·2024 — all models
+  agree with the human.
+- Harder case (ambiguous roofs): 1086361, 1086408, 511·2018 — models split.
 - Agreement: Kimi 6/6, Gemini 5/6, Gemma 5/6, GPT-5.5 4/6.
 - Kimi honest about doubt: only model that said "uncertain" where the human
   did (1086408). GPT-5.5 false positive: "solar" at 0.76 on 1086361.

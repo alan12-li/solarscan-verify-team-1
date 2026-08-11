@@ -89,6 +89,7 @@ li{margin:.35rem 0;}
     <div class="card"><h4>💸 Error A</h4><p>False "solar" → field visit to a bare roof — truck + team wasted</p></div>
     <div class="card"><h4>💸 Error B</h4><p>False "no solar" → missed generation on a roof that has it</p></div>
     <div class="card"><h4>🔄 Today</h4><p>Every ambiguous roof = manual review by a person</p></div>
+    <div class="card"><h4>💡 Ideation</h4><p>We asked the models to map the 4 briefs → ranked where an agent adds most value → <strong>the verification bottleneck</strong>: measurable, bounded, human-in-the-loop</p></div>
   </div>
 </section>
 
@@ -148,6 +149,8 @@ li{margin:.35rem 0;}
 
 <section class="slide" id="s5">
   <h2>Model vs human on real roofs</h2>
+  <p class="muted" style="margin-bottom:.6rem;"><strong>Baseline case</strong> = clear roofs (1086291, 1086435, 511·2024) — all models agree with the human.
+  <strong>Harder case</strong> = ambiguous roofs (1086361, 1086408, 511·2018) — models split.</p>
   <table>
     <thead><tr><th>Roof</th><th class="num">Human</th><th class="num">Gemini</th><th class="num">GPT-5.5</th><th class="num">Kimi K3</th><th class="num">Gemma</th></tr></thead>
     <tbody>
@@ -391,7 +394,8 @@ li{margin:.35rem 0;}
         <ul>
           <li>Permit coverage incomplete (older/unpermitted systems)</li>
           <li>Imagery-date mismatch (2018 vs 2024 example)</li>
-          <li>One labeler isn't a consensus — more humans needed</li>
+          <li>2 labelers is a small panel — production needs ≥3</li>
+          <li><strong>Missing/bad inputs</strong> (abstain behavior) untested — part of the limited test</li>
         </ul>
       </div>
       <div class="card">
